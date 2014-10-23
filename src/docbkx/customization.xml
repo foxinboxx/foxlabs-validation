@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chapter xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd http://www.w3.org/1999/xlink http://www.docbook.org/xml/5.0/xsd/xlink.xsd"
+         xmlns="http://docbook.org/ns/docbook"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:xl="http://www.w3.org/1999/xlink"
+         xml:id="customization">
+    <title>Customization</title>
+    
+    <para>
+        In this chapter, we will consider opportunities to customize components
+        of the proposed framework.
+    </para>
+    
+    <section xml:id="implementing-your-own-constraint">
+        <title>Implementing your own constraint</title>
+        
+        <para>
+            To define a new constraint you need to implement the
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/Constraint.html"><literal>Constraint</literal></link>
+            interface. Depending on what kind of constraint you need to, you
+            can use one of the existing classes.
+        </para>
+        
+        <table xml:id="useful-constraint-classes">
+            <title>Useful constraint classes</title>
+            <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                <thead>
+                    <row>
+                        <entry>Class</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/CorrectConstraint.html"><literal>CorrectConstraint</literal></link>
+                        </entry>
+                        <entry>
+                            Allows to modify (correct) test value and never throws
+                            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/ConstraintViolationException.html"><literal>ConstraintViolationException</literal></link>.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/CheckConstraint.html"><literal>CheckConstraint</literal></link>
+                        </entry>
+                        <entry>
+                            Only checks a test value and doesn't modify it.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/RegexConstraint.html"><literal>RegexConstraint</literal></link>
+                         </entry>
+                        <entry>
+                            Checks whether a test string matches the regular
+                            expression.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/EnumerationConstraint.html"><literal>EnumerationConstraint</literal></link>
+                         </entry>
+                        <entry>
+                            Checks whether a test value is one of the allowed
+                            constants.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/IgnoreCaseEnumerationConstraint.html"><literal>IgnoreCaseEnumerationConstraint</literal></link>
+                         </entry>
+                        <entry>
+                            Checks whether a test string is one of the allowed
+                            strings using ignore case comparison.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/SizeConstraint.html"><literal>SizeConstraint</literal></link>
+                         </entry>
+                        <entry>
+                            Checks whether the size of a test value is within
+                            allowed minimum and maximum bounds.
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        
+        <note>
+            <para>
+                You can also extend the
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/AbstractValidation.html"><literal>AbstractValidation</literal></link>
+                class in conjunction with
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/Constraint.html"><literal>Constraint</literal></link>
+                interface.
+            </para>
+        </note>
+        
+        <para>
+            Lets implement <literal>StartsWithConstraint</literal> that will
+            check whether a test string starts with some prefix.
+            
+            <example xml:id="starts-with-constraint">
+                <title><literal>StartsWithConstraint</literal> implementation</title>
+                
+<programlisting language="java"><![CDATA[
+import org.foxlabs.validation.ValidationContext;
+import org.foxlabs.validation.constraint.CheckConstraint;
+
+import org.foxlabs.util.Assert;
+
+public class StartsWithConstraint extends CheckConstraint<String> {
+    
+    private final String prefix;
+    
+    public StartsWithConstraint(String prefix) {
+        this.prefix = Assert.notEmpty(prefix, "Prefix cannot be null or empty!");
+    }
+    
+    @Override
+    public Class<?> getType() {
+        return String.class;
+    }
+    
+    @Override
+    public boolean appendMessageArguments(ValidationContext<?> context, Map<String, Object> arguments) {
+        super.appendMessageArguments(context, arguments);
+        arguments.put("prefix", prefix);
+        return true;
+    }
+    
+    @Override
+    protected <T> boolean check(String value, ValidationContext<T> context) {
+        return value == null || value.startsWith(prefix);
+    }
+    
+}
+]]></programlisting>
+                
+            </example>
+            
+            <note>
+                <para>
+                    Don't forget to add constraint error message template in
+                    the default message bundle (see <link linkend="validation-messages" endterm="validation-messages.title" />).
+                </para>
+            </note>
+        </para>
+        
+        <para>
+            If you plan to use <literal>StartsWithConstraint</literal> for
+            validating Java beans or <abbrev>POJO</abbrev>s then you need to
+            define constraint annotation and add corresponding constructor in
+            the constraint implementation class.
+            
+            <example xml:id="starts-with-annotation">
+                <title><literal>@StartsWith</literal> constraint annotation</title>
+                
+<programlisting language="java"><![CDATA[
+import java.lang.annotation.Target;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+import org.foxlabs.validation.ValidationTarget;
+import org.foxlabs.validation.constraint.ConstrainedBy;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD})
+@ConstrainedBy(StartsWithConstraint.class)
+public @interface StartsWith {
+    
+    String value(); // prefix
+    
+    String message() default "";
+    
+    String[] groups() default {};
+    
+    ValidationTarget[] targets() default {};
+    
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD})
+    public static @interface List {
+        
+        StartsWith[] value();
+        
+    }
+    
+}
+]]></programlisting>
+                
+                <para>
+                    Also you need to change <literal>StartsWithConstraint</literal>.
+                </para>
+                
+<programlisting language="java"><![CDATA[
+...
+
+public class StartsWithConstraint extends CheckConstraint<String> {
+    
+    ...
+    
+    public StartsWithConstraint(StartsWith annotation) {
+        this(annotation.value());
+    }
+    
+    ...
+    
+}
+]]></programlisting>
+                
+            </example>
+            
+            That's all. Now you can apply <literal>@StartsWith</literal>
+            annotation for any property of the string type.
+            
+        </para>
+    </section>
+    
+    <section xml:id="implementing-your-own-converter">
+        <title>Implementing your own converter</title>
+        
+        <para>
+            To define a new converter you need to implement the
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/converter/Converter.html"><literal>Converter</literal></link>
+            interface.
+        </para>
+        
+        <note>
+            <para>
+                You can extend the
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/converter/AbstractConverter.html"><literal>AbstractConverter</literal></link>
+                class or
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/AbstractValidation.html"><literal>AbstractValidation</literal></link>
+                class in conjunction with
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/converter/Converter.html"><literal>Converter</literal></link>
+                interface.
+            </para>
+        </note>
+        
+        <para>
+            Lets implement <literal>RgbColorConverter</literal> that will
+            convert <literal>#RRGGBB</literal> color text representation into
+            the <literal>java.awt.Color</literal> and vice versa.
+            
+            <example xml:id="rgb-color-converter">
+                <title><literal>RgbColorConverter</literal> implementation</title>
+                
+<programlisting language="java"><![CDATA[
+import java.awt.Color;
+
+import org.foxlabs.validation.ValidationContext;
+import org.foxlabs.validation.converter.AbstractConverter;
+import org.foxlabs.validation.converter.MalformedValueException;
+
+public class RgbColorConverter extends AbstractConverter<Color> {
+    
+    @Override
+    public Class<Color> getType() {
+        return Color.class;
+    }
+    
+    @Override
+    protected <T> Color doDecode(String value, ValidationContext<T> context) {
+        if (value.length() == 7 && value.charAt(0) == '#') {
+            try {
+                int r = Integer.parseInt(value.substring(1, 3), 16);
+                int g = Integer.parseInt(value.substring(3, 5), 16);
+                int b = Integer.parseInt(value.substring(5, 7), 16);
+                
+                return new Color(r, g, b);
+            } catch (NumberFormatException e) {}
+        }
+        throw new MalformedValueException(this, context, value);
+    }
+    
+    @Override
+    protected <T> String doEncode(Color value, ValidationContext<T> context) {
+        StringBuilder rgb = new StringBuilder(7);
+        rgb.append('#');
+        
+        String r = Integer.toHexString(value.getRed());
+        if (r.length() < 2) {
+            rgb.append('0');
+        }
+        rgb.append(r);
+        
+        String g = Integer.toHexString(value.getGreen());
+        if (g.length() < 2) {
+            rgb.append('0');
+        }
+        rgb.append(g);
+        
+        
+        String b = Integer.toHexString(value.getBlue());
+        if (b.length() < 2) {
+            rgb.append('0');
+        }
+        rgb.append(b);
+        
+        return rgb.toString();
+    }
+    
+}
+]]></programlisting>
+                
+            </example>
+            
+            <note>
+                <para>
+                    Don't forget to add converter error message template in
+                    the default message bundle (see <link linkend="validation-messages" endterm="validation-messages.title" />).
+                </para>
+            </note>
+        </para>
+        
+        <para>
+            If you want to use <literal>RgbColorConverter</literal> as default
+            converter for <literal>java.awt.Color</literal> value types you
+            need to register it in the
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/converter/ConverterFactory.html"><literal>ConverterFactory</literal></link>.
+            
+<programlisting language="java"><![CDATA[
+ConverterFactory.addDefaultConverter(new RgbColorConverter());
+]]></programlisting>
+            
+            But if you want to use <literal>RgbColorConverter</literal> for
+            Java Beans or POJOs and you have different converters for
+            <literal>java.awt.Color</literal> type or you want to parameterize
+            your <literal>RgbColorConverter</literal> (for example you may want
+            to encode colors in upper or lower case) then you need an
+            annotation.
+            
+            <example xml:id="rgb-color-annotation">
+                <title><literal>@RgbColor</literal> converter annotation</title>
+                
+<programlisting language="java"><![CDATA[
+import java.lang.annotation.Target;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+import org.foxlabs.validation.ValidationTarget;
+import org.foxlabs.validation.converter.ConvertedBy;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD})
+@ConvertedBy(RgbColorConverter.class)
+public @interface RgbColor {
+    
+    boolean upperCase() default true; // encoding parameter
+    
+    String message() default "";
+    
+    ValidationTarget[] targets() default {};
+    
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD})
+    public static @interface List {
+        
+        RgbColor[] value();
+        
+    }
+    
+}
+]]></programlisting>
+                
+                <para>
+                    Also you need to change the <literal>RgbColorConverter</literal>.
+                </para>
+                
+<programlisting language="java"><![CDATA[
+...
+
+public class RgbColorConverter extends AbstractConverter<Color> {
+    
+    private final boolean upperCase;
+    
+    public RgbColorConverter(boolean upperCase) {
+        this.upperCase = upperCase;
+    }
+    
+    public RgbColorConverter(RgbColor annotation) {
+        this(annotation.upperCase());
+    }
+    
+    ...
+    
+    @Override
+    protected <T> String doEncode(Color value, ValidationContext<T> context) {
+        ...
+        
+        String text = rgb.toString();
+        return upperCase ? text.toUpperCase() : text.toLowerCase();
+    }
+    
+}
+]]></programlisting>
+                
+            </example>
+            
+            That's all. Now you can apply <literal>@RgbColor</literal>
+            annotation for any property of the <literal>java.awt.Color</literal>
+            type.
+            
+        </para>
+    </section>
+    
+    <section xml:id="customizing-other-components">
+        <title>Customizing other components</title>
+        
+        <para>
+            In most cases you don't need to customize anything in this framework except
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/Constraint.html"><literal>Constraint</literal></link>
+            and
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/converter/Converter.html"><literal>Converter</literal></link>.
+            But in some cases you may need to customize
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/metadata/EntityMetaData.html"><literal>EntityMetaData</literal></link>,
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/message/MessageResolver.html"><literal>MessageResolver</literal></link>
+            or
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/message/MessageBuilder.html"><literal>MessageBuilder</literal></link>
+            and even
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/ValidatorFactory.html"><literal>ValidatorFactory</literal></link>.
+        </para>
+        
+        <section xml:id="extending-metadata">
+            <title>Extending metadata</title>
+            
+            <para>
+                Extending metadata is required when your entities is not represented
+                as Java Beans or POJOs, or you define entities or properties by
+                other criteria (for example, you can have <literal>@Property</literal>
+                annotation to define entity properties). To define your own metadata
+                you can use existing abstract classes.
+                
+                <table xml:id="metadata-abstract-classes">
+                    <title>Metadata abstract classes</title>
+                    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <thead>
+                            <row>
+                                <entry>Class</entry>
+                                <entry>Description</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>
+                                    <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/metadata/AbstractEntityMetaData.html"><literal>AbstractEntityMetaData</literal></link>
+                                </entry>
+                                <entry>
+                                    Provides base implementation of the entity metadata.
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/metadata/AbstractPropertyMetaData.html"><literal>AbstractPropertyMetaData</literal></link>
+                                </entry>
+                                <entry>
+                                    Provides base implementation of the property metadata.
+                                </entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+                
+                After you defined your own metadata, it can be used to create
+                validators.
+                
+<programlisting language="java"><![CDATA[
+EntityMetaData<T> myMeta = ...
+ValidatorFactory factory = ...
+Validator<T> validator = factory.newValidator(myMeta);
+]]></programlisting>
+                
+            </para>
+        </section>
+        
+        <section xml:id="extending-message-resolver-and-builder">
+            <title>Extending message resolver and builder</title>
+            
+            <para>
+                If your error message templates is not stored as Java resources
+                (for example, they can be stored in the database) then you need
+                to provide your own
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/message/MessageResolver.html"><literal>MessageResolver</literal></link>
+                and initialize your
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/ValidatorFactory.html"><literal>ValidatorFactory</literal></link>.
+                
+<programlisting language="java"><![CDATA[
+MessageResolver resolver = ...
+ValidatorFactory factory = ...
+factory.setMessageResolver(resolver);
+]]></programlisting>
+                
+                Also you may want to store your error message templates in
+                another Java resource bundle. If so then you need to tell about
+                that to
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/ValidatorFactory.html"><literal>ValidatorFactory</literal></link>.
+                
+<programlisting language="java"><![CDATA[
+ValidatorFactory myFactory = new ValidatorFactory("my/message/bundle/name");
+]]></programlisting>
+                
+                <note>
+                    <para>
+                        The
+                        <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/message/MessageResolverChain.html"><literal>MessageResolverChain</literal></link>
+                        class can be used to create a chain of the
+                        <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/message/MessageResolver.html"><literal>MessageResolver</literal></link>s.
+                    </para>
+                </note>
+            </para>
+            
+            <para>
+                The goal of the
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/message/MessageBuilder.html"><literal>MessageBuilder</literal></link>
+                is to render error message templates for the current
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/ValidationContext.html"><literal>ValidationContext</literal></link>
+                and message arguments provided by the validation components. The
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/message/DefaultMessageBuilder.html"><literal>DefaultMessageBuilder</literal></link>
+                used by default to render message templates. If you need more
+                sophisticated message renderer then you should provide your own
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/message/MessageBuilder.html"><literal>MessageBuilder</literal></link>
+                implementation (for example, you can use one of template engines to render messages)
+                and tell about that to
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/ValidatorFactory.html"><literal>ValidatorFactory</literal></link>.
+                
+<programlisting language="java"><![CDATA[
+MessageBuilder builder = ...
+ValidatorFactory factory = ...
+factory.setMessageBuilder(builder);
+]]></programlisting>
+                
+                <note>
+                    <para>
+                        You can also extend the
+                        <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/message/AbstractMessageBuilder.html"><literal>AbstractMessageBuilder</literal></link>
+                        abstract class to provide your own implementation.
+                    </para>
+                </note>
+            </para>
+        </section>
+        
+        <section xml:id="extending-validator-factory">
+            <title>Extending validator factory</title>
+            
+            <para>
+                The main goal for extending
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/ValidatorFactory.html"><literal>ValidatorFactory</literal></link>
+                is to provide additional configuration to the
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/Validator.html"><literal>Validator</literal></link>.
+                After, these configuration parameters can be accessed in the validation components.
+                The right way is to extend
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/Validator.html"><literal>Validator</literal></link>
+                too, because factory configuration is supposed as mutable.
+            </para>
+        </section>
+    </section>
+</chapter>

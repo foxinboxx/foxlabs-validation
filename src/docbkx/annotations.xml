@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chapter xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd http://www.w3.org/1999/xlink http://www.docbook.org/xml/5.0/xsd/xlink.xsd"
+         xmlns="http://docbook.org/ns/docbook"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:xl="http://www.w3.org/1999/xlink"
+         xml:id="annotations">
+    <title>Annotations</title>
+    
+    <para>
+        For Java Beans and POJOs validation components can be defined through
+        annotations.
+    </para>
+    
+    <section xml:id="constraint-annotations">
+        <title>Constraint annotations</title>
+        
+        <para>
+            Each constraint annotation should be annotated by the
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/ConstrainedBy.html"><literal>@ConstrainedBy</literal></link>
+            annotation that specifies constraint implementation classes. Also
+            constraint annotation can define the following elements:
+            
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        The <literal>message</literal> property of the
+                        <literal>java.lang.String</literal> type. This property
+                        allows to override default error message template of
+                        the constraint.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The <literal>groups</literal> property of the
+                        <literal>java.lang.String[]</literal> type. This
+                        property defines validating groups the constraint is
+                        applied on.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The <literal>targets</literal> property of the
+                        <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/ValidationTarget.html"><literal>ValidationTarget</literal></link><literal>[]</literal>
+                        type. This property defines an object part to which
+                        constraint should be applied.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The inner <literal>@List</literal> annotation with
+                        <literal>value</literal> property of the outer
+                        constraint annotation array type. This annotation allows
+                        to apply outer constraint annotation several times on
+                        the same element.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        
+        <para>
+            For example, you can take a look at the
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/NotNull.html"><literal>@NotNull</literal></link>
+            annotation.
+        </para>
+        
+        <para>
+            There are several specific annotations.
+            
+            <table xml:id="specific-constraint-annotations">
+                <title>Specific constraint annotations</title>
+                <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                    <thead>
+                        <row>
+                            <entry>Annotation</entry>
+                            <entry>Description</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/Composition.html"><literal>@Composition</literal></link>
+                            </entry>
+                            <entry>
+                                Defines composition (AND) of constraints of the annotated element.
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/Conjunction.html"><literal>@Conjunction</literal></link>
+                            </entry>
+                            <entry>
+                                Defines conjunction (AND) of constraints of the annotated element.
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/Disjunction.html"><literal>@Disjunction</literal></link>
+                             </entry>
+                            <entry>
+                                Defines disjunction (OR) of constraints of the annotated element.
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/Negation.html"><literal>@Negation</literal></link>
+                             </entry>
+                            <entry>
+                                Defines negation (NOT) of constraints of the annotated element.
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </para>
+        
+        <para>
+            <example xml:id="constraint-declaration-example">
+                <title>Constraint declaration example</title>
+<programlisting language="java"><![CDATA[
+@NotNull @NotEmpty
+@Url(targets = ValidationTarget.ELEMENTS)
+@EmailAddress(targets = ValidationTarget.ELEMENTS)
+@Disjunction(targets = ValidationTarget.ELEMENTS)
+public List<String> getContactList() {
+    ...
+}
+]]></programlisting>
+            </example>
+            
+            In the example above we define constraint for <literal>java.util.List</literal>
+            property type. This list cannot be <literal>null</literal> or empty,
+            each element of the list must be a well-formed URL or email address.
+            
+            <note>
+                <para>
+                    Also elements of the list in example above can be
+                    <literal>null</literal> because
+                    <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/Url.html"><literal>@Url</literal></link>
+                    and
+                    <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/EmailAddress.html"><literal>@EmailAddress</literal></link>
+                    constraints allow <literal>null</literal>s.
+                </para>
+            </note>
+        </para>
+    </section>
+    
+    <section xml:id="converter-annotations">
+        <title>Converter annotations</title>
+        
+        <para>
+            Each converter annotation should be annotated by the
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/converter/ConvertedBy.html"><literal>@ConvertedBy</literal></link>
+            annotation that specifies converter implementation classes. Also
+            converter annotation can define the following elements:
+            
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        The <literal>message</literal> property of the
+                        <literal>java.lang.String</literal> type. This property
+                        allows to override default error message template of
+                        the converter.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The <literal>targets</literal> property of the
+                        <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/ValidationTarget.html"><literal>ValidationTarget</literal></link><literal>[]</literal>
+                        type. This property defines an object part to which
+                        converter should be applied.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The inner <literal>@List</literal> annotation with
+                        <literal>value</literal> property of the outer
+                        converter annotation array type. This annotation allows
+                        to apply outer converter annotation several times on
+                        the same element.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        
+        <para>
+            For example, you can take a look at the
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/converter/NumberPattern.html"><literal>@NumberPattern</literal></link>
+            annotation.
+        </para>
+        
+        <para>
+            <example xml:id="converter-declaration-example">
+                <title>Converter declaration example</title>
+<programlisting language="java"><![CDATA[
+@DateStyle(date = DateFormat.SHORT)
+public Date getCurrentDate() {
+    ...
+}
+]]></programlisting>
+            </example>
+            
+            In the example above we define converter for <literal>java.util.Date</literal>
+            property type with the specified date style.
+            
+        </para>
+        
+        <note>
+            <para>
+                Also you can use converter annotations in conjunction with the
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/converter/Tokenizer.html"><literal>Tokenizer</literal></link>
+                annotations for arrays, <literal>java.util.Collection</literal> and
+                <literal>java.util.Map</literal> types (for example, you can use the
+                <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/converter/TokenDelimiters.html"><literal>@TokenDelimiters</literal></link>
+                annotation).
+            </para>
+        </note>
+    </section>
+    
+    <section xml:id="custom-annotations">
+        <title>Custom annotations</title>
+        
+        <para>
+            Custom annotations are annotations constructed from other annotations.
+            Custom annotations must not be annotated by the
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/constraint/ConstrainedBy.html"><literal>@ConstrainedBy</literal></link>
+            or
+            <link xl:href="http://foxlabs.org/p/validation/1.0/browse/api/org/foxlabs/validation/converter/ConvertedBy.html"><literal>@ConvertedBy</literal></link>
+            annotations.
+        </para>
+        
+        <para>
+            Lets create custom constraint annotation that will check whether
+            the specified string is well-formed URL or email address.
+            
+            <example xml:id="custom-annotation-example">
+                <title>Custom annotation example</title>
+<programlisting language="java"><![CDATA[
+import java.lang.annotation.Target;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+import org.foxlabs.validation.ValidationTarget;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE, ElementType.METHOD, ElementType.FIELD})
+@Disjunction @Url @EmailAddress
+public @interface ContactAddress {
+    
+    String message() default "";
+    
+    String[] groups() default {};
+    
+    ValidationTarget[] targets() default {};
+    
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target({ElementType.TYPE, ElementType.METHOD, ElementType.FIELD})
+    public static @interface List {
+        
+        ContactAddress[] value();
+        
+    }
+    
+}
+]]></programlisting>
+            </example>
+            
+            Now you can apply <literal>@ContactAddress</literal> annotation for
+            any property of the string type.
+        </para>
+    </section>
+</chapter>
