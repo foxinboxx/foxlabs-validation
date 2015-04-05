@@ -16,7 +16,7 @@
         supports metadata, which allows to check any entity types (not only Java Beans or POJOs) and more.
         Also this framework has a long list of predefined validation components.
     </description>
-    <url>http://foxlabs.org/p/validation/1.0/</url>
+    <url>http://foxlabs.org/p/validation/1.0</url>
     <inceptionYear>2011</inceptionYear>
     <organization>
         <name>FoxLabs</name>
@@ -46,13 +46,13 @@
     </developers>
     
     <scm>
-        <url>https://bitbucket.org/foxinbox/foxlabs-validation/</url>
-        <connection>scm:git:https://bitbucket.org/foxinbox/foxlabs-validation.git</connection>
+        <url>https://github.com/foxinboxx/foxlabs-validation</url>
+        <connection>scm:git:https://github.com/foxinboxx/foxlabs-validation.git</connection>
     </scm>
     
     <issueManagement>
-        <system>Bitbucket</system>
-        <url>https://bitbucket.org/foxinbox/foxlabs-validation/issues</url>
+        <system>GitHub</system>
+        <url>https://github.com/foxinboxx/foxlabs-validation/issues</url>
     </issueManagement>
     
     <properties>
