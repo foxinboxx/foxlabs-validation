@@ -19,7 +19,7 @@ package org.foxlabs.validation.path;
 import org.foxlabs.validation.ValidationTarget;
 import org.foxlabs.validation.ViolationException;
 
-import org.foxlabs.util.UnicodeSet;
+import org.foxlabs.util.Strings;
 
 /**
  * This class provides default implementation of the <code>NodeFormatter</code>
@@ -109,7 +109,7 @@ public class DefaultNodeFormatter implements NodeFormatter {
             buf.append(index);
         } else if (index instanceof String || index instanceof Character) {
             buf.append('\"');
-            UnicodeSet.escape(index.toString(), buf);
+            Strings.escape(index.toString(), buf);
             buf.append('\"');
         } else {
             buf.append('@').append(Integer.toHexString(index.hashCode()));

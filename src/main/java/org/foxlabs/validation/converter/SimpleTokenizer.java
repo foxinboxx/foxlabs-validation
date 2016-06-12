@@ -23,7 +23,7 @@ import java.util.Map;
 import org.foxlabs.validation.ValidationContext;
 
 import org.foxlabs.util.Assert;
-import org.foxlabs.util.UnicodeSet;
+import org.foxlabs.util.Strings;
 
 /**
  * This class provides simple <code>Tokenizer</code> implementation based on
@@ -80,7 +80,7 @@ public final class SimpleTokenizer extends Tokenizer {
     @Override
     public boolean appendMessageArguments(ValidationContext<?> context, Map<String, Object> arguments) {
         super.appendMessageArguments(context, arguments);
-        arguments.put("delims", UnicodeSet.escape(delims));
+        arguments.put("delims", Strings.escape(delims));
         return true;
     }
     
