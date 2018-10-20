@@ -1768,12 +1768,13 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
      * Loads this map values from the specified file.
      * 
      * @param file File from which to read the values.
+     * @return This constrained map instance.
      * @throws IOException if an error occurred when reading from the file.
      * @throws ValidationException if violations occur.
      * @see #load(File, Locale)
      */
-    public void load(File file) throws IOException {
-        load(file, Locale.getDefault());
+    public ConstrainedMap load(File file) throws IOException {
+        return load(file, Locale.getDefault());
     }
     
     /**
@@ -1781,14 +1782,15 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
      * 
      * @param file File from which to read the values.
      * @param locale Locale to be used for error messages.
+     * @return This constrained map instance.
      * @throws IOException if an error occurred when reading from the file.
      * @throws ValidationException if violations occur.
      * @see #load(Reader, Locale)
      */
-    public void load(File file, Locale locale) throws IOException {
+    public ConstrainedMap load(File file, Locale locale) throws IOException {
         FileReader reader = new FileReader(file);
         try {
-            load(reader, locale);
+            return load(reader, locale);
         } finally {
             reader.close();
         }
@@ -1798,12 +1800,13 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
      * Loads this map values from the specified input stream.
      * 
      * @param stream Input stream from which to read the values.
+     * @return This constrained map instance.
      * @throws IOException if an error occurred when reading from the stream.
      * @throws ValidationException if violations occur.
      * @see #load(InputStream, Locale)
      */
-    public void load(InputStream stream) throws IOException {
-        load(stream, Locale.getDefault());
+    public ConstrainedMap load(InputStream stream) throws IOException {
+        return load(stream, Locale.getDefault());
     }
     
     /**
@@ -1811,24 +1814,26 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
      * 
      * @param stream Input stream from which to read the values.
      * @param locale Locale to be used for error messages.
+     * @return This constrained map instance.
      * @throws IOException if an error occurred when reading from the stream.
      * @throws ValidationException if violations occur.
      * @see #load(Reader, Locale)
      */
-    public void load(InputStream stream, Locale locale) throws IOException {
-        load(new InputStreamReader(stream), locale);
+    public ConstrainedMap load(InputStream stream, Locale locale) throws IOException {
+        return load(new InputStreamReader(stream), locale);
     }
     
     /**
      * Loads this map values from the specified input character stream.
      * 
      * @param reader Input character stream from which to read the values.
+     * @return This constrained map instance.
      * @throws IOException if an error occurred when reading from the stream.
      * @throws ValidationException if violations occur.
      * @see #load(Reader, Locale)
      */
-    public void load(Reader reader) throws IOException {
-        load(reader, Locale.getDefault());
+    public ConstrainedMap load(Reader reader) throws IOException {
+        return load(reader, Locale.getDefault());
     }
     
     /**
@@ -1836,11 +1841,12 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
      * 
      * @param reader Input character stream from which to read the values.
      * @param locale Locale to be used for error messages.
+     * @return This constrained map instance.
      * @throws IOException if an error occurred when reading from the stream.
      * @throws ValidationException if violations occur.
      * @see #doLoad(BufferedReader)
      */
-    public void load(Reader reader, Locale locale) throws IOException {
+    public ConstrainedMap load(Reader reader, Locale locale) throws IOException {
         Map<String, String> values = doLoad(reader instanceof BufferedReader
             ? (BufferedReader) reader
             : new BufferedReader(reader));
@@ -1849,6 +1855,7 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
             Transaction tx = new Transaction(locale);
             tx.setRawValues(values);
             tx.commit(true);
+            return this;
         } finally {
             writeLock.unlock();
         }
@@ -1888,11 +1895,12 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
      * 
      * @param file File to which to write the key-value pairs.
      * @param comment A comment to be written in the first line.
+     * @return This constrained map instance.
      * @throws IOException if an error occurred when writing to the file.
      * @see #save(File, Locale, String)
      */
-    public void save(File file, String comment) throws IOException {
-        save(file, Locale.getDefault(), comment);
+    public ConstrainedMap save(File file, String comment) throws IOException {
+        return save(file, Locale.getDefault(), comment);
     }
     
     /**
@@ -1901,13 +1909,14 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
      * @param file File to which to write the key-value pairs.
      * @param locale Locale to be used for comments of key-value pairs.
      * @param comment A comment to be written in the first line.
+     * @return This constrained map instance.
      * @throws IOException if an error occurred when writing to the file.
      * @see #save(Writer, Locale, String)
      */
-    public void save(File file, Locale locale, String comment) throws IOException {
+    public ConstrainedMap save(File file, Locale locale, String comment) throws IOException {
         FileWriter writer = new FileWriter(file);
         try {
-            save(writer, locale, comment);
+            return save(writer, locale, comment);
         } finally {
             writer.close();
         }
@@ -1918,11 +1927,12 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
      * 
      * @param stream Output stream to which to write the key-value pairs.
      * @param comment A comment to be written in the first line.
+     * @return This constrained map instance.
      * @throws IOException if an error occurred when writing to the stream.
      * @see #save(OutputStream, Locale, String)
      */
-    public void save(OutputStream stream, String comment) throws IOException {
-        save(stream, Locale.getDefault(), comment);
+    public ConstrainedMap save(OutputStream stream, String comment) throws IOException {
+        return save(stream, Locale.getDefault(), comment);
     }
     
     /**
@@ -1931,11 +1941,12 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
      * @param stream Output stream to which to write the key-value pairs.
      * @param locale Locale to be used for comments of key-value pairs.
      * @param comment A comment to be written in the first line.
+     * @return This constrained map instance.
      * @throws IOException if an error occurred when writing to the stream.
      * @see #save(Writer, Locale, String)
      */
-    public void save(OutputStream stream, Locale locale, String comment) throws IOException {
-        save(new OutputStreamWriter(stream), locale, comment);
+    public ConstrainedMap save(OutputStream stream, Locale locale, String comment) throws IOException {
+        return save(new OutputStreamWriter(stream), locale, comment);
     }
     
     /**
@@ -1943,11 +1954,12 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
      * 
      * @param writer Output character stream to which to write the key-value pairs.
      * @param comment A comment to be written in the first line.
+     * @return This constrained map instance.
      * @throws IOException if an error occurred when writing to the stream.
      * @see #save(Writer, Locale, String)
      */
-    public void save(Writer writer, String comment) throws IOException {
-        save(writer, Locale.getDefault(), comment);
+    public ConstrainedMap save(Writer writer, String comment) throws IOException {
+        return save(writer, Locale.getDefault(), comment);
     }
     
     /**
@@ -1956,14 +1968,16 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
      * @param writer Output character stream to which to write the key-value pairs.
      * @param locale Locale to be used for comments of key-value pairs.
      * @param comment A comment to be written in the first line.
+     * @return This constrained map instance.
      * @throws IOException if an error occurred when writing to the stream.
      * @see #doSave(BufferedWriter, Locale, String)
      */
-    public void save(Writer writer, Locale locale, String comment) throws IOException {
+    public ConstrainedMap save(Writer writer, Locale locale, String comment) throws IOException {
         BufferedWriter out = writer instanceof BufferedWriter
             ? (BufferedWriter) writer
             : new BufferedWriter(writer);
         doSave(out, locale, comment);
+        return this;
     }
     
     /**
