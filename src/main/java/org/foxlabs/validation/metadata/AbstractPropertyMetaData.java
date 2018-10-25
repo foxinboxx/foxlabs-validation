@@ -184,7 +184,7 @@ public abstract class AbstractPropertyMetaData<T, V> implements PropertyMetaData
      * and should be overriden in subclasses.</p>
      * 
      * @param entity Entity whose property value should be returned.
-     * @throws UnsupportedOperationException.
+     * @throws UnsupportedOperationException always.
      */
     @Override
     public V getValue(T entity) {
@@ -199,7 +199,7 @@ public abstract class AbstractPropertyMetaData<T, V> implements PropertyMetaData
      * 
      * @param entity Entity whose property value should be assigned.
      * @param value New property value.
-     * @throws UnsupportedOperationException.
+     * @throws UnsupportedOperationException always.
      */
     @Override
     public void setValue(T entity, Object value) {

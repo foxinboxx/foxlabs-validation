@@ -28,8 +28,8 @@ import org.foxlabs.validation.metadata.PropertyFilter;
 /**
  * This context holds current validation state.
  * 
- * @author Fox Mulder
  * @param <T> The type of validated entity
+ * @author Fox Mulder
  */
 public interface ValidationContext<T> {
     
@@ -73,6 +73,7 @@ public interface ValidationContext<T> {
     /**
      * Returns metadata of the current element we are validating.
      * 
+     * @param <V> The element type.
      * @return Metadata of the current element we are validating.
      */
     <V> ElementMetaData<T, V> getElementMetaData();
@@ -245,6 +246,7 @@ public interface ValidationContext<T> {
      * Returns localized message for the specified key and locale returned by
      * the method {@link #getMessageLocale()}.
      * 
+     * @param key Key of a message in a bundle.
      * @return Localized message for the specified key.
      */
     String resolveMessage(String key);

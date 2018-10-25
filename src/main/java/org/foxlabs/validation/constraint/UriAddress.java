@@ -35,25 +35,25 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface UriAddress {
     
     /**
-     * Array of allowed schemes.
+     * @return Array of allowed schemes.
      */
     String[] schemes() default {};
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -67,7 +67,7 @@ public @interface UriAddress {
     public static @interface List {
         
         /**
-         * <code>@UriAddress</code> annotations.
+         * @return <code>@UriAddress</code> annotations.
          */
         UriAddress[] value();
         

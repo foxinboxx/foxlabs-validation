@@ -134,6 +134,7 @@ public abstract class SizeConstraint<V> extends CheckConstraint<V> {
     /**
      * Returns size of the specified value.
      * 
+     * @param <T> The type of validated entity.
      * @param value Value which size to be returned.
      * @param context Validation context.
      * @return Size of the specified value.

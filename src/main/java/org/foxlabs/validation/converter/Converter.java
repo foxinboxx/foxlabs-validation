@@ -67,6 +67,7 @@ public interface Converter<V> extends Validation<V> {
      * if converter should take locale into account. Locale can be obtained
      * through the method {@link ValidationContext#getMessageLocale()}.</p>
      * 
+     * @param <T> The type of validated entity.
      * @param value String representation of value.
      * @param context Validation context.
      * @return Decoded value.
@@ -81,6 +82,7 @@ public interface Converter<V> extends Validation<V> {
      * if converter should take locale into account. Locale can be obtained
      * through the method {@link ValidationContext#getMessageLocale()}.</p>
      * 
+     * @param <T> The type of validated entity.
      * @param value Value to be encoded.
      * @param context Validation context.
      * @return String representation of value.

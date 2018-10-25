@@ -35,19 +35,19 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface DefaultValue {
     
     /**
-     * String representation of default value.
+     * @return String representation of default value.
      */
     String value();
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -62,7 +62,7 @@ public @interface DefaultValue {
     public static @interface List {
         
         /**
-         * <code>@DefaultValue</code> annotations.
+         * @return <code>@DefaultValue</code> annotations.
          */
         DefaultValue[] value();
         

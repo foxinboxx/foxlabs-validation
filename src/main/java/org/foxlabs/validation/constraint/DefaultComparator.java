@@ -54,6 +54,7 @@ public final class DefaultComparator implements Comparator<Comparable<Object>> {
     /**
      * Returns comparator for the specified object type and comparator type.
      * 
+     * @param <V> The value type.
      * @param type Type of the objects to be compared.
      * @param comparatorType Type of the comparator.
      * @return Comparator instance.

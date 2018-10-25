@@ -36,26 +36,26 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface DateStyle {
     
     /**
-     * <code>java.text.DateFormat</code> date style.
-     * <code>-1</code> means that there is no date part.
+     * @return <code>java.text.DateFormat</code> date style.
+     *         <code>-1</code> means that there is no date part.
      */
     int date() default -1;
     
     /**
-     * <code>java.text.DateFormat</code> time style.
-     * <code>-1</code> means that there is no time part.
+     * @return <code>java.text.DateFormat</code> time style.
+     *         <code>-1</code> means that there is no time part.
      */
     int time() default -1;
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * An object part to which converter should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which converter should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -69,7 +69,7 @@ public @interface DateStyle {
     public static @interface List {
         
         /**
-         * <code>@DateStyle</code> annotations.
+         * @return <code>@DateStyle</code> annotations.
          */
         DateStyle[] value();
         

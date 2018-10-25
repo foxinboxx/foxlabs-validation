@@ -36,29 +36,29 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface Replace {
     
     /**
-     * Regular expression pattern.
+     * @return Regular expression pattern.
      */
     String pattern();
     
     /**
-     * String to be substituted for each match.
+     * @return String to be substituted for each match.
      */
     String replacement();
     
     /**
-     * Match flags.
+     * @return Match flags.
      */
     int flags() default 0;
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -72,7 +72,7 @@ public @interface Replace {
     public static @interface List {
         
         /**
-         * <code>@Replace</code> annotations.
+         * @return <code>@Replace</code> annotations.
          */
         Replace[] value();
         

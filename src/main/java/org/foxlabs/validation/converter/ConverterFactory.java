@@ -45,7 +45,7 @@ import org.foxlabs.util.resource.Service;
  * Defines a factory that allows to obtain <code>Converter</code> instances.
  * 
  * <p>This factory has default converters for all primitive types, their
- * wrappers and enums. Also the following types are supported by default:
+ * wrappers and enums. Also the following types are supported by default:</p>
  * <ul>
  *   <li><code>java.lang.Class</code></li>
  *   <li><code>java.math.BigInteger</code></li>
@@ -57,7 +57,7 @@ import org.foxlabs.util.resource.Service;
  *   <li><code>java.net.URL</code></li>
  *   <li><code>java.net.URI</code></li>
  *   <li><code>java.io.File</code></li>
- * </ul></p>
+ * </ul>
  * 
  * <p>One-dimensional arrays of any registered types are supported through
  * {@link ArrayConverter}. The <code>java.util.Collection</code> and
@@ -215,6 +215,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
     /**
      * Creates a new converter for the specified enumeration type.
      * 
+     * @param <V> The enumeration type.
      * @param type Enumeration type.
      * @return A new enumeration converter.
      * @see #forEnum(Class, String)
@@ -226,6 +227,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
     /**
      * Creates a new converter for the specified enumeration type and prefix.
      * 
+     * @param <V> The enumeration type.
      * @param type Enumeration type.
      * @param prefix Prefix of message keys of enumeration constants.
      * @return A new enumeration converter.
@@ -297,6 +299,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Creates a new array converter with the specified converter of array
      * elements and default tokenizer.
      * 
+     * @param <V> The array elements type.
      * @param converter Converter of array elements.
      * @return A new array converter.
      * @see #forArray(Converter, Tokenizer)
@@ -311,6 +314,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Creates a new array converter with the specified converter of array
      * elements and allowed elements delimiters.
      * 
+     * @param <V> The array elements type.
      * @param converter Converter of array elements.
      * @param delims Delimiters of array elements.
      * @return A new array converter.
@@ -326,6 +330,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Creates a new array converter with the specified converter of array
      * elements and tokenzier of array elements.
      * 
+     * @param <V> The array elements type.
      * @param converter Converter of array elements.
      * @param tokenizer Tokenizer of array elements.
      * @return A new array converter.
@@ -342,6 +347,8 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Creates a new collection converter with the specified collection type,
      * converter of collection elements and default tokenzier.
      * 
+     * @param <T> The collection type.
+     * @param <V> The collection elements type.
      * @param type Collection type.
      * @param converter Converter of collection elements.
      * @return A new collection converter.
@@ -358,6 +365,8 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Creates a new collection converter with the specified collection type,
      * converter of collection elements and allowed elements delimiters.
      * 
+     * @param <T> The collection type.
+     * @param <V> The collection elements type.
      * @param type Collection type.
      * @param converter Converter of collection elements.
      * @param delims Delimiters of collection elements.
@@ -375,6 +384,8 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Creates a new collection converter with the specified collection type,
      * converter of collection elements and tokenzier of collection elements.
      * 
+     * @param <T> The collection type.
+     * @param <V> The collection elements type.
      * @param type Collection type.
      * @param converter Converter of collection elements.
      * @param tokenizer Tokenizer of collection elements.
@@ -394,6 +405,9 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Creates a new map converter with the specified map type, key and value
      * converters and default tokenzier.
      * 
+     * @param <T> The map type.
+     * @param <K> The map keys type.
+     * @param <V> The map values type.
      * @param type Map type.
      * @param kconverter Converter of map keys.
      * @param vconverter Converter of map values.
@@ -411,6 +425,9 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Creates a new map converter with the specified map type, key and value
      * converters, allowed key-value pairs delimiters.
      * 
+     * @param <T> The map type.
+     * @param <K> The map keys type.
+     * @param <V> The map values type.
      * @param type Map type.
      * @param kconverter Converter of map keys.
      * @param vconverter Converter of map values.
@@ -429,6 +446,9 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Creates a new map converter with the specified map type, key and value
      * converters, key-value pairs tokenzier.
      * 
+     * @param <T> The map type.
+     * @param <K> The map keys type.
+     * @param <V> The map values type.
      * @param type Map type.
      * @param kconverter Converter of map keys.
      * @param vconverter Converter of map values.
@@ -464,6 +484,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * <p>Note that this method has no effect if the specified constraint is
      * instance of the <code>UnsupportedConverter</code>.</p>
      * 
+     * @param <V> The value type.
      * @param converter Converter to be wrapped.
      * @param message Error message template key.
      * @return A new converter with wrapped error message.
@@ -495,6 +516,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
     /**
      * Returns unwrapped converter for the specified one.
      * 
+     * @param <V> The value type.
      * @param converter Converter to be unwrapped.
      * @return Unwrapped converter for the specified one or the specified
      *         converter if it was not wrapped.
@@ -574,6 +596,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
     /**
      * Registers a new default converter or overrides existing one.
      * 
+     * @param <V> The value type.
      * @param converter A new converter.
      * @return A new converter.
      */
@@ -587,6 +610,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * If there is no converter found for the specified value type then
      * {@link UnsupportedConverter} will be returned.
      * 
+     * @param <V> The value type.
      * @param type The type of value to be converted.
      * @return Converter for the specified value type.
      */
@@ -613,6 +637,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * it allows to override prefix of message keys for boolean and enumeration
      * constants.</p>
      * 
+     * @param <V> The value type.
      * @param type The type of value to be converted.
      * @param prefix Prefix of message keys of boolean and enumeration constants.
      * @return Converter for the specified value type.
@@ -657,12 +682,12 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * <p>The converter returned may be instance of <code>ConverterMessageWrapper</code>
      * if annotation contains overriding message template.</p>
      * 
+     * @param <V> The value type.
      * @param type The type of value to be converted.
      * @param annotations Array of annotations.
      * @param namespace Namespace (for example, qualified property name).
      * @return A new converter.
-     * @throws ValidationDeclarationException if there is an error in converter
-     *         declaration.
+     * @throws ValidationTargetException if there is an error in converter declaration.
      * @see #createConverter(Annotation, Class, String)
      * @see #createConverter(Class, String)
      */
@@ -762,6 +787,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * <p>The converter returned may be instance of <code>ConverterMessageWrapper</code>
      * if annotation contains overriding message template.</p>
      * 
+     * @param <V> The value type.
      * @param annotation Converter annotation.
      * @param type The type of value to be converted.
      * @param namespace Namespace (for example, qualified property name).
@@ -802,6 +828,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Wraps the specified converter using information from the specified
      * annotatation.
      * 
+     * @param <V> The value type.
      * @param converter Converter to be wrapped.
      * @param annotation Converter annotation.
      * @param namespace Namespace (for example, qualified property name).
@@ -827,6 +854,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Converts default string representation of value into object of the
      * specified type using registered converter.
      * 
+     * @param <V> The value type.
      * @param type The type of value to be converted.
      * @param value Default string representation of value.
      * @return Decoded value.
@@ -840,6 +868,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Converts array of default string representations of values into array of
      * objects of the specified type using registered converter.
      * 
+     * @param <V> The array elements type.
      * @param type The type of value to be converted.
      * @param values Array of default string representations of values.
      * @return Decoded array of values.
@@ -853,6 +882,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Converts value into default string representation using registered
      * converter.
      * 
+     * @param <V> The value type.
      * @param type The type of value to be converted.
      * @param value Value to be encoded.
      * @return Default string representation of value.
@@ -865,6 +895,7 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * Converts array of values into array of their raw string representations
      * using registered converter.
      * 
+     * @param <V> The array elements type.
      * @param type The type of value to be converted.
      * @param values Array of values to be encoded.
      * @return Array of default string representations of values.

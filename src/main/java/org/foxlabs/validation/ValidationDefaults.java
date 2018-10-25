@@ -31,7 +31,7 @@ import java.lang.annotation.RetentionPolicy;
 public @interface ValidationDefaults {
     
     /**
-     * Array of default constraint groups.
+     * @return Array of default constraint groups.
      */
     String[] groups();
     

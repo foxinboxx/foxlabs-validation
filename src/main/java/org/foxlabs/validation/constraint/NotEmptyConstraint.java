@@ -60,6 +60,7 @@ public abstract class NotEmptyConstraint<V> extends CheckConstraint<V> {
     /**
      * Determines whether the specified value is empty.
      * 
+     * @param <T> The type of validated entity.
      * @param value Value to be checked for empty.
      * @param context Validation context.
      * @return <code>true</code> if the specified value is empty;

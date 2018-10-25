@@ -104,6 +104,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that checks whether a value is <code>null</code>.
      * 
+     * @param <V> The value type.
      * @return Constraint that checks whether a value is <code>null</code>.
      * @see IsNullConstraint
      */
@@ -140,6 +141,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that checks whether a value is not <code>null</code>.
      * 
+     * @param <V> The value type.
      * @return Constraint that checks whether a value is not <code>null</code>.
      * @see NotNullConstraint
      */
@@ -172,6 +174,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that checks whether an array is not empty.
      * 
+     * @param <V> The array type.
      * @return Constraint that checks whether an array is not empty.
      * @see NotEmptyConstraint.ArrayType
      */
@@ -182,6 +185,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that checks whether a collection is not empty.
      * 
+     * @param <V> The collection type.
      * @return Constraint that checks whether a collection is not empty.
      * @see NotEmptyConstraint.CollectionType
      */
@@ -192,6 +196,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that checks whether a map is not empty.
      * 
+     * @param <V> The map type.
      * @return Constraint that checks whether a map is not empty.
      * @see NotEmptyConstraint.MapType
      */
@@ -247,6 +252,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether the length of an array is not
      * less than allowed minimum length.
      * 
+     * @param <V> The array type.
      * @param min Minimum length of an array.
      * @return Constraint that checks whether the length of an array is not
      *         less than allowed minimum length.
@@ -261,6 +267,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether the length of an array is not
      * greater than allowed maximum length.
      * 
+     * @param <V> The array type.
      * @param max Maximum length of an array.
      * @return Constraint that checks whether the length of an array is not
      *         greater than allowed maximum length.
@@ -275,6 +282,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether the length of an array is within
      * allowed minimum and maximum bounds.
      * 
+     * @param <V> The array type.
      * @param min Minimum length of an array.
      * @param max Maximum length of an array.
      * @return Constraint that checks whether the length of an array is within
@@ -289,6 +297,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether the size of a collection is not
      * less than allowed minimum size.
      * 
+     * @param <V> The collection type.
      * @param min Minimum size of a collection.
      * @return Constraint that checks whether the size of a collection is not
      *         less than allowed minimum size.
@@ -303,6 +312,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether the size of a collection is not
      * greater than allowed maximum size.
      * 
+     * @param <V> The collection type.
      * @param max Maximum size of a collection.
      * @return Constraint that checks whether the size of a collection is not
      *         greater than allowed maximum size.
@@ -317,6 +327,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether the size of a collection is
      * within allowed minimum and maximum bounds.
      * 
+     * @param <V> The collection type.
      * @param min Minimum size of a collection.
      * @param max Maximum size of a collection.
      * @return Constraint that checks whether the size of a collection is
@@ -331,6 +342,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether the size of a map is not less
      * than allowed minimum size.
      * 
+     * @param <V> The map type.
      * @param min Minimum size of a map.
      * @return Constraint that checks whether the size of a map is not less
      *         than allowed minimum size.
@@ -345,6 +357,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether the size of a map is not greater
      * than allowed maximum size.
      * 
+     * @param <V> The map type.
      * @param max Maximum size of a map.
      * @return Constraint that checks whether the size of a map is not greater
      *         than allowed maximum size.
@@ -359,6 +372,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether the size of a map is within
      * allowed minimum and maximum bounds.
      * 
+     * @param <V> The map type.
      * @param min Minimum size of a map.
      * @param max Maximum size of a map.
      * @return Constraint that checks whether the size of a map is within
@@ -375,6 +389,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether a value is not less than
      * allowed minimum value.
      * 
+     * @param <V> The value type.
      * @param min Minimum value.
      * @return Constraint that checks whether a value is not less than
      *         allowed minimum value.
@@ -389,6 +404,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether a value is not less than
      * allowed minimum value.
      * 
+     * @param <V> The value type.
      * @param min Minimum value.
      * @param comparator Comparator to be used for range checking.
      * @return Constraint that checks whether a value is not less than
@@ -404,6 +420,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether a value is not greater than
      * allowed maximum value.
      * 
+     * @param <V> The value type.
      * @param max Maximum value.
      * @return Constraint that checks whether a value is not greater than
      *         allowed maximum value.
@@ -418,6 +435,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether a value is not greater than
      * allowed maximum value.
      * 
+     * @param <V> The value type.
      * @param max Maximum value.
      * @param comparator Comparator to be used for range checking.
      * @return Constraint that checks whether a value is not greater than
@@ -433,6 +451,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether a value is within allowed
      * minimum and maximum range.
      * 
+     * @param <V> The value type.
      * @param min Minimum value.
      * @param max Maximum value.
      * @return Constraint that checks whether a value is within allowed
@@ -448,6 +467,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether a value is within allowed
      * minimum and maximum range.
      * 
+     * @param <V> The value type.
      * @param min Minimum value.
      * @param max Maximum value.
      * @param comparator Comparator to be used for range checking.
@@ -465,6 +485,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that lists constants of the specified enumeration
      * type.
      * 
+     * @param <V> The enumeration type.
      * @param type Enumeration type.
      * @return Constraint that lists constants of the specified enumeration
      *         type.
@@ -479,6 +500,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether a value is one of the allowed
      * constants.
      * 
+     * @param <V> The constants type.
      * @param constants Array of allowed constants.
      * @return Constraint that checks whether a value is one of the allowed
      *         constants.
@@ -492,6 +514,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether a value is one of the allowed
      * constants.
      * 
+     * @param <V> The constants type.
      * @param type Type of enumeration constants.
      * @param constants Array of allowed constants.
      * @return Constraint that checks whether a value is one of the allowed
@@ -506,6 +529,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether a value is one of the allowed
      * constants.
      * 
+     * @param <V> The constants type.
      * @param constants Collection of allowed constants.
      * @return Constraint that checks whether a value is one of the allowed
      *         constants.
@@ -519,6 +543,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether a value is one of the allowed
      * constants.
      * 
+     * @param <V> The constants type.
      * @param type Type of enumeration constants.
      * @param constants Collection of allowed constants.
      * @return Constraint that checks whether a value is one of the allowed
@@ -663,6 +688,8 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that checks whether a value is instance of one of the
      * specified types.
      * 
+     * @param <V> The value type.
+     * @param types The types to check.
      * @return Constraint that checks whether a value is instance of one of the
      *         specified types.
      * @see InstanceOfConstraint
@@ -945,6 +972,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that replaces a value with <code>null</code>.
      * 
+     * @param <V> The value type.
      * @return Constraint that replaces a value with <code>null</code>.
      * @see SetNullConstraint
      */
@@ -985,10 +1013,10 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     }
     
     /**
-     * Returns constraint that replaces all whitespaces with <code>\u0020</code>
+     * Returns constraint that replaces all whitespaces with <code>' '</code>
      * character in a string.
      * 
-     * @return Constraint that replaces all whitespaces with <code>\u0020</code>
+     * @return Constraint that replaces all whitespaces with <code>' '</code>
      *         character in a string.
      * @see CoalesceConstraint
      */
@@ -1113,6 +1141,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that replaces a <code>null</code> value with default
      * value.
      * 
+     * @param <V> The value type.
      * @param defaultValue Default value.
      * @return Constraint that replaces a <code>null</code> value with default
      *         value.
@@ -1126,6 +1155,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that removes all <code>null</code> elements from an
      * array.
      * 
+     * @param <V> The array type.
      * @return Constraint that removes all <code>null</code> elements from an
      *         array.
      */
@@ -1137,6 +1167,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that removes all <code>null</code> elements from a
      * collection.
      * 
+     * @param <V> The collection type.
      * @return Constraint that removes all <code>null</code> elements from a
      *         collection.
      */
@@ -1150,6 +1181,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that applies <code>==</code> operator to a value
      * and the specified property.
      * 
+     * @param <V> The property value type.
      * @param type Type of the operands.
      * @param property Property name of the second operand.
      * @return Constraint that applies <code>==</code> operator to a value
@@ -1165,6 +1197,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that applies <code>==</code> operator to a value
      * and the specified property.
      * 
+     * @param <V> The property value type.
      * @param type Type of the operands.
      * @param property Property name of the second operand.
      * @param comparator Comparator to be used for operands comparison.
@@ -1180,6 +1213,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that applies <code>!=</code> operator to a value
      * and the specified property.
      * 
+     * @param <V> The property value type.
      * @param type Type of the operands.
      * @param property Property name of the second operand.
      * @return Constraint that applies <code>!=</code> operator to a value
@@ -1195,6 +1229,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that applies <code>!=</code> operator to a value
      * and the specified property.
      * 
+     * @param <V> The property value type.
      * @param type Type of the operands.
      * @param property Property name of the second operand.
      * @param comparator Comparator to be used for operands comparison.
@@ -1210,6 +1245,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that applies <code>&lt;</code> operator to a value
      * and the specified property.
      * 
+     * @param <V> The property value type.
      * @param type Type of the operands.
      * @param property Property name of the second operand.
      * @return Constraint that applies <code>&lt;</code> operator to a value
@@ -1225,6 +1261,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that applies <code>&lt;</code> operator to a value
      * and the specified property.
      * 
+     * @param <V> The property value type.
      * @param type Type of the operands.
      * @param property Property name of the second operand.
      * @param comparator Comparator to be used for operands comparison.
@@ -1240,6 +1277,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that applies <code>&lt;=</code> operator to a value
      * and the specified property.
      * 
+     * @param <V> The property value type.
      * @param type Type of the operands.
      * @param property Property name of the second operand.
      * @return Constraint that applies <code>&lt;=</code> operator to a value
@@ -1255,6 +1293,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that applies <code>&lt;=</code> operator to a value
      * and the specified property.
      * 
+     * @param <V> The property value type.
      * @param type Type of the operands.
      * @param property Property name of the second operand.
      * @param comparator Comparator to be used for operands comparison.
@@ -1270,6 +1309,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that applies <code>&gt;</code> operator to a value
      * and the specified property.
      * 
+     * @param <V> The property value type.
      * @param type Type of the operands.
      * @param property Property name of the second operand.
      * @return Constraint that applies <code>&gt;</code> operator to a value
@@ -1285,6 +1325,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that applies <code>&gt;</code> operator to a value
      * and the specified property.
      * 
+     * @param <V> The property value type.
      * @param type Type of the operands.
      * @param property Property name of the second operand.
      * @param comparator Comparator to be used for operands comparison.
@@ -1300,6 +1341,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that applies <code>&gt;=</code> operator to a value
      * and the specified property.
      * 
+     * @param <V> The property value type.
      * @param type Type of the operands.
      * @param property Property name of the second operand.
      * @return Constraint that applies <code>&gt;=</code> operator to a value
@@ -1315,6 +1357,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Returns constraint that applies <code>&gt;=</code> operator to a value
      * and the specified property.
      * 
+     * @param <V> The property value type.
      * @param type Type of the operands.
      * @param property Property name of the second operand.
      * @param comparator Comparator to be used for operands comparison.
@@ -1331,6 +1374,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is composition of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param constraints Collection of constraints to be used for validation
      *        of a value.
      * @return Constraint that is composition of the specified constraints.
@@ -1344,6 +1388,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is composition of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param type The type of value to be validated.
      * @param constraints Collection of constraints to be used for validation
      *        of a value.
@@ -1358,6 +1403,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is composition of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param constraints Array of constraints to be used for validation of a
      *        value.
      * @return Constraint that is composition of the specified constraints.
@@ -1371,6 +1417,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is composition of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param type The type of value to be validated.
      * @param constraints Array of constraints to be used for validation of a
      *        value.
@@ -1386,6 +1433,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is negation of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param constraints Collection of constraints to be used for validation
      *        of a value.
      * @return Constraint that is negation of the specified constraints.
@@ -1399,6 +1447,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is negation of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param type The type of value to be validated.
      * @param constraints Collection of constraints to be used for validation
      *        of a value.
@@ -1413,6 +1462,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is negation of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param constraints Array of constraints to be used for validation of a
      *        value.
      * @return Constraint that is negation of the specified constraints.
@@ -1426,6 +1476,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is negation of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param type The type of value to be validated.
      * @param constraints Array of constraints to be used for validation of a
      *        value.
@@ -1439,6 +1490,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is conjunction of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param constraints Collection of constraints to be used for validation
      *        of a value.
      * @return Constraint that is conjunction of the specified constraints.
@@ -1452,6 +1504,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is conjunction of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param type The type of value to be validated.
      * @param constraints Collection of constraints to be used for validation
      *        of a value.
@@ -1466,6 +1519,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is conjunction of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param constraints Array of constraints to be used for validation of a
      *        value.
      * @return Constraint that is conjunction of the specified constraints.
@@ -1479,6 +1533,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is conjunction of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param type The type of value to be validated.
      * @param constraints Array of constraints to be used for validation of a
      *        value.
@@ -1494,6 +1549,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is disjunction of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param constraints Collection of constraints to be used for validation
      *        of a value.
      * @return Constraint that is disjunction of the specified constraints.
@@ -1507,6 +1563,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is disjunction of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param type The type of value to be validated.
      * @param constraints Collection of constraints to be used for validation
      *        of a value.
@@ -1521,6 +1578,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is disjunction of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param constraints Array of constraints to be used for validation of a
      *        value.
      * @return Constraint that is disjunction of the specified constraints.
@@ -1534,6 +1592,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that is disjunction of the specified constraints.
      * 
+     * @param <V> The value type.
      * @param type The type of value to be validated.
      * @param constraints Array of constraints to be used for validation of a
      *        value.
@@ -1549,6 +1608,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that performs validation of array elements.
      * 
+     * @param <V> The array elements type.
      * @param constraint Constraint to be used for validation of array elements.
      * @return Constraint that performs validation of array elements.
      * @see ArrayElementConstraint
@@ -1560,6 +1620,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that performs validation of collection elements.
      * 
+     * @param <V> The collection elements type.
      * @param constraint Constraint to be used for validation of collection
      *        elements.
      * @return Constraint that performs validation of collection elements.
@@ -1572,6 +1633,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that performs validation of map keys.
      * 
+     * @param <V> The map keys type.
      * @param constraint Constraint to be used for validation of map keys.
      * @return Constraint that performs validation of map keys.
      * @see MapKeyConstraint
@@ -1583,6 +1645,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that performs validation of map values.
      * 
+     * @param <V> The map values type.
      * @param constraint Constraint to be used for validation of map values.
      * @return Constraint that performs validation of map values.
      * @see MapValueConstraint
@@ -1594,6 +1657,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that performs cascade validation on an entity.
      * 
+     * @param <V> The entity type.
      * @param type The type of entity to be validated.
      * @return Constraint that performs cascade validation on an entity.
      * @see CascadeConstraint
@@ -1605,6 +1669,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns constraint that performs cascade validation on an entity.
      * 
+     * @param <V> The entity type.
      * @param metadata Entity metadata.
      * @return Constraint that performs cascade validation on an entity.
      * @see CascadeConstraint
@@ -1616,6 +1681,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns supertype for the array of constraints.
      * 
+     * @param <V> The value type.
      * @param constraints Array of constraints.
      * @return Supertype for the array of constraints.
      */
@@ -1634,6 +1700,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * <p>Note that this method has no effect if the specified constraint is
      * instance of the <code>CorrectConstraint</code>.</p>
      * 
+     * @param <V> The value type.
      * @param constraint Constraint to be wrapped.
      * @param message Error message template key.
      * @return A new constraint with wrapped error message.
@@ -1692,6 +1759,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Wraps groups of the specified constraint.
      * 
+     * @param <V> The value type.
      * @param constraint Constraint to be wrapped.
      * @param groups Array of constraint groups.
      * @return A new constraint with wrapped groups.
@@ -1708,6 +1776,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Wraps groups of the specified constraint by default.
      * 
+     * @param <V> The value type.
      * @param constraint Constraint to be wrapped.
      * @return A new constraint with wrapped groups.
      * @see ConstraintGroupWrapper
@@ -1721,6 +1790,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Returns unwrapped constraint for the specified one.
      * 
+     * @param <V> The value type.
      * @param wrapper Wrapper constraint.
      * @return Unwrapped constraint for the specified one or the specified
      *         constraint if it was not wrapped.
@@ -1735,6 +1805,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Searches constraint by its type in the specified one.
      * 
+     * @param <T> The constraint type.
      * @param wrapper Wrapper or aggregation constraint.
      * @param requiredType Type of the required constraint.
      * @return Constraint extracted from the specified one or <code>null</code>
@@ -1757,6 +1828,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Searches enumeration constants for the specified constraint.
      * 
+     * @param <V> The constants type.
      * @param wrapper Wrapper or aggregation constraint.
      * @return Enumeration constants or empty set if there is no enumeration
      *         constraint found.
@@ -1771,6 +1843,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Searches default value for the specified constraint.
      * 
+     * @param <V> The value type.
      * @param wrapper Wrapper or aggregation constraint.
      * @return Default value or <code>null</code> if there is no default value
      *         constraint found.
@@ -1803,13 +1876,14 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * annotations specified. Annotations that are not constraint annotations
      * would be skipped.</p>
      * 
+     * @param <V> The value type.
      * @param type The type of value to be validated.
      * @param annotations Array of annotations.
      * @param namespace Namespace (for example, qualified property name).
      * @param defaults Validation defaults.
      * @return A new constraint or <code>null</code> if there are no constraint
      *         annotations specified.
-     * @throws ValidationDeclarationException if there is an error in constraint
+     * @throws ValidationTargetException if there is an error in constraint
      *         declaration.
      * @see #createConstraint(Class, Annotation, String, ValidationDefaults)
      */
@@ -1906,6 +1980,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * is not a constraint annotation. This method is responsible for creation
      * constraints of raw types only.</p>
      * 
+     * @param <V> The value type.
      * @param type The type of value to be validated.
      * @param annotation Constraint annotation.
      * @param namespace Namespace (for example, qualified property name).
@@ -1953,6 +2028,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * <p>Note that if there is no constraint aggregation specified then
      * constraint composition will be used by default.</p>
      * 
+     * @param <V> The value type.
      * @param type The type of value to be validated.
      * @param constraints List of constraints to be aggregated.
      * @param aggregation Constraint aggregation annotation.
@@ -1976,6 +2052,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
      * Wraps the specified constraint using information from the specified
      * annotatation.
      * 
+     * @param <V> The value type.
      * @param constraint Constraint to be wrapped.
      * @param annotation Constraint annotation.
      * @param namespace Namespace (for example, qualified property name).
@@ -1999,6 +2076,7 @@ public abstract class ConstraintFactory extends AnnotationSupport {
     /**
      * Wraps the specified component constraint.
      * 
+     * @param <V> The value type.
      * @param constraint Constraint to be wrapped.
      * @param target Validation target.
      * @param namespace Namespace (for example, qualified property name).

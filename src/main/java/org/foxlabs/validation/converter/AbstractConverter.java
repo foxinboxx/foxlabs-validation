@@ -34,6 +34,7 @@ public abstract class AbstractConverter<V> extends AbstractValidation<V> impleme
      * <p>Invokes {@link #doDecode(String, ValidationContext)} if value is not
      * <code>null</code> or empty; returns <code>null</code> otherwise.</p>
      * 
+     * @param <T> The type of validated entity.
      * @param value String representation of value.
      * @param context Validation context.
      * @return Decoded value.
@@ -51,9 +52,11 @@ public abstract class AbstractConverter<V> extends AbstractValidation<V> impleme
      * <p>This method always throws <code>MalformedValueException</code> and
      * should be overriden in subclasses.</p>
      * 
+     * @param <T> The type of validated entity.
      * @param value Non-empty string representation of value.
      * @param context Validation context.
-     * @throws MalformedValueException.
+     * @return Decoded value.
+     * @throws MalformedValueException always.
      */
     protected <T> V doDecode(String value, ValidationContext<T> context) {
         throw new MalformedValueException(this, context, value); 
@@ -65,6 +68,7 @@ public abstract class AbstractConverter<V> extends AbstractValidation<V> impleme
      * <p>Invokes {@link #doEncode(Object, ValidationContext)} if value is not
      * <code>null</code>; returns empty string otherwise.</p>
      * 
+     * @param <T> The type of validated entity.
      * @param value Value to be encoded.
      * @param context Validation context.
      * @return String representation of value.
@@ -81,6 +85,7 @@ public abstract class AbstractConverter<V> extends AbstractValidation<V> impleme
      * <p>This method simply returns <code>value.toString()</code> and could
      * be overriden in subclasses.</p>
      * 
+     * @param <T> The type of validated entity.
      * @param value Null-safe value to be encoded.
      * @param context Validation context.
      * @return String representation of value.

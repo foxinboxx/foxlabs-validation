@@ -196,8 +196,6 @@ public abstract class EnumerationConstraint<V> extends CheckConstraint<V> {
          * @param annotation Constraint annotation.
          * @throws IllegalArgumentException if the specified annotation defines
          *         empty set of allowed constants.
-         * @throws MalformedValueException if the specified annotation defines
-         *         unparsable constants.
          */
         protected Default(Class<V> type, Enumeration annotation) {
             this(type, Arrays.asList(ConverterFactory.decode(type, annotation.value())));

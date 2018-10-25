@@ -31,7 +31,7 @@ public final class CoalesceConstraint extends CorrectConstraint<String> {
     
     /**
      * <code>CoalesceConstraint</code> default instance initialized with
-     * <code>\u0020</code> whitespaces replacement character.
+     * <code>' '</code> whitespaces replacement character.
      */
     public static final CoalesceConstraint DEFAULT = new CoalesceConstraint('\u0020', false);
     

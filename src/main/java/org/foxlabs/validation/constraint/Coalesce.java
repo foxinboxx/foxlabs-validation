@@ -45,24 +45,24 @@ public @interface Coalesce {
     char TAB = '\t';
     
     /**
-     * Whitespaces replacement character.
+     * @return Whitespaces replacement character.
      */
     char replacement() default '\u0020';
     
     /**
-     * Determines if new line characters should be preserved.
+     * @return Determines if new line characters should be preserved.
      */
     boolean multiline() default false;
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -76,7 +76,7 @@ public @interface Coalesce {
     public static @interface List {
         
         /**
-         * <code>@Coalesce</code> annotations.
+         * @return <code>@Coalesce</code> annotations.
          */
         Coalesce[] value();
         

@@ -45,19 +45,19 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface NumberPattern {
     
     /**
-     * <code>java.text.DecimalFormat</code> number pattern.
+     * @return <code>java.text.DecimalFormat</code> number pattern.
      */
     String value();
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * An object part to which converter should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which converter should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -72,7 +72,7 @@ public @interface NumberPattern {
     public static @interface List {
         
         /**
-         * <code>@NumberPattern</code> annotations.
+         * @return <code>@NumberPattern</code> annotations.
          */
         NumberPattern[] value();
         

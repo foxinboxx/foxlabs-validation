@@ -35,20 +35,20 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface IsFalse {
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -63,7 +63,7 @@ public @interface IsFalse {
     public static @interface List {
         
         /**
-         * <code>@IsFalse</code> annotations.
+         * @return <code>@IsFalse</code> annotations.
          */
         IsFalse[] value();
         

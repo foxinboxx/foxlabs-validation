@@ -72,6 +72,7 @@ public abstract class SequenceConverter<V> extends AbstractValidation<V> impleme
     /**
      * Converts string representation of elements sequence into object.
      * 
+     * @param <T> The type of validated entity.
      * @param value String representation of elements sequence.
      * @param context Validation context.
      * @return Decoded elements sequence.
@@ -98,6 +99,7 @@ public abstract class SequenceConverter<V> extends AbstractValidation<V> impleme
     /**
      * Returns array of tokens extracted from the source string.
      * 
+     * @param <T> The type of validated entity.
      * @param value Source string to be tokenized.
      * @param context Validation context.
      * @return Array of tokens extracted from the source string.
@@ -117,6 +119,7 @@ public abstract class SequenceConverter<V> extends AbstractValidation<V> impleme
      * This method should not throw <code>MalformedValueException</code> and
      * all violations should be stored in the specified list of violations.
      * 
+     * @param <T> The type of validated entity.
      * @param tokens String representations of elements.
      * @param context Validation context.
      * @param violations List of violations.

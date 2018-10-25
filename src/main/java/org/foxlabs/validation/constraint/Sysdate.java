@@ -35,14 +35,14 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface Sysdate {
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -56,7 +56,7 @@ public @interface Sysdate {
     public static @interface List {
         
         /**
-         * <code>@Sysdate</code> annotations.
+         * @return <code>@Sysdate</code> annotations.
          */
         Sysdate[] value();
         

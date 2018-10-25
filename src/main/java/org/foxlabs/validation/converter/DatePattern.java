@@ -36,19 +36,19 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface DatePattern {
     
     /**
-     * <code>java.text.SimpleDateFormat</code> date/time pattern.
+     * @return <code>java.text.SimpleDateFormat</code> date/time pattern.
      */
     String value();
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * An object part to which converter should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which converter should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -63,7 +63,7 @@ public @interface DatePattern {
     public static @interface List {
         
         /**
-         * <code>@DatePattern</code> annotations.
+         * @return <code>@DatePattern</code> annotations.
          */
         DatePattern[] value();
         

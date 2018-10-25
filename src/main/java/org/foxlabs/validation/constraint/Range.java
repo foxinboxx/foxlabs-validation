@@ -38,35 +38,35 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface Range {
     
     /**
-     * Minimum value.
+     * @return Minimum value.
      */
     String min();
     
     /**
-     * Maximum value.
+     * @return Maximum value.
      */
     String max();
     
     /**
-     * Type of the comparator to be used for range checking.
+     * @return Type of the comparator to be used for range checking.
      */
     Class<? extends Comparator<?>> comparator() default DefaultComparator.class;
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -80,7 +80,7 @@ public @interface Range {
     public static @interface List {
         
         /**
-         * <code>@Range</code> annotations.
+         * @return <code>@Range</code> annotations.
          */
         Range[] value();
         

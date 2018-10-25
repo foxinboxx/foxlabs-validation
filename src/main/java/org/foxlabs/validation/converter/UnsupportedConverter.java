@@ -74,7 +74,7 @@ public final class UnsupportedConverter<V> extends AbstractValidation<V> impleme
      * 
      * @param value String representation of value. 
      * @param context Validation context.
-     * @throws MalformedValueException.
+     * @throws MalformedValueException always.
      */
     @Override
     public <T> V decode(String value, ValidationContext<T> context) {
@@ -83,7 +83,7 @@ public final class UnsupportedConverter<V> extends AbstractValidation<V> impleme
     
     /**
      * Returns <code>value.toString()</code> if value is not <code>null</code>;
-     * returns empty string otherwise.</p>.
+     * returns empty string otherwise.
      * 
      * @param value Value to be encoded.
      * @param context Validation context.

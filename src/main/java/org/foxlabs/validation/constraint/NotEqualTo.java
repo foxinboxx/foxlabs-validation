@@ -38,30 +38,30 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface NotEqualTo {
     
     /**
-     * Property name of the second operand.
+     * @return Property name of the second operand.
      */
     String value();
     
     /**
-     * Type of the comparator to be used for operands comparison.
+     * @return Type of the comparator to be used for operands comparison.
      */
     Class<? extends Comparator<?>> comparator() default DefaultComparator.class;
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -75,7 +75,7 @@ public @interface NotEqualTo {
     public static @interface List {
         
         /**
-         * <code>@NotEqualTo</code> annotations.
+         * @return <code>@NotEqualTo</code> annotations.
          */
         NotEqualTo[] value();
         

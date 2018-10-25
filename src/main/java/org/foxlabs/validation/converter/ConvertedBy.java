@@ -37,8 +37,7 @@ import java.lang.annotation.RetentionPolicy;
 public @interface ConvertedBy {
     
     /**
-     * Specifies the converter implementation classes to be used for value
-     * conversion.
+     * @return The converter implementation classes to be used for value conversion.
      */
     @SuppressWarnings("rawtypes")
     Class<? extends Converter>[] value();

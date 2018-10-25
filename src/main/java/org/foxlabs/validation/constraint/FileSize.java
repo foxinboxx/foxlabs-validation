@@ -36,30 +36,30 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface FileSize {
     
     /**
-     * Minimum allowed file size.
+     * @return Minimum allowed file size.
      */
     long min() default 0L;
     
     /**
-     * Maximum allowed file size.
+     * @return Maximum allowed file size.
      */
     long max() default Long.MAX_VALUE;
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -73,7 +73,7 @@ public @interface FileSize {
     public static @interface List {
         
         /**
-         * <code>@FileSize</code> annotations.
+         * @return <code>@FileSize</code> annotations.
          */
         FileSize[] value();
         

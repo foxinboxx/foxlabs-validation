@@ -35,19 +35,19 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface ParentDirectory {
     
     /**
-     * Parent directory pathname.
+     * @return Parent directory pathname.
      */
     String path();
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * An object part to which converter should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which converter should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -62,7 +62,7 @@ public @interface ParentDirectory {
     public static @interface List {
         
         /**
-         * <code>@ParentDirectory</code> annotations.
+         * @return <code>@ParentDirectory</code> annotations.
          */
         ParentDirectory[] value();
         

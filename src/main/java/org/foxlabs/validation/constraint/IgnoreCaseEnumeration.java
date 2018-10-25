@@ -36,25 +36,25 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface IgnoreCaseEnumeration {
     
     /**
-     * Array of allowed strings.
+     * @return Array of allowed strings.
      */
     String[] value();
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -69,7 +69,7 @@ public @interface IgnoreCaseEnumeration {
     public static @interface List {
         
         /**
-         * <code>@IgnoreCaseEnumeration</code> annotations.
+         * @return <code>@IgnoreCaseEnumeration</code> annotations.
          */
         IgnoreCaseEnumeration[] value();
         

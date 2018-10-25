@@ -35,13 +35,13 @@ import java.lang.annotation.RetentionPolicy;
 public @interface TokenDelimiters {
     
     /**
-     * Allowed elements delimiter characters.
+     * @return Allowed elements delimiter characters.
      */
     String value();
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     

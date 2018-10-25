@@ -203,6 +203,7 @@ public class BeanMetaData<T> extends AbstractEntityMetaData<T> {
     /**
      * Returns bean metadata for the specified type.
      * 
+     * @param <T> The bean type.
      * @param type Type for which bean metadata should be returned.
      * @return Bean metadata for the specified type.
      * @throws BeanDefinitionException if bean has illegal validation definition.

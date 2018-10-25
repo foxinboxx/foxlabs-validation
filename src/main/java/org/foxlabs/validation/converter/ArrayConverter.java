@@ -94,6 +94,7 @@ public final class ArrayConverter<V> extends SequenceConverter<Object> {
     /**
      * Converts string representations of array elements into array.
      * 
+     * @param <T> The type of validated entity.
      * @param tokens String representations of array elements.
      * @param context Validation context.
      * @return Decoded array.
@@ -118,6 +119,7 @@ public final class ArrayConverter<V> extends SequenceConverter<Object> {
     /**
      * Converts array into string representation of array elements.
      * 
+     * @param <T> The type of validated entity.
      * @param value Array to be encoded.
      * @param context Validation context.
      * @return String representation of array elements.

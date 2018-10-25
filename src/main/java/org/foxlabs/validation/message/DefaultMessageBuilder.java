@@ -30,7 +30,7 @@ import org.foxlabs.util.reflect.Types;
 /**
  * This class provides default <code>MessageBuilder</code> implementation.
  * 
- * <p>The following rules are applied to error message templates:
+ * <p>The following rules are applied to error message templates:</p>
  * <ul>
  *   <li>The <code>\</code> character is considered as escape character.</li>
  *   <li>The string enclosed into <code>{}</code> characters is considered as
@@ -38,7 +38,7 @@ import org.foxlabs.util.reflect.Types;
  *   <li>If value of optional argument is <code>null</code> then it will be
  *       replaced with empty string; if value is not defined then no
  *       replacement will occur.</li>
- *   <li>The string enclosed into <code><></code> characters is considered as
+ *   <li>The string enclosed into <code>&lt;&gt;</code> characters is considered as
  *       required argument.</li>
  *   <li>If value of required argument is not defined or <code>null</code> then
  *       whole template will be rendered as <code>null</code>.</li>
@@ -46,8 +46,8 @@ import org.foxlabs.util.reflect.Types;
  *       subtemplate.</li>
  *   <li>If subtemplate is <code>null</code> then it will be replaced with
  *       empty string.</li>
- *   <li>Argument names must not contain <code>\{}<>()</code> characters.</li>
- * </ul></p>
+ *   <li>Argument names must not contain <code>\{}&lt;&gt;()</code> characters.</li>
+ * </ul>
  * 
  * @author Fox Mulder
  */

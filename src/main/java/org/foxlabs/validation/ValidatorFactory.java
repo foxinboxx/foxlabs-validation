@@ -173,6 +173,7 @@ public class ValidatorFactory {
      * Creates a new validator for the specified bean type using factory
      * configuration.
      * 
+     * @param <T> The bean type.
      * @param type Bean type for which validator should be created.
      * @return Validator for the specified bean type.
      */
@@ -184,6 +185,7 @@ public class ValidatorFactory {
      * Creates a new validator for the specified bean type using configuration
      * from another validator.
      * 
+     * @param <T> The bean type.
      * @param type Bean type for which validator should be created.
      * @param config Validator whose configuration should be taken.
      * @return Validator for the specified bean type.
@@ -196,6 +198,7 @@ public class ValidatorFactory {
      * Creates a new validator for the specified entity metadata using factory
      * configuration.
      * 
+     * @param <T> The entity type.
      * @param metadata Entity metadata for which validator should be created.
      * @return Validator for the specified entity metadata.
      */
@@ -208,6 +211,7 @@ public class ValidatorFactory {
      * Creates a new validator for the specified entity metadata using
      * configuration from another validator.
      * 
+     * @param <T> The entity type.
      * @param metadata Entity metadata.
      * @param config Validator whose configuration should be taken.
      * @return Validator for the specified entity metadata.

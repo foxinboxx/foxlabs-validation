@@ -35,30 +35,30 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface UrlAddress {
     
     /**
-     * URL prefix pattern if any.
+     * @return URL prefix pattern if any.
      */
     String prefix() default "";
     
     /**
-     * Array of allowed protocols.
+     * @return Array of allowed protocols.
      */
     String[] protocols() default {};
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -72,7 +72,7 @@ public @interface UrlAddress {
     public static @interface List {
         
         /**
-         * <code>@UrlAddress</code> annotations.
+         * @return <code>@UrlAddress</code> annotations.
          */
         UrlAddress[] value();
         

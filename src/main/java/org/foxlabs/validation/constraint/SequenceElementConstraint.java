@@ -84,6 +84,7 @@ public abstract class SequenceElementConstraint<V, E> extends AbstractValidation
      * Checks whether all elements of the specified sequence conforms to the
      * constraint of sequence elements.
      * 
+     * @param <T> The type of validated entity.
      * @param sequence Sequence whose elements to be checked.
      * @param context Validation context.
      * @return Sequence with possibly modified elements if constraint of
@@ -118,6 +119,7 @@ public abstract class SequenceElementConstraint<V, E> extends AbstractValidation
      * <code>ConstraintViolationException</code> and all violations should be
      * stored in the specified list of violations.
      * 
+     * @param <T> The type of validated entity.
      * @param sequence Sequence whose elements to be checked.
      * @param context Validation context.
      * @param violations List of violations.

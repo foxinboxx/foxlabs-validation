@@ -39,35 +39,35 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface ImageSize {
     
     /**
-     * Maximum image width.
+     * @return Maximum image width.
      */
     int maxWidth();
     
     /**
-     * Maximum image height.
+     * @return Maximum image height.
      */
     int maxHeight();
     
     /**
-     * Image size adjust mode.
+     * @return Image size adjust mode.
      */
     ImageAdjust adjust() default ImageAdjust.NONE;
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -81,7 +81,7 @@ public @interface ImageSize {
     public static @interface List {
         
         /**
-         * <code>@ImageSize</code> annotations.
+         * @return <code>@ImageSize</code> annotations.
          */
         ImageSize[] value();
         

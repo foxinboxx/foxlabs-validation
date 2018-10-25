@@ -47,7 +47,7 @@ import org.foxlabs.validation.metadata.PropertyMetaData;
  * builded by the {@link org.foxlabs.validation.metadata.MapMetaData.Builder}
  * class.
  * 
- * <p>Example of usage:
+ * <p>Example of usage:</p>
  * <pre>
  *   MapMetaData.Builder builder = new MapMetaData.Builder();
  *   builder.property(...)
@@ -55,7 +55,7 @@ import org.foxlabs.validation.metadata.PropertyMetaData;
  *          .property(...);
  *   MapMetaData metadata = builder.build();
  *   new ConstrainedMap(ValidatorFactory.getDefault().newValidator(metadata));
- * </pre></p>
+ * </pre>
  * 
  * <p><code>ConstrainedMap</code> is thread-safe. It makes this map useful for
  * maintaining configurations in the multi-threaded environment. The method
@@ -260,6 +260,7 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
     /**
      * Returns map entry for the specified key.
      * 
+     * @param <V> The value type.
      * @param key Key for which entry to be returned.
      * @return Map entry for the specified key.
      * @throws IllegalArgumentException if this map contains no entry for the
@@ -277,6 +278,7 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
     /**
      * Returns value to which the specified key is mapped.
      * 
+     * @param <V> The value type.
      * @param key Key whose associated value to be returned.
      * @return Value to which the specified key is mapped.
      * @throws IllegalArgumentException if this map contains no entry for the
@@ -295,6 +297,7 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
     /**
      * Assigns the specified value for the specified key in this map.
      * 
+     * @param <V> The value type.
      * @param key Key for which the specified value to be assigned.
      * @param value Value to be assigned for the specified key.
      * @return Previous value assigned for the specified key.
@@ -310,6 +313,7 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
     /**
      * Assigns the specified value for the specified key in this map.
      * 
+     * @param <V> The value type.
      * @param key Key for which the specified value to be assigned.
      * @param value Value to be assigned for the specified key.
      * @param locale Locale to be used for error messages.
@@ -1530,7 +1534,8 @@ public class ConstrainedMap implements Map<String, Object>, Iterable<Constrained
         
         /**
          * Returns snapshot value to which the specified key is mapped.
-         * 
+         *
+         * @param <V> The value type.
          * @param key Key whose associated value to be returned.
          * @return Value to which the specified key is mapped.
          * @throws IllegalArgumentException if this map contains no entry for

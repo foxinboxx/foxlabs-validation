@@ -190,6 +190,7 @@ public abstract class ImageSizeConstraint<V> extends AbstractValidation<V> imple
      * its attributes.
      * 
      * @param value Raw image representation.
+     * @return Context for codecs.
      * @throws IOException if decoding of an image fails.
      */
     protected abstract Context decodeImage(V value) throws IOException;
@@ -199,6 +200,7 @@ public abstract class ImageSizeConstraint<V> extends AbstractValidation<V> imple
      * returns raw image representation.
      * 
      * @param context Image context.
+     * @return Image.
      * @throws IOException if encoding of an image fails.
      */
     protected abstract V encodeImage(Context context) throws IOException;

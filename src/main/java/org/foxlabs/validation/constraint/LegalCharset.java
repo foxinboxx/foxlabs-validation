@@ -35,27 +35,26 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface LegalCharset {
     
     /**
-     * Allowed characters pattern.
-     * 
+     * @return Allowed characters pattern.
      * @see org.foxlabs.util.UnicodeSet#fromPattern(String)
      */
     String value();
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -70,7 +69,7 @@ public @interface LegalCharset {
     public static @interface List {
         
         /**
-         * <code>@LegalCharset</code> annotations.
+         * @return <code>@LegalCharset</code> annotations.
          */
         LegalCharset[] value();
         

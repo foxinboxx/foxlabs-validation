@@ -36,30 +36,30 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface Regex {
     
     /**
-     * Regular expression pattern.
+     * @return Regular expression pattern.
      */
     String pattern();
     
     /**
-     * Match flags.
+     * @return Match flags.
      */
     int flags() default 0;
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -73,7 +73,7 @@ public @interface Regex {
     public static @interface List {
         
         /**
-         * <code>@Regex</code> annotations.
+         * @return <code>@Regex</code> annotations.
          */
         Regex[] value();
         

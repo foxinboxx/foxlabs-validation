@@ -46,6 +46,7 @@ public interface EntityMetaData<T> extends MetaData<T> {
     /**
      * Returns metadata for the specified property.
      * 
+     * @param <V> The property value type.
      * @param property Property name.
      * @return Metadata for the specified property.
      * @throws IllegalArgumentException if the specified property not exists.

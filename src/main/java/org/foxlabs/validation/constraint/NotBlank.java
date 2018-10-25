@@ -35,20 +35,20 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface NotBlank {
     
     /**
-     * Overriding error message template. Empty string means that default
-     * message template should be used.
+     * @return Overriding error message template. Empty string means that default
+     *         message template should be used.
      */
     String message() default "";
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -62,7 +62,7 @@ public @interface NotBlank {
     public static @interface List {
         
         /**
-         * <code>@NotBlank</code> annotations.
+         * @return <code>@NotBlank</code> annotations.
          */
         NotBlank[] value();
         

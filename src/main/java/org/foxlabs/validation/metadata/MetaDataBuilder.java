@@ -52,6 +52,7 @@ public abstract class MetaDataBuilder<T> {
     /**
      * Defines a property with the specified name and type.
      * 
+     * @param <V> The property value type.
      * @param name Property name.
      * @param type Property type.
      * @return Reference to this builder instance.
@@ -64,6 +65,7 @@ public abstract class MetaDataBuilder<T> {
     /**
      * Defines a property with the specified name, type and default value.
      * 
+     * @param <V> The property value type.
      * @param name Property name.
      * @param type Property type.
      * @param defaultValue Property default value.
@@ -77,6 +79,7 @@ public abstract class MetaDataBuilder<T> {
     /**
      * Defines a property with the specified name, type and constraint.
      * 
+     * @param <V> The property value type.
      * @param name Property name.
      * @param type Property type.
      * @param constraint Constraint to be used for property value validation.
@@ -92,6 +95,7 @@ public abstract class MetaDataBuilder<T> {
      * Defines a property with the specified name, type, constraint and
      * default value.
      * 
+     * @param <V> The property value type.
      * @param name Property name.
      * @param type Property type.
      * @param constraint Constraint to be used for property value validation.
@@ -107,6 +111,7 @@ public abstract class MetaDataBuilder<T> {
     /**
      * Defines a property with the specified name and converter.
      * 
+     * @param <V> The property value type.
      * @param name Property name.
      * @param converter Converter to be used for property value conversion
      *        into and from string.
@@ -120,6 +125,7 @@ public abstract class MetaDataBuilder<T> {
      * Defines a property with the specified name, converter and default
      * value.
      * 
+     * @param <V> The property value type.
      * @param name Property name.
      * @param converter Converter to be used for property value conversion
      *        into and from string.
@@ -134,6 +140,7 @@ public abstract class MetaDataBuilder<T> {
     /**
      * Defines a property with the specified name, converter and constraint.
      * 
+     * @param <V> The property value type.
      * @param name Property name.
      * @param converter Converter to be used for property value conversion
      *        into and from string.
@@ -149,6 +156,7 @@ public abstract class MetaDataBuilder<T> {
      * Defines a property with the specified name, converter, constraint
      * and default value.
      * 
+     * @param <V> The property value type.
      * @param name Property name.
      * @param converter Converter to be used for property value conversion
      *        into and from string.
@@ -181,6 +189,7 @@ public abstract class MetaDataBuilder<T> {
     /**
      * Builds a new <code>EntityMetaData</code> instance.
      * 
+     * @param <M> The metadata type.
      * @return A new <code>EntityMetaData</code> instance.
      */
     public abstract <M extends EntityMetaData<T>> M build();

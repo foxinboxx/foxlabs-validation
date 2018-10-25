@@ -35,19 +35,19 @@ import org.foxlabs.validation.ValidationTarget;
 public @interface MaxLength {
     
     /**
-     * Maximum string length.
+     * @return Maximum string length.
      */
     int value();
     
     /**
-     * Array of groups the constraint is applied on. Empty array means default
-     * group.
+     * @return Array of groups the constraint is applied on. Empty array means
+     *         default group.
      */
     String[] groups() default {};
     
     /**
-     * An object part to which constraint should be applied.
-     * {@link ValidationTarget#VALUE} will be used by default.
+     * @return An object part to which constraint should be applied.
+     *         {@link ValidationTarget#VALUE} will be used by default.
      */
     ValidationTarget[] targets() default {};
     
@@ -61,7 +61,7 @@ public @interface MaxLength {
     public static @interface List {
         
         /**
-         * <code>@MaxLength</code> annotations.
+         * @return <code>@MaxLength</code> annotations.
          */
         MaxLength[] value();
         

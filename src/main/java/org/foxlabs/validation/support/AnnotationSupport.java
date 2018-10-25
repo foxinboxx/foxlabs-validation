@@ -165,7 +165,7 @@ public abstract class AnnotationSupport {
      * 
      * <p>The validation component implementation class can define constructor
      * with any access modifier. The following are valid validation component
-     * constructors in descending order of priority:
+     * constructors in descending order of priority:</p>
      * <ul>
      *   <li><code>Validation(Annotation, Class)</code></li>
      *   <li><code>Validation(Class, Annotation)</code></li>
@@ -178,12 +178,13 @@ public abstract class AnnotationSupport {
      *   DefaultValueConstraint(Class&lt;V&gt; type, DefaultValue annotation) {
      *       ...
      *   }
-     * </pre></p>
+     * </pre>
      * 
      * <p>The returned validation component can be obtained from the cache if
      * it was cached previously. Also this method automatically adds validation
      * components to the cache if possible.</p>
      * 
+     * @param <T> The validation type.
      * @param validationType Type of the validation component.
      * @param annotation Annotation of the validation component.
      * @param valueType Type of the value to be validated by the specified
@@ -300,11 +301,11 @@ public abstract class AnnotationSupport {
      * annotation or default annotation message if annotation has no such
      * property.
      * 
-     * <p>Default annotation message should be defined as follows:
+     * <p>Default annotation message should be defined as follows:</p>
      * <pre>namespace + "." + annotation.annotationType().getSimpleName()</pre>
      * For example, default message for the
      * {@link org.foxlabs.validation.constraint.NotNull} annotation and
-     * <code>value</code> namespace should be <code>value.NotNull</code>.</p>
+     * <code>value</code> namespace should be <code>value.NotNull</code>.
      * 
      * @param annotation Annotation of the validation component.
      * @param namespace Namespace of error message template key.
@@ -368,6 +369,7 @@ public abstract class AnnotationSupport {
      * type or <code>null</code> if the specified annotation has no property
      * with such name and type.
      * 
+     * @param <T> The expected annotation property type.
      * @param annotation Annotation.
      * @param property Property name.
      * @param type Expected property type.

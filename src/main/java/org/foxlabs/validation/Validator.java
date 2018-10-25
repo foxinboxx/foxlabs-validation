@@ -179,6 +179,7 @@ public class Validator<T> {
     /**
      * Returns property value for the specified entity.
      * 
+     * @param <V> The property value type.
      * @param entity Entity whose property value should be returned.
      * @param property Property name.
      * @return Property value for the specified entity.
@@ -247,7 +248,7 @@ public class Validator<T> {
      *         not readable.
      * @see ContextBuilder#getEncodedValue(Object, String)
      */
-    public <V> String getRawValue(T entity, String property) {
+    public String getRawValue(T entity, String property) {
         return newContext().setLocalizedConvert(false).getEncodedValue(entity, property);
     }
     
@@ -264,7 +265,7 @@ public class Validator<T> {
      * @throws MalformedValueException if conversion fails.
      * @see ContextBuilder#setEncodedValue(Object, String, String)
      */
-    public <V> void setRawValue(T entity, String property, String value) {
+    public void setRawValue(T entity, String property, String value) {
         newContext().setLocalizedConvert(false).setEncodedValue(entity, property, value);
     }
     
@@ -313,7 +314,7 @@ public class Validator<T> {
      *         not readable.
      * @see ContextBuilder#getEncodedValue(Object, String)
      */
-    public <V> String getLocalizedValue(T entity, String property) {
+    public String getLocalizedValue(T entity, String property) {
         return newContext().setLocalizedConvert(true).getEncodedValue(entity, property);
     }
     
@@ -330,7 +331,7 @@ public class Validator<T> {
      * @throws MalformedValueException if conversion fails.
      * @see ContextBuilder#setEncodedValue(Object, String, String)
      */
-    public <V> void setLocalizedValue(T entity, String property, String value) {
+    public void setLocalizedValue(T entity, String property, String value) {
         newContext().setLocalizedConvert(true).setEncodedValue(entity, property, value);
     }
     
@@ -385,6 +386,7 @@ public class Validator<T> {
      * Validates property value for the specified entity and assigns modified
      * value to that property.
      * 
+     * @param <V> The property value type.
      * @param entity Entity whose property value should be validated.
      * @param property Property name.
      * @param groups Array of constraint groups to be validated.
@@ -402,6 +404,7 @@ public class Validator<T> {
      * Validates the specified property value and returns possibly modified
      * value.
      * 
+     * @param <V> The property value type.
      * @param property Property name.
      * @param value Property value to be validated.
      * @param groups Array of constraint groups to be validated.
@@ -610,7 +613,7 @@ public class Validator<T> {
          * @throws UnsupportedOperationException if the specified property is
          *         not readable.
          */
-        public final <V> String getEncodedValue(T entity, String property) {
+        public final String getEncodedValue(T entity, String property) {
             return build().getEncodedValue(entity, property);
         }
         
@@ -627,7 +630,7 @@ public class Validator<T> {
          *         not writeable.
          * @throws MalformedValueException if conversion fails.
          */
-        public final <V> void setEncodedValue(T entity, String property, String value) {
+        public final void setEncodedValue(T entity, String property, String value) {
             build().setEncodedValue(entity, property, value);
         }
         
@@ -664,6 +667,7 @@ public class Validator<T> {
          * Converts property value into string representation using predefined
          * custom parameters.
          * 
+         * @param <V> The property value type.
          * @param property Property name.
          * @param value Property value to be encoded.
          * @return String representation of property value.
@@ -677,6 +681,7 @@ public class Validator<T> {
          * Converts string representation of property value into object using
          * predefined custom parameters.
          * 
+         * @param <V> The property value type.
          * @param property Property name.
          * @param value String representation of property value.
          * @return Decoded property value.
@@ -691,6 +696,7 @@ public class Validator<T> {
          * Converts array of property values into array of their string
          * representations using predefined custom parameters.
          * 
+         * @param <V> The property values type.
          * @param property Property name.
          * @param values Array of property values to be encoded.
          * @return Array of string representations of property values.
@@ -704,6 +710,7 @@ public class Validator<T> {
          * Converts array of string representations of property values into
          * array of objects using predefined custom parameters.
          * 
+         * @param <V> The property values type.
          * @param property Property name.
          * @param values Array of string representations of property values.
          * @return Array of decoded property values.
@@ -718,6 +725,7 @@ public class Validator<T> {
          * Converts value into string representation using the specified
          * converter and predefined custom parameters.
          * 
+         * @param <V> The value type.
          * @param converter Converter to be used for value conversion.
          * @param value Value to be encoded.
          * @return String representation of value.
@@ -730,6 +738,7 @@ public class Validator<T> {
          * Converts string representation of value into object using the
          * specified converter and predefined custom parameters.
          * 
+         * @param <V> The value type.
          * @param converter Converter to be used for value conversion.
          * @param value String representation of value.
          * @return Decoded value.
@@ -743,6 +752,7 @@ public class Validator<T> {
          * Converts array of values into array of their string representations
          * using the specified converter and predefined custom parameters.
          * 
+         * @param <V> The values type.
          * @param converter Converter to be used for values conversion.
          * @param values Array of values to be encoded.
          * @return Array of string representations of values.
@@ -756,6 +766,7 @@ public class Validator<T> {
          * objects using the specified converter and predefined custom
          * parameters. 
          * 
+         * @param <V> The values type.
          * @param converter Converter to be used for values conversion.
          * @param values Array of string representations of values.
          * @return Array of decoded values.
@@ -785,6 +796,7 @@ public class Validator<T> {
          * Validates property value for the specified entity using predefined
          * custom parameters and assigns modified value to that property.
          * 
+         * @param <V> The property value type.
          * @param entity Entity whose property value should be validated.
          * @param property Property name.
          * @return Possibly modified value of the property.
@@ -800,6 +812,7 @@ public class Validator<T> {
          * Validates the specified property value using predefined custom
          * parameters and returns possibly modified value.
          * 
+         * @param <V> The property value type.
          * @param property Property name.
          * @param value Property value to be validated.
          * @return Possibly modified value.
@@ -1192,9 +1205,7 @@ public class Validator<T> {
         
         // Data operations
         
-        /**
-         * @see ContextBuilder#getValues(Object)
-         */
+        // See ContextBuilder.getValues(Object)
         protected Map<String, ?> getValues(T entity) {
             currentEntity = checkEntity(entity);
             Map<String, Object> values = new LinkedHashMap<String, Object>();
@@ -1204,9 +1215,7 @@ public class Validator<T> {
             return values;
         }
         
-        /**
-         * @see ContextBuilder#setValues(Object, Map)
-         */
+        // See ContextBuilder.setValues(Object, Map)
         protected void setValues(T entity, Map<String, ?> values) {
             currentEntity = checkEntity(entity);
             for (PropertyMetaData<T, Object> meta : entityMeta.getAllPropertyMetaData())
@@ -1215,9 +1224,7 @@ public class Validator<T> {
                         meta.setValue(entity, values.get(meta.getName()));
         }
         
-        /**
-         * @see ContextBuilder#getEncodedValue(Object, String)
-         */
+        // See ContextBuilder.getEncodedValue(Object, String)
         protected String getEncodedValue(T entity, String property) {
             currentEntity = checkEntity(entity);
             PropertyMetaData<T, Object> meta = entityMeta.getPropertyMetaData(property);
@@ -1225,9 +1232,7 @@ public class Validator<T> {
             return meta.getConverter().encode(meta.getValue(entity), this);
         }
         
-        /**
-         * @see ContextBuilder#setEncodedValue(Object, String, String)
-         */
+        // See ContextBuilder.setEncodedValue(Object, String, String)
         protected void setEncodedValue(T entity, String property, String value) {
             currentEntity = checkEntity(entity);
             PropertyMetaData<T, Object> meta = entityMeta.getPropertyMetaData(property);
@@ -1235,9 +1240,7 @@ public class Validator<T> {
             meta.setValue(entity, meta.getConverter().decode(value, this));
         }
         
-        /**
-         * @see ContextBuilder#getEncodedValues(Object)
-         */
+        // See ContextBuilder.getEncodedValues(Object)
         protected Map<String, String> getEncodedValues(T entity) {
             currentEntity = checkEntity(entity);
             Map<String, String> values = new LinkedHashMap<String, String>();
@@ -1250,9 +1253,7 @@ public class Validator<T> {
             return values;
         }
         
-        /**
-         * @see ContextBuilder#setEncodedValues(Object, Map)
-         */
+        // See ContextBuilder.setEncodedValues(Object, Map)
         protected void setEncodedValues(T entity, Map<String, String> values) {
             currentEntity = checkEntity(entity);
             for (PropertyMetaData<T, Object> meta : entityMeta.getAllPropertyMetaData())
@@ -1269,59 +1270,45 @@ public class Validator<T> {
             throwIfViolated();
         }
         
-        /**
-         * @see ContextBuilder#encodeValue(String, Object)
-         */
+        // See ContextBuilder.encodeValue(String, Object)
         protected <V> String encodeValue(String property, V value) {
             PropertyMetaData<T, Object> meta = entityMeta.getPropertyMetaData(property);
             elementMeta = meta;
             return meta.getConverter().encode(value, this);
         }
         
-        /**
-         * @see ContextBuilder#decodeValue(String, String)
-         */
+        // See ContextBuilder.decodeValue(String, String)
         protected <V> V decodeValue(String property, String value) {
             PropertyMetaData<T, V> meta = entityMeta.getPropertyMetaData(property);
             elementMeta = meta;
             return meta.getConverter().decode(value, this);
         }
         
-        /**
-         * @see ContextBuilder#encodeValues(String, Object...)
-         */
+        // See ContextBuilder.encodeValues(String, Object...)
         protected <V> String[] encodeValues(String property, V... values) {
             PropertyMetaData<T, V> meta = entityMeta.getPropertyMetaData(property);
             elementMeta = meta;
             return encodeValues(meta.getConverter(), values);
         }
         
-        /**
-         * @see ContextBuilder#decodeValues(String, String...)
-         */
+         // See ContextBuilder.decodeValues(String, String...)
         protected <V> V[] decodeValues(String property, String... values) {
             PropertyMetaData<T, V> meta = entityMeta.getPropertyMetaData(property);
             elementMeta = meta;
             return decodeValues(meta.getConverter(), values);
         }
         
-        /**
-         * @see ContextBuilder#encodeValue(Converter, Object)
-         */
+        // See ContextBuilder.encodeValue(Converter, Object)
         protected <V> String encodeValue(Converter<V> converter, V value) {
             return converter.encode(value, this);
         }
         
-        /**
-         * @see ContextBuilder#decodeValue(Converter, String)
-         */
+        // See ContextBuilder.decodeValue(Converter, String)
         protected <V> V decodeValue(Converter<V> converter, String value) {
             return converter.decode(value, this);
         }
         
-        /**
-         * @see ContextBuilder#encodeValues(Converter, Object...)
-         */
+        // See ContextBuilder.encodeValues(Converter, Object...)
         protected <V> String[] encodeValues(Converter<V> converter, V... values) {
             String[] array = new String[values.length];
             for (int i = 0; i < values.length; i++)
@@ -1329,9 +1316,7 @@ public class Validator<T> {
             return array;
         }
         
-        /**
-         * @see ContextBuilder#decodeValues(Converter, String...)
-         */
+        // See ContextBuilder.decodeValues(Converter, String...)
         protected <V> V[] decodeValues(Converter<V> converter, String... values) {
             V[] array = Types.newArray(converter.getType(), values.length);
             for (int i = 0; i < values.length; i++)
@@ -1341,9 +1326,7 @@ public class Validator<T> {
         
         // Validation operations
         
-        /**
-         * @see ContextBuilder#validateEntity(Object)
-         */
+        // See ContextBuilder.validateEntity(Object)
         protected T validateEntity(T entity) {
             currentEntity = entity;
             if (entity != null) {
@@ -1369,9 +1352,7 @@ public class Validator<T> {
             return entity;
         }
         
-        /**
-         * @see ContextBuilder#validateProperty(Object, String)
-         */
+        // See ContextBuilder.validateProperty(Object, String)
         protected <V> V validateProperty(T entity, String property) {
             currentEntity = checkEntity(entity);
             PropertyMetaData<T, V> meta = entityMeta.getPropertyMetaData(property);
@@ -1379,9 +1360,7 @@ public class Validator<T> {
             return validateProperty(meta);
         }
         
-        /**
-         * Performs property validation for the specified property metatdata.
-         */
+        // Performs property validation for the specified property metatdata.
         protected <V> V validateProperty(PropertyMetaData<T, V> meta) {
             V oldValue = meta.getValue(getCurrentEntity());
             V newValue = validate(meta, oldValue);
@@ -1390,18 +1369,14 @@ public class Validator<T> {
             return newValue;
         }
         
-        /**
-         * @see ContextBuilder#validateValue(String, Object)
-         */
+        // See ContextBuilder.validateValue(String, Object)
         protected <V> V validateValue(String property, Object value) {
             PropertyMetaData<T, V> meta = entityMeta.getPropertyMetaData(property);
             elementMeta = meta;
             return validate(meta, meta.cast(value));
         }
         
-        /**
-         * Performs value validation using the specified metadata.
-         */
+        // Performs value validation using the specified metadata.
         protected <V> V validate(MetaData<V> meta, V value) {
             Constraint<? super V> constraint = meta.getConstraint();
             if (constraint != null)
@@ -1409,27 +1384,21 @@ public class Validator<T> {
             return value;
         }
         
-        /**
-         * Checks if entity is not <code>null</code>.
-         */
+        // Checks if entity is not null.
         protected T checkEntity(T entity) {
             if (entity == null)
                 throw new IllegalArgumentException("entity");
             return entity;
         }
         
-        /**
-         * Adds a new violation to the list of violations.
-         */
+        // Adds a new violation to the list of violations.
         protected final void addViolation(ViolationException violation) {
             if (violations == null)
                 violations = new LinkedList<ViolationException>();
             violations.add(violation);
         }
         
-        /**
-         * Throws <code>ValidationException</code> if any violations present.
-         */
+         // Throws ValidationException if any violations present.
         protected final void throwIfViolated() {
             if (violations != null)
                 throw new ValidationException(violations, parent != null);
@@ -1437,11 +1406,6 @@ public class Validator<T> {
         
         // String
         
-        /**
-         * Returns string representing context state.
-         * 
-         * @return String representing context state.
-         */
         public String toString() {
             StringBuilder buf = new StringBuilder();
             buf.append(entityMeta.getType().getName());

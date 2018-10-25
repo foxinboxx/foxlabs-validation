@@ -49,6 +49,7 @@ public abstract class CheckConstraint<V> extends AbstractValidation<V> implement
      * <p>Note that this method should not throw
      * <code>ConstraintViolationException</code>.</p>
      * 
+     * @param <T> The type of validated entity.
      * @param value Value to be checked.
      * @param context Validation context.
      * @return <code>true</code> if the specified value conforms this

@@ -37,8 +37,7 @@ import java.lang.annotation.RetentionPolicy;
 public @interface ConstrainedBy {
     
     /**
-     * Specifies the constraint implementation classes to be used for value
-     * validation.
+     * @return Constraint implementation classes to be used for value validation.
      */
     @SuppressWarnings("rawtypes")
     Class<? extends Constraint>[] value();
