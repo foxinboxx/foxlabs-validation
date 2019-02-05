@@ -4,20 +4,20 @@ In this chapter, we will consider opportunities to customize components of the p
 
 ### Implementing Your Own Constraint
 
-To define a new constraint you need to implement the [Constraint](api/org/foxlabs/validation/constraint/Constraint.html)
+To define a new constraint you need to implement the [Constraint](/api/org/foxlabs/validation/constraint/Constraint.html)
 interface. Depending on what kind of constraint you need to, you can use one of the existing classes.
 
 | Class                                                                                                         | Description                                                                                                                                                     |
 |---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [CorrectConstraint](api/org/foxlabs/validation/constraint/CorrectConstraint.html)                             | Allows to modify (correct) test value and never throws [ConstraintViolationException](api/org/foxlabs/validation/constraint/ConstraintViolationException.html). |
-| [CheckConstraint](api/org/foxlabs/validation/constraint/CheckConstraint.html)                                 | Only checks a test value and doesn't modify it.                                                                                                                 |
-| [RegexConstraint](api/org/foxlabs/validation/constraint/RegexConstraint.html)                                 | Checks whether a test string matches the regular expression.                                                                                                    |
-| [EnumerationConstraint](api/org/foxlabs/validation/constraint/EnumerationConstraint.html)                     | Checks whether a test value is one of the allowed constants.                                                                                                    |
-| [IgnoreCaseEnumerationConstraint](api/org/foxlabs/validation/constraint/IgnoreCaseEnumerationConstraint.html) | Checks whether a test string is one of the allowed strings using ignore case comparison.                                                                        |
-| [SizeConstraint](api/org/foxlabs/validation/constraint/SizeConstraint.html)                                   | Checks whether the size of a test value is within allowed minimum and maximum bounds.                                                                           |
+| [CorrectConstraint](/api/org/foxlabs/validation/constraint/CorrectConstraint.html)                             | Allows to modify (correct) test value and never throws [ConstraintViolationException](/api/org/foxlabs/validation/constraint/ConstraintViolationException.html). |
+| [CheckConstraint](/api/org/foxlabs/validation/constraint/CheckConstraint.html)                                 | Only checks a test value and doesn't modify it.                                                                                                                 |
+| [RegexConstraint](/api/org/foxlabs/validation/constraint/RegexConstraint.html)                                 | Checks whether a test string matches the regular expression.                                                                                                    |
+| [EnumerationConstraint](/api/org/foxlabs/validation/constraint/EnumerationConstraint.html)                     | Checks whether a test value is one of the allowed constants.                                                                                                    |
+| [IgnoreCaseEnumerationConstraint](/api/org/foxlabs/validation/constraint/IgnoreCaseEnumerationConstraint.html) | Checks whether a test string is one of the allowed strings using ignore case comparison.                                                                        |
+| [SizeConstraint](/api/org/foxlabs/validation/constraint/SizeConstraint.html)                                   | Checks whether the size of a test value is within allowed minimum and maximum bounds.                                                                           |
 
-> You can also extend the [AbstractValidation](api/org/foxlabs/validation/AbstractValidation.html)
-> class in conjunction with [Constraint](api/org/foxlabs/validation/constraint/Constraint.html) interface.
+> You can also extend the [AbstractValidation](/api/org/foxlabs/validation/AbstractValidation.html)
+> class in conjunction with [Constraint](/api/org/foxlabs/validation/constraint/Constraint.html) interface.
 
 Lets implement `StartsWithConstraint` that will check whether a test string starts with some prefix.
 
@@ -116,12 +116,12 @@ That's it. Now you can apply `@StartsWith` annotation for any property of the st
 
 ### Implementing Your Own Converter
 
-To define a new converter you need to implement the [Converter](api/org/foxlabs/validation/converter/Converter.html)
+To define a new converter you need to implement the [Converter](/api/org/foxlabs/validation/converter/Converter.html)
 interface.
 
-> You can extend the [AbstractConverter](api/org/foxlabs/validation/converter/AbstractConverter.html)
-> class or [AbstractValidation](api/org/foxlabs/validation/AbstractValidation.html) class in conjunction
-> with [Converter](api/org/foxlabs/validation/converter/Converter.html) interface.
+> You can extend the [AbstractConverter](/api/org/foxlabs/validation/converter/AbstractConverter.html)
+> class or [AbstractValidation](/api/org/foxlabs/validation/AbstractValidation.html) class in conjunction
+> with [Converter](/api/org/foxlabs/validation/converter/Converter.html) interface.
 
 Lets implement `RgbColorConverter` that will convert `#RRGGBB` color text representation
 into the `java.awt.Color` and vice versa.
@@ -188,7 +188,7 @@ public class RgbColorConverter extends AbstractConverter<Color> {
 > (see <a href="#validation-messages">Validation Messages</a>).
 
 If you want to use `RgbColorConverter` as default converter for `java.awt.Color` value types you
-need to register it in the [ConverterFactory](api/org/foxlabs/validation/converter/ConverterFactory.html).
+need to register it in the [ConverterFactory](/api/org/foxlabs/validation/converter/ConverterFactory.html).
 
 ```java
 ConverterFactory.addDefaultConverter(new RgbColorConverter());
@@ -265,12 +265,12 @@ That's it. Now you can apply `@RgbColor` annotation for any property of the `jav
 ### Customizing Other Components
 
 In most cases you don't need to customize anything in this framework except
-[Constraint](api/org/foxlabs/validation/constraint/Constraint.html) and
-[Converter](api/org/foxlabs/validation/converter/Converter.html). But in some cases you may need
-to customize [EntityMetaData](api/org/foxlabs/validation/metadata/EntityMetaData.html),
-[MessageResolver](api/org/foxlabs/validation/message/MessageResolver.html) or
-[MessageBuilder](api/org/foxlabs/validation/message/MessageBuilder.html) and even
-[ValidatorFactory](api/org/foxlabs/validation/ValidatorFactory.html).
+[Constraint](/api/org/foxlabs/validation/constraint/Constraint.html) and
+[Converter](/api/org/foxlabs/validation/converter/Converter.html). But in some cases you may need
+to customize [EntityMetaData](/api/org/foxlabs/validation/metadata/EntityMetaData.html),
+[MessageResolver](/api/org/foxlabs/validation/message/MessageResolver.html) or
+[MessageBuilder](/api/org/foxlabs/validation/message/MessageBuilder.html) and even
+[ValidatorFactory](/api/org/foxlabs/validation/ValidatorFactory.html).
 
 #### Extending Metadata
 
@@ -281,8 +281,8 @@ abstract classes.
 
 | Class                                                                                         | Description                                            |
 |-----------------------------------------------------------------------------------------------|--------------------------------------------------------|
-| [AbstractEntityMetaData](api/org/foxlabs/validation/metadata/AbstractEntityMetaData.html)     | Provides base implementation of the entity metadata.   |
-| [AbstractPropertyMetaData](api/org/foxlabs/validation/metadata/AbstractPropertyMetaData.html) | Provides base implementation of the property metadata. |
+| [AbstractEntityMetaData](/api/org/foxlabs/validation/metadata/AbstractEntityMetaData.html)     | Provides base implementation of the entity metadata.   |
+| [AbstractPropertyMetaData](/api/org/foxlabs/validation/metadata/AbstractPropertyMetaData.html) | Provides base implementation of the property metadata. |
 
 After you defined your own metadata, it can be used to create validators.
 
@@ -296,8 +296,8 @@ Validator<T> validator = factory.newValidator(myMeta);
 
 If your error message templates is not stored as Java resources (for example,
 they can be stored in the database) then you need to provide your own
-[MessageResolver](api/org/foxlabs/validation/message/MessageResolver.html) and
-initialize your [ValidatorFactory](api/org/foxlabs/validation/ValidatorFactory.html).
+[MessageResolver](/api/org/foxlabs/validation/message/MessageResolver.html) and
+initialize your [ValidatorFactory](/api/org/foxlabs/validation/ValidatorFactory.html).
 
 ```java
 MessageResolver resolver = ...
@@ -306,23 +306,23 @@ factory.setMessageResolver(resolver);
 ```
 
 Also you may want to store your error message templates in another Java resource bundle. If so then
-you need to tell about that to [ValidatorFactory](api/org/foxlabs/validation/ValidatorFactory.html).
+you need to tell about that to [ValidatorFactory](/api/org/foxlabs/validation/ValidatorFactory.html).
 
 ```java
 ValidatorFactory myFactory = new ValidatorFactory("my/message/bundle/name");
 ```
 
-> The [MessageResolverChain](api/org/foxlabs/validation/message/MessageResolverChain.html) class
-> can be used to create a chain of the [MessageResolver](api/org/foxlabs/validation/message/MessageResolver.html)s.
+> The [MessageResolverChain](/api/org/foxlabs/validation/message/MessageResolverChain.html) class
+> can be used to create a chain of the [MessageResolver](/api/org/foxlabs/validation/message/MessageResolver.html)s.
 
-The goal of the [MessageBuilder](api/org/foxlabs/validation/message/MessageBuilder.html) is to render
-error message templates for the current [ValidationContext](api/org/foxlabs/validation/ValidationContext.html)
+The goal of the [MessageBuilder](/api/org/foxlabs/validation/message/MessageBuilder.html) is to render
+error message templates for the current [ValidationContext](/api/org/foxlabs/validation/ValidationContext.html)
 and message arguments provided by the validation components.
-The [DefaultMessageBuilder](api/org/foxlabs/validation/message/DefaultMessageBuilder.html) is used by
+The [DefaultMessageBuilder](/api/org/foxlabs/validation/message/DefaultMessageBuilder.html) is used by
 default to render message templates. If you need more sophisticated message renderer then you should
-provide your own [MessageBuilder](api/org/foxlabs/validation/message/MessageBuilder.html) implementation
+provide your own [MessageBuilder](/api/org/foxlabs/validation/message/MessageBuilder.html) implementation
 (for example, you can use one of template engines to render messages) and tell about that to
-[ValidatorFactory](api/org/foxlabs/validation/ValidatorFactory.html).
+[ValidatorFactory](/api/org/foxlabs/validation/ValidatorFactory.html).
 
 ```java
 MessageBuilder builder = ...
@@ -330,13 +330,13 @@ ValidatorFactory factory = ...
 factory.setMessageBuilder(builder);
 ```
 
-> You can also extend the [AbstractMessageBuilder](api/org/foxlabs/validation/message/AbstractMessageBuilder.html)
+> You can also extend the [AbstractMessageBuilder](/api/org/foxlabs/validation/message/AbstractMessageBuilder.html)
 > abstract class to provide your own implementation.
 
 #### Extending Validator Factory
 
-The main goal for extending [ValidatorFactory](api/org/foxlabs/validation/ValidatorFactory.html)
-is to provide additional configuration to the [Validator](api/org/foxlabs/validation/Validator.html).
+The main goal for extending [ValidatorFactory](/api/org/foxlabs/validation/ValidatorFactory.html)
+is to provide additional configuration to the [Validator](/api/org/foxlabs/validation/Validator.html).
 After, these configuration parameters can be accessed in the validation components. The right way is
-to extend [Validator](api/org/foxlabs/validation/Validator.html) too, because factory configuration
+to extend [Validator](/api/org/foxlabs/validation/Validator.html) too, because factory configuration
 is supposed as mutable.
