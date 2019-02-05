@@ -1,6 +1,6 @@
 ## Table Of Contents
 
-1. [Introduction](introduction)
+1. <a href="#introduction">Introduction</a>
 1. [Getting Started](getting-started)
 1. [Architecture](architecture)
 1. [Annotations](annotations)

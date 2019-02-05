@@ -58,6 +58,7 @@ try {
     System.out.println(Configuration.SETTINGS);
 } catch (ValidationException e) {
     e.printViolations();
+}
 ```
 
 > [ConstrainedMap](api/org/foxlabs/validation/ConstrainedMap.html) validates property values
