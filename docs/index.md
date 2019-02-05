@@ -2,9 +2,9 @@
 
 1. <a href="#introduction">Introduction</a>
 1. <a href="#getting-started">Getting Started</a>
-  1. <a href="#maven-setup">Maven Setup</a>
-  1. <a href="#writing-bean">Writing Bean</a>
-  1. <a href="#validating-bean">Validating Bean</a>
+  * <a href="#maven-setup">Maven Setup</a>
+  * <a href="#writing-bean">Writing Bean</a>
+  * <a href="#validating-bean">Validating Bean</a>
 1. <a href="#architecture">Architecture</a>
 1. <a href="#annotations">Annotations</a>
 1. <a href="#customization">Customization</a>
