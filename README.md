@@ -4,10 +4,11 @@ This validation framework does not implement the JSR-303 specification. The main
 
 - Ability to modify (correct) test values.
 - Support for validation of localized values.
-- Conversion values into and from text representation.
-- Formatting error messages, depending on the context.
-- Support for metadata, which allows to check any entity types (not only Java Beans or POJOs).
+- Conversion of values into and from text representation.
+- Formating of error messages, depending on the context.
+- Support for metadata, which allows to check any entity types.
 - Long list of predefined validation components.
+- Good opportunities for expansion.
 
 ### Maven Dependency
 
@@ -23,4 +24,4 @@ This validation framework does not implement the JSR-303 specification. The main
 
 ### More Info
 
-More information on the [project site](https://validation.foxlabs.org/).
+More information on the [project site](https://foxlabs.org/foxlabs-validation/).
