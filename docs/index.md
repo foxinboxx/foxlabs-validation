@@ -620,6 +620,7 @@ public class RgbColorConverter extends AbstractConverter<Color> {
     }
     
 }
+```
 
 That's it. Now you can apply `@RgbColor` annotation for any property of the `java.awt.Color` type.
 
