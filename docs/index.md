@@ -20,9 +20,9 @@
   * <a href="#implementing-your-own-constraint">Implementing Your Own Constraint</a>
   * <a href="#implementing-your-own-converter">Implementing Your Own Converter</a>
   * <a href="#customizing-other-components">Customizing Other Components</a>
-    * <a href="#extending-metadata">Extending Metadata</a>
-    * <a href="#extending-message-resolver-and-builder">Extending Message Resolver And Builder</a>
-    * <a href="#extending-validator-factory">Extending Validator Factory</a>
+    - <a href="#extending-metadata">Extending Metadata</a>
+    - <a href="#extending-message-resolver-and-builder">Extending Message Resolver And Builder</a>
+    - <a href="#extending-validator-factory">Extending Validator Factory</a>
 1. <a href="#constrained-map">Constrained Map</a>
 1. <a href="https://github.com/foxinboxx/foxlabs-validation">Source Code</a>
 
