@@ -23,9 +23,9 @@
 1. <a href="#constrained-map">Constrained Map</a>
 1. <a href="https://github.com/foxinboxx/foxlabs-validation">Source Code</a>
 
-{% include_relative _reference/introduction.md %}
-{% include_relative _reference/getting-started.md %}
-{% include_relative _reference/architecture.md %}
-{% include_relative _reference/annotations.md %}
-{% include_relative _reference/customization.md %}
-{% include_relative _reference/constrained-map.md %}
+{% include_relative reference/introduction.md %}
+{% include_relative reference/getting-started.md %}
+{% include_relative reference/architecture.md %}
+{% include_relative reference/annotations.md %}
+{% include_relative reference/customization.md %}
+{% include_relative reference/constrained-map.md %}
