@@ -24,7 +24,7 @@ html, body {
 .header-layout .logo {
     float: left;
     oveflow: hidden;
-    background-image: url("assets/images/logo.png");
+    background-image: url("../images/logo.png");
     background-repeat: no-repeat;
     margin-left: 50px;
     width: 100px;
