@@ -702,3 +702,5 @@ is to provide additional configuration to the [Validator](api/org/foxlabs/valida
 After, these configuration parameters can be accessed in the validation components. The right way is
 to extend [Validator](api/org/foxlabs/validation/Validator.html) too, because factory configuration
 is supposed as mutable.
+
+{% include_relative constrained-map.md %}
