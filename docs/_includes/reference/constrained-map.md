@@ -1,10 +1,10 @@
 ## Constrained Map
 
 This validation framework is not tied only to validating Java Beans or POJOs. You can validate any
-entity having [EntityMetaData](api/org/foxlabs/validation/metadata/EntityMetaData.html) descriptor.
+entity having [EntityMetaData](foxlabs-validation/api/org/foxlabs/validation/metadata/EntityMetaData.html) descriptor.
 So it is a good idea to validate `java.util.Map` entities.
 
-The [ConstrainedMap](api/org/foxlabs/validation/ConstrainedMap.html) class allows to maintain
+The [ConstrainedMap](foxlabs-validation/api/org/foxlabs/validation/ConstrainedMap.html) class allows to maintain
 a set of properties with constraints. It also provides modifications in transaction-like manner
 and convertation of property values into and from string representation. More over, this class
 is thread-safe and suitable for maintaining configuration properties in multithreaded environment
@@ -61,7 +61,7 @@ try {
 }
 ```
 
-> [ConstrainedMap](api/org/foxlabs/validation/ConstrainedMap.html) validates
+> [ConstrainedMap](foxlabs-validation/api/org/foxlabs/validation/ConstrainedMap.html) validates
 > property values internally when you change them. So if you need to change multiple properties
 > it is better to use transaction. Also transaction needed if you want to read a number of properties
 > and avoid inconsistency in multithreaded environment.
