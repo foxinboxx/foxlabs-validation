@@ -2,7 +2,7 @@
 
 On the following class diagram you will see the key classes of this framework.
 
-![Class Diagram](images/class-diagram.png)
+![Class Diagram](assets/images/class-diagram.png)
 
 Next sections describe all these classes in more details.
 
