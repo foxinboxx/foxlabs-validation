@@ -1,0 +1,8 @@
+org.foxlabs.validation
+org.foxlabs.validation.constraint
+org.foxlabs.validation.converter
+org.foxlabs.validation.message
+org.foxlabs.validation.metadata
+org.foxlabs.validation.path
+org.foxlabs.validation.resource
+org.foxlabs.validation.support
