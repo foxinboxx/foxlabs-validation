@@ -7,11 +7,9 @@
 }
 
 .header-layout .logo {
-    float: left;
     oveflow: hidden;
     background-image: url("../images/logo.png");
     background-repeat: no-repeat;
-    margin-left: 50px;
     width: 100px;
     height: 45px;
 }
