@@ -1,11 +1,12 @@
 ## Table Of Contents
 
-[Introduction](introduction)
-[Getting Started](getting-started)
-[Architecture](architecture)
-[Annotations](annotations)
-[Customization](customization)
-[Constrained Map](constrained-map)
+1. [Introduction](introduction)
+1. [Getting Started](getting-started)
+1. [Architecture](architecture)
+1. [Annotations](annotations)
+1. [Customization](customization)
+1. [Constrained Map](constrained-map)
+1. [Source Code](https://github.com/foxinboxx/foxlabs-validation)
 
 {% include_relative introduction.md %}
 {% include_relative getting-started.md %}
