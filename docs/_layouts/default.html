@@ -1,48 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FoxLabs Validation Framework</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script>
-  <style type="text/css">
-    html, body {
-      position: absolute;
-      height: 100%;
-      min-width: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: Helvetica, Arial, Verdana, sans-serif;
-    }
-    .header-layout {
-      overflow: hidden;
-      background: #385792;
-      border-bottom: 1px solid #2C4472;
-      height: 45px;
-    }
-    .header {
-      line-height: 45px;
-      font-size: 14px;
-      color: #EEE;
-    }
-    .content {
-      padding: 0 100px;
-    }
-  </style>
+    <title>FoxLabs Validation Framework</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/style.scss">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script>
 </head>
 <body>
-  <div class="header-layout">
-    <div class="header content">
-      <a class="logo" href="/"></a>
-      <span class="logo-text">FoxLabs Validation Framework</span>
+    <div class="header-layout">
+        <a class="logo" href="/"></a>
+        <span class="logo-text">Validation Framework</span>
     </div>
-  </div>
 
-  <div class="container-lg px-3 my-5 markdown-body">
-{{ content }}
-  </div>
-  <script>anchors.add();</script>
+    <div class="container-lg px-3 my-5 markdown-body">
+        {{ content }}
+    </div>
+    <script>anchors.add();</script>
+
+    <div class="footer-layout">
+        Copyright &copy; 2011-{{ 'now' | date: "%Y" }} FoxLabs. All rights reserved.
+    </div>
 </body>
 </html>
