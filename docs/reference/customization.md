@@ -56,7 +56,7 @@ public class StartsWithConstraint extends CheckConstraint<String> {
 ```
 
 > Don't forget to add constraint error message template in the default message bundle
-> (see [Validation Messages](architecture#validation-messages))).
+> (see <a href="#validation-messages">Validation Messages</a>).
 
 If you plan to use `StartsWithConstraint` for validating Java beans or POJOs then you need to
 define constraint annotation and add corresponding constructor in the constraint implementation class.
@@ -185,7 +185,7 @@ public class RgbColorConverter extends AbstractConverter<Color> {
 ```
 
 > Don't forget to add converter error message template in the default message bundle
-> (see [Validation Messages](architecture#validation-messages)).
+> (see <a href="#validation-messages">Validation Messages</a>).
 
 If you want to use `RgbColorConverter` as default converter for `java.awt.Color` value types you
 need to register it in the [ConverterFactory](api/org/foxlabs/validation/converter/ConverterFactory.html).
