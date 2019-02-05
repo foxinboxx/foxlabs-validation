@@ -21,7 +21,6 @@
   * <a href="#implementing-your-own-converter">Implementing Your Own Converter</a>
   * <a href="#customizing-other-components">Customizing Other Components</a>
 1. <a href="#constrained-map">Constrained Map</a>
-1. <a href="https://github.com/foxinboxx/foxlabs-validation">Source Code</a>
 
 {% include reference/introduction.md %}
 {% include reference/getting-started.md %}
