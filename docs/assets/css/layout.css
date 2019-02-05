@@ -12,10 +12,6 @@ html, body {
     min-height: 100%;
 }
 
-.content {
-    padding: 0 100px;
-}
-
 .header-layout {
     position: absolute;
     overflow: hidden;
