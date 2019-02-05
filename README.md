@@ -23,4 +23,4 @@ This validation framework does not implement the JSR-303 specification. The main
 
 ### More Info
 
-More information on the [project site](http://foxlabs.org/p/validation/1.0/).
+More information on the [project site](https://validation.foxlabs.org/).
