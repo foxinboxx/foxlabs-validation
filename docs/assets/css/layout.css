@@ -24,12 +24,6 @@ html, body {
     border-bottom: 1px solid #2C4472;
 }
 
-.header-main {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
 .header-logo {
     overflow: hidden;
     display: inline-block;
@@ -49,6 +43,16 @@ html, body {
     font-size: 16px;
     font-weight: bold;
     color: #EEE;
+}
+
+.content {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main-content {
+    margin-top: 60px;
 }
 
 .footer-layout {
