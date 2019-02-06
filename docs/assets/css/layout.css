@@ -7,9 +7,12 @@ html, body {
     font-family: varela round,sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    padding-top: 45px;
+h1:before, h2:before, h3:before, h4:before, h5:before, h6:before {
+    content: "";
+    display: block;
     margin-top: -45px;
+    height: 45px;
+    visibility: hidden;
 }
 
 .wrapper {
