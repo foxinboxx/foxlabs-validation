@@ -10,20 +10,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script>
 </head>
 <body>
-    <div class="header-layout">
-        <div class="container-lg">
-            <a class="logo" href="/"></a>
-            <span class="logo-text">Validation Framework</span>
+    <div class="wrapper">
+        <header class="header-layout">
+            <div class="header-main">
+                <a class="header-logo" href="/"></a>
+                <div class="header-title">
+                    <span>VALIDATION FRAMEWORK</span>
+                </div>
+            </div>
+            <div>
+            </div>
+        </header>
+
+        <div class="container-lg px-3 my-5 markdown-body">
+            {{ content }}
         </div>
-    </div>
 
-    <div class="container-lg px-3 my-5 markdown-body">
-        {{ content }}
-    </div>
-    <script>anchors.add();</script>
+        <script>anchors.add();</script>
 
-    <div class="footer-layout">
-        Copyright &copy; 2011-{{ 'now' | date: "%Y" }} FoxLabs. All rights reserved.
+        <footer class="footer-layout">
+            Copyright &copy; 2011-{{ 'now' | date: "%Y" }} FoxLabs. All rights reserved.
+        </footer>
     </div>
 </body>
 </html>

@@ -274,7 +274,7 @@ to customize [EntityMetaData](api/org/foxlabs/validation/metadata/EntityMetaData
 
 #### Extending Metadata
 
-Extending metadata is required when your entities is not represented as Java Beans or POJOs,
+Extending metadata is required when your entities are not represented as Java Beans or POJOs,
 or you define entities or properties by other criteria (for example, you can have `@Property`
 annotation to define entity properties). To define your own metadata you can use existing
 abstract classes.
@@ -294,8 +294,8 @@ Validator<T> validator = factory.newValidator(myMeta);
 
 #### Extending Message Resolver And Builder
 
-If your error message templates is not stored as Java resources (for example,
-they can be stored in the database) then you need to provide your own
+If your error message templates are not stored as Java resources (for example,
+they can be stored in a database) then you need to provide your own
 [MessageResolver](api/org/foxlabs/validation/message/MessageResolver.html) and
 initialize your [ValidatorFactory](api/org/foxlabs/validation/ValidatorFactory.html).
 
