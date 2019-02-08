@@ -29,7 +29,7 @@ component, suitable for convert value to and from text representation. If for so
 reason value cannot be converted from string representation then the result of conversion
 should be [MalformedValueException](api/org/foxlabs/validation/converter/MalformedValueException.html).
 Conversion of a value to string representation doesn't assume any exceptions.
-The [ValidationContext.isLocalizedConvert()](api/org/foxlabs/validation/ValidationContext.html#isLocalizedConvert())
+The [ValidationContext.isLocalizedConvert()](api/org/foxlabs/validation/ValidationContext.html#isLocalizedConvert--)
 method specifies if localized representation is required.
 
 ### Validation Messages
@@ -38,18 +38,18 @@ Validation component may provide error message that will be used when validation
 That message may depend on validation context or component parameters. Because of that
 [Validation](api/org/foxlabs/validation/Validation.html) interface defines two methods that
 allow to obtain required information for error message generation. The
-[Validation.getMessageTemplate()](api/org/foxlabs/validation/Validation.html#getMessageTemplate(org.foxlabs.validation.ValidationContext))
+[Validation.getMessageTemplate()](api/org/foxlabs/validation/Validation.html#getMessageTemplate-org.foxlabs.validation.ValidationContext-)
 method allows to obtain localized error message template. The
-[Validation.appendMessageArguments()](api/org/foxlabs/validation/Validation.html#appendMessageArguments(org.foxlabs.validation.ValidationContext, java.util.Map))
+[Validation.appendMessageArguments()](api/org/foxlabs/validation/Validation.html#appendMessageArguments-org.foxlabs.validation.ValidationContext, java.util.Map-)
 method provides arguments to be substituted into the error message template. Locale of the
 error message and its arguments should be obtained from the
-[ValidationContext.getMessageLocale()](api/org/foxlabs/validation/ValidationContext.html#getMessageLocale()) method.
+[ValidationContext.getMessageLocale()](api/org/foxlabs/validation/ValidationContext.html#getMessageLocale--) method.
 
 The [MessageResolver](api/org/foxlabs/validation/message/MessageResolver.html) is used
 for resolving localized message templates. That abstraction allows to store error messages
 anywhere. By default `org/foxlabs/validation/resource/validation-messages`
 resource bundle is used. Validation components could use
-[ValidationContext.resolveMessage()](api/org/foxlabs/validation/ValidationContext.html#resolveMessage(java.lang.String))
+[ValidationContext.resolveMessage()](api/org/foxlabs/validation/ValidationContext.html#resolveMessage-java.lang.String-)
 to obtain error message templates. Fully qualified class name of the validation component
 is usually used as message key.
 
@@ -86,7 +86,7 @@ to describe metadata for validation of the `java.util.Map` entities.
 
 All architecture components binded together through the [Validator](api/org/foxlabs/validation/Validator.html)
 class. That class has a set of shortcut methods to perform validation with default parameters.
-If other configuration is required then the [Validator.newContext()](api/org/foxlabs/validation/Validator.html#newContext())
+If other configuration is required then the [Validator.newContext()](api/org/foxlabs/validation/Validator.html#newContext--)
 method should be used. Returned [Validator.ContextBuilder](api/org/foxlabs/validation/Validator.ContextBuilder.html)
 instance allows to configure validation parameters as you need.
 
@@ -110,7 +110,7 @@ allow to check certain constraints defined on the element. If constraint is not 
 to any validating group then it will be binded to default group (empty string) automatically.
 By default validation will be performed for all defined constraints.
 
-The [Validator.ContextBuilder.setValidatingGroups()](api/org/foxlabs/validation/Validator.ContextBuilder.html#setValidatingGroups(java.lang.String...))
+The [Validator.ContextBuilder.setValidatingGroups()](api/org/foxlabs/validation/Validator.ContextBuilder.html#setValidatingGroups-java.lang.String...-)
 method allows to change validating groups.
 
 ```java
