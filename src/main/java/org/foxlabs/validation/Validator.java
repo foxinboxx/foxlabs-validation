@@ -702,6 +702,7 @@ public class Validator<T> {
          * @return Array of string representations of property values.
          * @throws IllegalArgumentException if the specified property not exists.
          */
+        @SafeVarargs
         public final <V> String[] encodeValues(String property, V... values) {
             return build().encodeValues(property, values);
         }
@@ -757,6 +758,7 @@ public class Validator<T> {
          * @param values Array of values to be encoded.
          * @return Array of string representations of values.
          */
+        @SafeVarargs
         public final <V> String[] encodeValues(Converter<V> converter, V... values) {
             return build().encodeValues(converter, values);
         }
@@ -1285,6 +1287,7 @@ public class Validator<T> {
         }
         
         // See ContextBuilder.encodeValues(String, Object...)
+        @SuppressWarnings("unchecked")
         protected <V> String[] encodeValues(String property, V... values) {
             PropertyMetaData<T, V> meta = entityMeta.getPropertyMetaData(property);
             elementMeta = meta;
@@ -1309,6 +1312,7 @@ public class Validator<T> {
         }
         
         // See ContextBuilder.encodeValues(Converter, Object...)
+        @SuppressWarnings("unchecked")
         protected <V> String[] encodeValues(Converter<V> converter, V... values) {
             String[] array = new String[values.length];
             for (int i = 0; i < values.length; i++)

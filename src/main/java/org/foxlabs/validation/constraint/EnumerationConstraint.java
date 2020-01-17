@@ -120,6 +120,7 @@ public abstract class EnumerationConstraint<V> extends CheckConstraint<V> {
          *         constants is <code>null</code> or empty or contains
          *         <code>null</code> elements.
          */
+        @SafeVarargs
         protected Default(V... constants) {
             this(Types.superTypeOf(Types.typesOf(Assert.notEmpty(constants, "constants"))),
                     Arrays.asList(constants));
@@ -136,6 +137,7 @@ public abstract class EnumerationConstraint<V> extends CheckConstraint<V> {
          *         constants is <code>null</code> or empty or contains
          *         <code>null</code> elements.
          */
+        @SafeVarargs
         protected Default(Class<?> type, V... constants) {
             this(type, Arrays.asList(Assert.notEmpty(constants, "constants")));
         }

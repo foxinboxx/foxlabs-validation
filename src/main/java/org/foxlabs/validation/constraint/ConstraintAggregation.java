@@ -57,6 +57,7 @@ public abstract class ConstraintAggregation<V> extends AbstractValidation<V> imp
      *         <code>null</code> or empty or contains <code>null</code>
      *         elements.
      */
+    @SafeVarargs
     protected ConstraintAggregation(Class<?> type, Constraint<? super V>... constraints) {
         this.type = Assert.notNull(type, "type");
         this.constraints = Assert.noNullElements(constraints, "constraints");

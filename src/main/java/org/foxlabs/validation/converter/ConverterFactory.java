@@ -645,13 +645,15 @@ public abstract class ConverterFactory extends AnnotationSupport {
      * @see AnnotationSupport#createValidation(Class, Annotation, Class)
      */
     public static <V> Converter<V> createConverter(Class<V> type, String prefix) {
-        return Types.isBoolean(type)
-            ? forBoolean((Class<Boolean>) type, prefix)
-            : type.isEnum()
-                ? forEnum(type.asSubclass(Enum.class), prefix)
-                : type.isArray()
-                    ? forArray(createConverter(type.getComponentType(), prefix))
-                    : getDefaultConverter(type);
+        if (Types.isBoolean(type)) {
+            return Types.<Converter<V>>cast(forBoolean((Class<Boolean>) type, prefix));
+        } else if (type.isEnum()) {
+            return Types.<Converter<V>>cast(forEnum(type.asSubclass(Enum.class), prefix));
+        } else if (type.isArray()) {
+            return Types.<Converter<V>>cast(forArray(createConverter(type.getComponentType(), prefix)));
+        } else {
+            return getDefaultConverter(type);
+        }
     }
     
     // Annotation
