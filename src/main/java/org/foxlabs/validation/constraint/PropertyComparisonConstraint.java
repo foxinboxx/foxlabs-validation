@@ -1,12 +1,12 @@
-/* 
+/*
  * Copyright (C) 2012 FoxLabs
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,36 +22,36 @@ import java.util.Map;
 import org.foxlabs.validation.ValidationContext;
 import org.foxlabs.validation.Validator;
 
-import org.foxlabs.util.Assert;
+import org.foxlabs.common.Predicates;
 
 /**
  * This class provides base implementation of the <code>CheckConstraint</code>
  * that applies binary comparison operator to a value and other property.
- * 
+ *
  * @author Fox Mulder
  * @param <V> The type of operands
  */
 public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V> {
-    
+
     /**
      * Type of the operands.
      */
     protected final Class<?> type;
-    
+
     /**
      * Property name of the second operand.
      */
     protected final String propertyName;
-    
+
     /**
      * Comparator to be used for operands comparison.
      */
     protected final Comparator<V> comparator;
-    
+
     /**
      * Constructs a new <code>PropertyComparisonConstraint</code> with the
      * specified type of the operands, property name and comparator.
-     * 
+     *
      * @param type Type of the operands.
      * @param propertyName Property name of the second operand.
      * @param comparator Comparator to be used for operands comparison.
@@ -59,42 +59,42 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
      *         comparator is <code>null</code>.
      */
     protected PropertyComparisonConstraint(Class<?> type, String propertyName, Comparator<V> comparator) {
-        this.type = Assert.notNull(type, "type");
-        this.propertyName = Assert.notEmpty(propertyName, "propertyName");
-        this.comparator = Assert.notNull(comparator, "comparator");
+        this.type = Predicates.requireNonNull(type, "type");
+        this.propertyName = Predicates.require(propertyName, Predicates.STRING_NON_EMPTY, "propertyName");
+        this.comparator = Predicates.requireNonNull(comparator, "comparator");
     }
-    
+
     /**
      * Returns property name of the second operand.
-     * 
+     *
      * @return Property name of the second operand.
      */
     public final String getPropertyName() {
         return propertyName;
     }
-    
+
     /**
      * Returns comparator to be used for operands comparison.
-     * 
+     *
      * @return Comparator to be used for operands comparison.
      */
     public final Comparator<V> getComparator() {
         return comparator;
     }
-    
+
     /**
      * Returns type of the operands.
-     * 
+     *
      * @return Type of the operands.
      */
     @Override
     public final Class<?> getType() {
         return type;
     }
-    
+
     /**
      * Returns localized error message template.
-     * 
+     *
      * @param context Validation context.
      * @return Localized error message template.
      */
@@ -103,11 +103,11 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         return context.resolveMessage(PropertyComparisonConstraint.class.getName() +
                 "." + getClass().getSimpleName());
     }
-    
+
     /**
      * Appends <code>property</code> argument that contains property name of
      * the second operand.
-     * 
+     *
      * @param context Validation context.
      * @param arguments Arguments to be substituted into the error message
      *        template.
@@ -119,11 +119,11 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         arguments.put("property", propertyName);
         return true;
     }
-    
+
     /**
      * Applies binary comparison operator to the specified value and other
      * property.
-     * 
+     *
      * @param value1 First operand.
      * @param context Validation context.
      * @return <code>true</code> if comparison was performed successfully;
@@ -135,24 +135,24 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         V value2 = validator.getValue(context.getCurrentEntity(), propertyName);
         return compare(value1, value2);
     }
-    
+
     /**
      * Applies binary comparison operator between two values.
-     * 
+     *
      * @param value1 First operand.
      * @param value2 Second operand.
      * @return <code>true</code> if comparison was performed successfully;
      *         <code>false</code> otherwise.
      */
     protected abstract boolean compare(V value1, V value2);
-    
+
     // EqualTo
-    
+
     /**
      * This class provides <code>PropertyComparisonConstraint</code>
      * implementation that applies <code>==</code> operator to a value and
      * other property.
-     * 
+     *
      * @author Fox Mulder
      * @param <V> The type of operands
      * @see EqualTo
@@ -160,12 +160,12 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
      * @see ConstraintFactory#eq(Class, String, Comparator)
      */
     public static final class EqualToOp<V> extends PropertyComparisonConstraint<V> {
-        
+
         /**
          * Constructs a new <code>PropertyComparisonConstraint.EqualToOp</code>
          * with the specified type of the operands, property name and
          * comparator.
-         * 
+         *
          * @param type Type of the operands.
          * @param propertyName Property name of the second operand.
          * @param comparator Comparator to be used for operands comparison.
@@ -175,11 +175,11 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         EqualToOp(Class<?> type, String propertyName, Comparator<V> comparator) {
             super(type, propertyName, comparator);
         }
-        
+
         /**
          * Constructs a new <code>PropertyComparisonConstraint.EqualTo</code>
          * from the specified annotation and type of the operands.
-         * 
+         *
          * @param annotation Constraint annotation.
          * @param type Type of the operands.
          * @throws UnsupportedOperationException if the specified annotation
@@ -192,10 +192,10 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
                 ? (Comparator<V>) DefaultComparator.INSTANCE
                 : DefaultComparator.getInstance(type, annotation.comparator()));
         }
-        
+
         /**
          * Compares if the first specified operand equals to the second.
-         * 
+         *
          * @param value1 First operand.
          * @param value2 Second operand.
          * @return <code>true</code> if the first specified operand equals to
@@ -207,16 +207,16 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
                 return value1 == null ? value2 == null : value1.equals(value2);
             return value1 == null || value2 == null || comparator.compare(value1, value2) == 0;
         }
-        
+
     }
-    
+
     // NotEqualTo
-    
+
     /**
      * This class provides <code>PropertyComparisonConstraint</code>
      * implementation that applies <code>!=</code> operator to a value and
      * other property.
-     * 
+     *
      * @author Fox Mulder
      * @param <V> The type of operands
      * @see NotEqualTo
@@ -224,12 +224,12 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
      * @see ConstraintFactory#ne(Class, String, Comparator)
      */
     public static final class NotEqualToOp<V> extends PropertyComparisonConstraint<V> {
-        
+
         /**
          * Constructs a new <code>PropertyComparisonConstraint.NotEqualToOp</code>
          * with the specified type of the operands, property name and
          * comparator.
-         * 
+         *
          * @param type Type of the operands.
          * @param propertyName Property name of the second operand.
          * @param comparator Comparator to be used for operands comparison.
@@ -239,11 +239,11 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         NotEqualToOp(Class<?> type, String propertyName, Comparator<V> comparator) {
             super(type, propertyName, comparator);
         }
-        
+
         /**
          * Constructs a new <code>PropertyComparisonConstraint.NotEqualToOp</code>
          * from the specified annotation and type of the operands.
-         * 
+         *
          * @param annotation Constraint annotation.
          * @param type Type of the operands.
          * @throws UnsupportedOperationException if the specified annotation
@@ -256,10 +256,10 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
                 ? (Comparator<V>) DefaultComparator.INSTANCE
                 : DefaultComparator.getInstance(type, annotation.comparator()));
         }
-        
+
         /**
          * Compares if the first specified operand not equals to the second.
-         * 
+         *
          * @param value1 First operand.
          * @param value2 Second operand.
          * @return <code>true</code> if the first specified operand not equals
@@ -271,16 +271,16 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
                 return !(value1 == null ? value2 == null : value1.equals(value2));
             return value1 == null || value2 == null || comparator.compare(value1, value2) != 0;
         }
-        
+
     }
-    
+
     // LessThan
-    
+
     /**
      * This class provides <code>PropertyComparisonConstraint</code>
      * implementation that applies <code>&lt;</code> operator to a value and
      * other property.
-     * 
+     *
      * @author Fox Mulder
      * @param <V> The type of operands
      * @see LessThan
@@ -288,12 +288,12 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
      * @see ConstraintFactory#lt(Class, String, Comparator)
      */
     public static final class LessThanOp<V> extends PropertyComparisonConstraint<V> {
-        
+
         /**
          * Constructs a new <code>PropertyComparisonConstraint.LessThanOp</code>
          * with the specified type of the operands, property name and
          * comparator.
-         * 
+         *
          * @param type Type of the operands.
          * @param propertyName Property name of the second operand.
          * @param comparator Comparator to be used for operands comparison.
@@ -303,11 +303,11 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         LessThanOp(Class<?> type, String propertyName, Comparator<V> comparator) {
             super(type, propertyName, comparator);
         }
-        
+
         /**
          * Constructs a new <code>PropertyComparisonConstraint.LessThanOp</code>
          * from the specified annotation and type of the operands.
-         * 
+         *
          * @param annotation Constraint annotation.
          * @param type Type of the operands.
          * @throws UnsupportedOperationException if the specified annotation
@@ -317,10 +317,10 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         LessThanOp(LessThan annotation, Class<V> type) {
             super(type, annotation.value(), DefaultComparator.getInstance(type, annotation.comparator()));
         }
-        
+
         /**
          * Compares if the first specified operand is less than the second.
-         * 
+         *
          * @param value1 First operand.
          * @param value2 Second operand.
          * @return <code>true</code> if the first specified operand is less
@@ -330,16 +330,16 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         protected boolean compare(V value1, V value2) {
             return value1 == null || value2 == null || comparator.compare(value1, value2) < 0;
         }
-        
+
     }
-    
+
     // LessThanEqual
-    
+
     /**
      * This class provides <code>PropertyComparisonConstraint</code>
      * implementation that applies <code>&lt;=</code> operator to a value and
      * other property.
-     * 
+     *
      * @author Fox Mulder
      * @param <V> The type of operands
      * @see LessThanEqual
@@ -347,12 +347,12 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
      * @see ConstraintFactory#lte(Class, String, Comparator)
      */
     public static final class LessThanEqualOp<V> extends PropertyComparisonConstraint<V> {
-        
+
         /**
          * Constructs a new <code>PropertyComparisonConstraint.LessThanEqualOp</code>
          * with the specified type of the operands, property name and
          * comparator.
-         * 
+         *
          * @param type Type of the operands.
          * @param propertyName Property name of the second operand.
          * @param comparator Comparator to be used for operands comparison.
@@ -362,11 +362,11 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         LessThanEqualOp(Class<?> type, String propertyName, Comparator<V> comparator) {
             super(type, propertyName, comparator);
         }
-        
+
         /**
          * Constructs a new <code>PropertyComparisonConstraint.LessThanEqualOp</code>
          * from the specified annotation and type of the operands.
-         * 
+         *
          * @param annotation Constraint annotation.
          * @param type Type of the operands.
          * @throws UnsupportedOperationException if the specified annotation
@@ -376,11 +376,11 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         LessThanEqualOp(LessThanEqual annotation, Class<V> type) {
             super(type, annotation.value(), DefaultComparator.getInstance(type, annotation.comparator()));
         }
-        
+
         /**
          * Compares if the first specified operand is less than or equal to the
          * second.
-         * 
+         *
          * @param value1 First operand.
          * @param value2 Second operand.
          * @return <code>true</code> if the first specified operand is less
@@ -390,16 +390,16 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         protected boolean compare(V value1, V value2) {
             return value1 == null || value2 == null || comparator.compare(value1, value2) <= 0;
         }
-        
+
     }
-    
+
     // GreaterThan
-    
+
     /**
      * This class provides <code>PropertyComparisonConstraint</code>
      * implementation that applies <code>&gt;</code> operator to a value and
      * other property.
-     * 
+     *
      * @author Fox Mulder
      * @param <V> The type of operands
      * @see GreaterThan
@@ -407,12 +407,12 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
      * @see ConstraintFactory#gt(Class, String, Comparator)
      */
     public static final class GreaterThanOp<V> extends PropertyComparisonConstraint<V> {
-        
+
         /**
          * Constructs a new <code>PropertyComparisonConstraint.GreaterThanOp</code>
          * with the specified type of the operands, property name and
          * comparator.
-         * 
+         *
          * @param type Type of the operands.
          * @param propertyName Property name of the second operand.
          * @param comparator Comparator to be used for operands comparison.
@@ -422,11 +422,11 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         GreaterThanOp(Class<?> type, String propertyName, Comparator<V> comparator) {
             super(type, propertyName, comparator);
         }
-        
+
         /**
          * Constructs a new <code>PropertyComparisonConstraint.GreaterThanOp</code>
          * from the specified annotation and type of the operands.
-         * 
+         *
          * @param annotation Constraint annotation.
          * @param type Type of the operands.
          * @throws UnsupportedOperationException if the specified annotation
@@ -436,10 +436,10 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         GreaterThanOp(GreaterThan annotation, Class<V> type) {
             super(type, annotation.value(), DefaultComparator.getInstance(type, annotation.comparator()));
         }
-        
+
         /**
          * Compares if the first specified operand is greater than the second.
-         * 
+         *
          * @param value1 First operand.
          * @param value2 Second operand.
          * @return <code>true</code> if the first specified operand is greater
@@ -449,16 +449,16 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         protected boolean compare(V value1, V value2) {
             return value1 == null || value2 == null || comparator.compare(value1, value2) > 0;
         }
-        
+
     }
-    
+
     // GreaterThanEqual
-    
+
     /**
      * This class provides <code>PropertyComparisonConstraint</code>
      * implementation that applies <code>&gt;=</code> operator to a value and
      * other property.
-     * 
+     *
      * @author Fox Mulder
      * @param <V> The type of operands
      * @see GreaterThanEqual
@@ -466,12 +466,12 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
      * @see ConstraintFactory#gte(Class, String, Comparator)
      */
     public static final class GreaterThanEqualOp<V> extends PropertyComparisonConstraint<V> {
-        
+
         /**
          * Constructs a new <code>PropertyComparisonConstraint.GreaterThanEqualOp</code>
          * with the specified type of the operands, property name and
          * comparator.
-         * 
+         *
          * @param type Type of the operands.
          * @param propertyName Property name of the second operand.
          * @param comparator Comparator to be used for operands comparison.
@@ -481,11 +481,11 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         GreaterThanEqualOp(Class<?> type, String propertyName, Comparator<V> comparator) {
             super(type, propertyName, comparator);
         }
-        
+
         /**
          * Constructs a new <code>PropertyComparisonConstraint.GreaterThanEqualOp</code>
          * from the specified annotation and type of the operands.
-         * 
+         *
          * @param annotation Constraint annotation.
          * @param type Type of the operands.
          * @throws UnsupportedOperationException if the specified annotation
@@ -495,11 +495,11 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         GreaterThanEqualOp(GreaterThanEqual annotation, Class<V> type) {
             super(type, annotation.value(), DefaultComparator.getInstance(type, annotation.comparator()));
         }
-        
+
         /**
          * Compares if the first specified operand is greater than or equal to
          * the second.
-         * 
+         *
          * @param value1 First operand.
          * @param value2 Second operand.
          * @return <code>true</code> if the first specified operand is greater
@@ -509,7 +509,7 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
         protected boolean compare(V value1, V value2) {
             return value1 == null || value2 == null || comparator.compare(value1, value2) >= 0;
         }
-        
+
     }
-    
+
 }

@@ -1,12 +1,12 @@
-/* 
+/*
  * Copyright (C) 2012 FoxLabs
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,31 +24,31 @@ import org.foxlabs.validation.AbstractValidation;
 import org.foxlabs.validation.ValidationContext;
 import org.foxlabs.validation.ValidationException;
 
-import org.foxlabs.util.Assert;
+import static org.foxlabs.common.Predicates.*;
 
 /**
  * This class provides base implementation of the <code>Constraint</code> that
  * encapsulates other constraints to validate a value.
- * 
+ *
  * @author Fox Mulder
  * @param <V> The type of value to be validated
  */
 public abstract class ConstraintAggregation<V> extends AbstractValidation<V> implements Constraint<V> {
-    
+
     /**
      * The type of value to be validated.
      */
     protected final Class<?> type;
-    
+
     /**
      * Array of constraints to be used for validation of a value.
      */
     protected final Constraint<? super V>[] constraints;
-    
+
     /**
      * Constructs a new <code>ConstraintAggregation</code> with the specified
      * value type and array of other constraints.
-     * 
+     *
      * @param type The type of value to be validated.
      * @param constraints Array of constraints to be used for validation of a
      *        value.
@@ -59,33 +59,35 @@ public abstract class ConstraintAggregation<V> extends AbstractValidation<V> imp
      */
     @SafeVarargs
     protected ConstraintAggregation(Class<?> type, Constraint<? super V>... constraints) {
-        this.type = Assert.notNull(type, "type");
-        this.constraints = Assert.noNullElements(constraints, "constraints");
+        this.type = requireNonNull(type, "type");
+        this.constraints = requireElementsNonNull(
+            require(constraints, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "constraints"),
+            defer((index) -> "constraints[" + index + "] = null"));
     }
-    
+
     /**
      * Returns the type of value to be validated.
-     * 
+     *
      * @return The type of value to be validated.
      */
     @Override
     public final Class<?> getType() {
         return type;
     }
-    
+
     /**
      * Returns array of constraints to be used for validation of a value.
-     * 
+     *
      * @return Array of constraints to be used for validation of a value.
      */
     public final Constraint<? super V>[] getConstraints() {
         return constraints.clone();
     }
-    
+
     /**
      * Appends <code>constraints</code> argument that contains encapsulated
      * constraints.
-     * 
+     *
      * @param context Validation context.
      * @param arguments Arguments to be substituted into the error message
      *        template.
@@ -97,11 +99,11 @@ public abstract class ConstraintAggregation<V> extends AbstractValidation<V> imp
         arguments.put("constraints", constraints);
         return true;
     }
-    
+
     /**
      * Checks whether the specified value conforms to all of the encapsulated
      * constraints.
-     * 
+     *
      * @param value Value to be validated.
      * @param context Validation context.
      * @return Possibly modified value if at least one of the encapsulated
@@ -127,5 +129,5 @@ public abstract class ConstraintAggregation<V> extends AbstractValidation<V> imp
         throw new ConstraintViolationException(this, context, value,
                 new ValidationException(violations));
     }
-    
+
 }

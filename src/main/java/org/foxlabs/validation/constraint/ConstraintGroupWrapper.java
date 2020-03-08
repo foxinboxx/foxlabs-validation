@@ -1,12 +1,12 @@
-/* 
+/*
  * Copyright (C) 2012 FoxLabs
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,33 +17,35 @@
 package org.foxlabs.validation.constraint;
 
 import java.util.Set;
+import java.util.LinkedHashSet;
+import java.util.Arrays;
 import java.util.Collections;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.util.Assert;
+import static org.foxlabs.common.Predicates.*;
 
 /**
  * This class provides ability to override groups of another constraint. Any
  * constraint annotations can define <code>groups</code> property of the
  * <code>java.lang.String[]</code> type.
- * 
+ *
  * @author Fox Mulder
  * @param <V> The type of value to be validated
  * @see ConstraintFactory#wrapGroups(Constraint)
  * @see ConstraintFactory#wrapGroups(Constraint, String...)
  */
 public final class ConstraintGroupWrapper<V> extends ConstraintWrapper<V> {
-    
+
     /**
      * Set of groups the constraint is applied on.
      */
     private final Set<String> groups;
-    
+
     /**
      * Constructs a new <code>ConstraintGroupWrapper</code> with the specified
      * constraint and array of groups.
-     * 
+     *
      * @param constraint Constraint to be wrapped.
      * @param groups Array of groups the constraint is applied on.
      * @throws IllegalArgumentException if the specified constraint is
@@ -52,13 +54,16 @@ public final class ConstraintGroupWrapper<V> extends ConstraintWrapper<V> {
      *         elements.
      */
     ConstraintGroupWrapper(Constraint<V> constraint, String[] groups) {
-        this(constraint, Assert.noNullStringSet(groups, "groups"));
+        this(constraint, new LinkedHashSet<>(Arrays.asList(
+            requireElementsNonNull(
+                require(groups, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "groups"),
+                defer((index) -> "groups[" + index + "] = null")))));
     }
-    
+
     /**
      * Constructs a new <code>ConstraintGroupWrapper</code> with the specified
      * constraint and set of groups.
-     * 
+     *
      * @param constraint Constraint to be wrapped.
      * @param groups Set of groups the constraint is applied on.
      * @throws IllegalArgumentException if the specified constraint is
@@ -68,21 +73,21 @@ public final class ConstraintGroupWrapper<V> extends ConstraintWrapper<V> {
         super(constraint);
         this.groups = Collections.unmodifiableSet(groups);
     }
-    
+
     /**
      * Returns unmodifiable set of groups the constraint is applied on.
-     * 
+     *
      * @return Unmodifiable set of groups the constraint is applied on.
      */
     public Set<String> getGroups() {
         return groups;
     }
-    
+
     /**
      * Returns localized error message template of the wrapped constraint or
      * <code>null</code> if no group of this wrapper matches groups provided by
      * validation context.
-     * 
+     *
      * @param context Validation context.
      * @return Localized error message template of the wrapped constraint or
      *         <code>null</code> if no group of this wrapper matches groups
@@ -94,15 +99,15 @@ public final class ConstraintGroupWrapper<V> extends ConstraintWrapper<V> {
             return constraint.getMessageTemplate(context);
         return null;
     }
-    
+
     /**
      * Validates the specified value using context if needed and returns
      * possibly modified value.
-     * 
+     *
      * <p>This method performs validation only if one or more groups provided
      * by validation context match at least one group of this wrapper;
      * otherwise it returns value as is.</p>
-     * 
+     *
      * @param value Value to be validated.
      * @param context Validation context.
      * @return Possibly modified value.
@@ -119,12 +124,12 @@ public final class ConstraintGroupWrapper<V> extends ConstraintWrapper<V> {
         }
         return value;
     }
-    
+
     /**
      * Determines if the specified constraint should be accepted. This method
      * checks whether the specified constraint belongs to the current
      * validating groups.
-     * 
+     *
      * @return <code>true</code> if the specified constraint should be accepted;
      *         <code>false</code> otherwise.
      */
@@ -137,5 +142,5 @@ public final class ConstraintGroupWrapper<V> extends ConstraintWrapper<V> {
                 return true;
         return false;
     }
-    
+
 }

@@ -16,10 +16,9 @@
 
 package org.foxlabs.validation.path;
 
+import org.foxlabs.common.Strings;
 import org.foxlabs.validation.ValidationTarget;
 import org.foxlabs.validation.ViolationException;
-
-import org.foxlabs.util.Strings;
 
 /**
  * This class provides default implementation of the <code>NodeFormatter</code>

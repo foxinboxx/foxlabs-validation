@@ -1,12 +1,12 @@
-/* 
+/*
  * Copyright (C) 2012 FoxLabs
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,59 +20,61 @@ import java.util.Map;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.util.Assert;
+import static org.foxlabs.common.Predicates.*;
 
 /**
  * This class provides <code>CheckConstraint</code> implementation that checks
  * whether a value is instance of one of allowed types.
- * 
+ *
  * @author Fox Mulder
  * @see InstanceOf
  * @see ConstraintFactory#instanceOf(Class...)
  */
 public final class InstanceOfConstraint extends CheckConstraint<Object> {
-    
+
     /**
      * Array of allowed types.
      */
     private final Class<?>[] types;
-    
+
     /**
      * Constructs a new <code>InstanceOfConstraint</code> with the specified
      * array of allowed type.
-     * 
+     *
      * @param types Array of allowed types.
      * @throws IllegalArgumentException if the specified array of types is
      *         <code>null</code> or empty or contains <code>null</code>
      *         elements.
      */
     InstanceOfConstraint(Class<?>[] types) {
-        this.types = Assert.noNullElements(types, "types");
+        this.types = requireElementsNonNull(
+            require(types, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "types"),
+            defer((index) -> "types[" + index + "] = null"));
     }
-    
+
     /**
      * Constructs a new <code>InstanceOfConstraint</code> from the specified
      * annotation.
-     * 
+     *
      * @param annotation Constraint annotation.
      */
     InstanceOfConstraint(InstanceOf annotation) {
         this(annotation.value());
     }
-    
+
     /**
      * Returns <code>java.lang.Object</code> type.
-     * 
+     *
      * @return <code>java.lang.Object</code> type.
      */
     @Override
     public Class<?> getType() {
         return Object.class;
     }
-    
+
     /**
      * Appends <code>types</code> argument that contains array of allowed types.
-     * 
+     *
      * @param context Validation context.
      * @param arguments Arguments to be substituted into the error message
      *        template.
@@ -84,10 +86,10 @@ public final class InstanceOfConstraint extends CheckConstraint<Object> {
         arguments.put("types", types);
         return true;
     }
-    
+
     /**
      * Checks whether the specified value is instance of one of allowed types.
-     * 
+     *
      * @param value Value to be checked.
      * @param context Validation context.
      * @return <code>true</code> if the specified value is instance of one of
@@ -103,5 +105,5 @@ public final class InstanceOfConstraint extends CheckConstraint<Object> {
                 return true;
         return false;
     }
-    
+
 }

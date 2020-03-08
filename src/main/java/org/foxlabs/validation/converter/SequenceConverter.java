@@ -1,12 +1,12 @@
-/* 
+/*
  * Copyright (C) 2012 FoxLabs
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,38 +25,38 @@ import org.foxlabs.validation.ValidationContext;
 import org.foxlabs.validation.ValidationException;
 import org.foxlabs.validation.ValidationTarget;
 
-import org.foxlabs.util.Assert;
+import org.foxlabs.common.Predicates;
 
 /**
  * This class provides base <code>Converter</code> implementation for
  * converters of elements sequence.
- * 
+ *
  * @author Fox Mulder
  * @see Tokenizer
  */
 public abstract class SequenceConverter<V> extends AbstractValidation<V> implements Converter<V> {
-    
+
     /**
      * Tokenizer of elements sequence.
      */
     protected final Tokenizer tokenizer;
-    
+
     /**
      * Constructs a new <code>SequenceConverter</code> with the specified
      * tokenizer of elements sequence.
-     * 
+     *
      * @param tokenizer Tokenizer of elements sequence.
      * @throws IllegalArgumentException if the specified tokenizer is
      *         <code>null</code>.
      */
     protected SequenceConverter(Tokenizer tokenizer) {
-        this.tokenizer = Assert.notNull(tokenizer, "tokenizer");
+        this.tokenizer = Predicates.requireNonNull(tokenizer, "tokenizer");
     }
-    
+
     /**
      * Appends <code>tokenizer</code> argument that contains tokenizer of
      * elements sequence.
-     * 
+     *
      * @param context Validation context.
      * @param arguments Arguments to be substituted into the error message
      *        template.
@@ -68,10 +68,10 @@ public abstract class SequenceConverter<V> extends AbstractValidation<V> impleme
         arguments.put("tokenizer", tokenizer);
         return true;
     }
-    
+
     /**
      * Converts string representation of elements sequence into object.
-     * 
+     *
      * @param <T> The type of validated entity.
      * @param value String representation of elements sequence.
      * @param context Validation context.
@@ -95,10 +95,10 @@ public abstract class SequenceConverter<V> extends AbstractValidation<V> impleme
             return sequence;
         throw new MalformedValueException(this, context, value, new ValidationException(violations));
     }
-    
+
     /**
      * Returns array of tokens extracted from the source string.
-     * 
+     *
      * @param <T> The type of validated entity.
      * @param value Source string to be tokenized.
      * @param context Validation context.
@@ -113,12 +113,12 @@ public abstract class SequenceConverter<V> extends AbstractValidation<V> impleme
             throw new MalformedValueException(this, context, value, new ValidationException(e));
         }
     }
-    
+
     /**
      * Converts string representations of elements into elements sequence.
      * This method should not throw <code>MalformedValueException</code> and
      * all violations should be stored in the specified list of violations.
-     * 
+     *
      * @param <T> The type of validated entity.
      * @param tokens String representations of elements.
      * @param context Validation context.
@@ -127,5 +127,5 @@ public abstract class SequenceConverter<V> extends AbstractValidation<V> impleme
      */
     protected abstract <T> V doDecode(String[] tokens, ValidationContext<T> context,
             List<MalformedValueException> violations);
-    
+
 }

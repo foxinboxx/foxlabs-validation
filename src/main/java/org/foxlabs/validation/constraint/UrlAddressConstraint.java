@@ -1,12 +1,12 @@
-/* 
+/*
  * Copyright (C) 2012 FoxLabs
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,53 +18,56 @@ package org.foxlabs.validation.constraint;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.LinkedHashSet;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import java.net.URL;
+
 import java.net.MalformedURLException;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.util.Assert;
+import static org.foxlabs.common.Predicates.*;
 
 /**
  * This class provides <code>CheckConstraint</code> implementation that checks
  * whether a string is valid URL reference. Also the allowed set of protocols
  * and prefix pattern can be configured.
- * 
+ *
  * Note that prefix should not describe URL protocol.
  * For example, prefix of the SCM URL <code>scm:svn:http://svn.foxlabs.org</code>
  * should be defined as <code>scm:svn:</code> or <code>scm:[a-z]:</code> regex.
- * 
+ *
  * @author Fox Mulder
  * @see UrlAddress
  * @see ConstraintFactory#urlAddress()
  * @see ConstraintFactory#urlAddress(String, String...)
  */
 public final class UrlAddressConstraint extends CheckConstraint<String> {
-    
+
     /**
      * <code>UrlAddressConstraint</code> default instance initialized with
      * no prefix and empty set of protocols.
      */
     public static final UrlAddressConstraint DEFAULT = new UrlAddressConstraint(null, (String[]) null);
-    
+
     /**
      * URL prefix pattern if any.
      */
     private final Pattern prefix;
-    
+
     /**
      * Set of allowed protocols (empty set means all protocols are allowed).
      */
     private final Set<String> protocols;
-    
+
     /**
      * Constructs a new <code>UrlAddressConstraint</code> with the specified
      * prefix pattern and array of allowed protocols.
-     * 
+     *
      * @param prefix URL prefix pattern if any.
      * @param protocols Array of allowed protocols.
      * @throws IllegalArgumentException if the specified prefix is invalid
@@ -75,13 +78,16 @@ public final class UrlAddressConstraint extends CheckConstraint<String> {
         this.prefix = prefix == null || prefix.isEmpty() ? null : Pattern.compile("(" + prefix + ").+");
         this.protocols = protocols == null || protocols.length == 0
             ? Collections.<String>emptySet()
-            : Collections.unmodifiableSet(Assert.noEmptyStringSet(protocols, "protocols"));
+            : Collections.unmodifiableSet(new LinkedHashSet<>(Arrays.asList(
+                requireElementsNonNull(
+                    require(protocols, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "protocols"),
+                    defer((index) -> "protocols[" + index + "] = null")))));
     }
-    
+
     /**
      * Constructs a new <code>UrlAddressConstraint</code> from the specified
      * annotation.
-     * 
+     *
      * @param annotation Constraint annotation.
      * @throws IllegalArgumentException if the specified annotation defines
      *         invalid prefix regular expression or array of protocols that
@@ -90,40 +96,40 @@ public final class UrlAddressConstraint extends CheckConstraint<String> {
     UrlAddressConstraint(UrlAddress annotation) {
         this(annotation.prefix(), annotation.protocols());
     }
-    
+
     /**
      * Returns <code>java.lang.String</code> type.
-     * 
+     *
      * @return <code>java.lang.String</code> type.
      */
     @Override
     public Class<?> getType() {
         return String.class;
     }
-    
+
     /**
      * Returns prefix pattern if any.
-     * 
+     *
      * @return Prefix pattern if any.
      */
     public Pattern getPrefix() {
         return prefix;
     }
-    
+
     /**
      * Returns set of allowed protocols (empty set means all protocols are
      * allowed).
-     * 
+     *
      * @return Set of allowed protocols.
      */
     public Set<String> getProtocols() {
         return protocols;
     }
-    
+
     /**
      * Appends <code>protocols</code> argument that contains set of allowed
      * protocols.
-     * 
+     *
      * @param context Validation context.
      * @param arguments Arguments to be substituted into the error message
      *        template.
@@ -138,11 +144,11 @@ public final class UrlAddressConstraint extends CheckConstraint<String> {
             arguments.put("protocols", protocols);
         return true;
     }
-    
+
     /**
      * Checks whether the specified string is valid URL reference with allowed
      * prefix and protocol.
-     * 
+     *
      * @param value URL string.
      * @param context Validation context.
      * @return <code>true</code> if the specified string is valid URL reference
@@ -166,5 +172,5 @@ public final class UrlAddressConstraint extends CheckConstraint<String> {
         } catch (MalformedURLException e) {}
         return false;
     }
-    
+
 }
