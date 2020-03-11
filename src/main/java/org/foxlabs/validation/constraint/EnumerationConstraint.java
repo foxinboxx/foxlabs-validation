@@ -24,10 +24,10 @@ import java.util.LinkedHashSet;
 import java.util.Collections;
 import java.util.Locale;
 
+import org.foxlabs.util.reflect.Types;
+
 import org.foxlabs.validation.ValidationContext;
 import org.foxlabs.validation.converter.ConverterFactory;
-
-import org.foxlabs.util.reflect.Types;
 
 import static org.foxlabs.common.Predicates.*;
 
@@ -189,9 +189,9 @@ public abstract class EnumerationConstraint<V> extends CheckConstraint<V> {
          */
         protected Default(Class<?> type, Set<V> constants) {
             this.type = requireNonNull(type, "type");
-            this.constants = Collections.unmodifiableSet(
-                requireElementsNonNull(require(constants, COLLECTION_NON_EMPTY_OR_NULL, "constants"),
-                    defer((index) -> "constants[" + index + "] = null")));
+            this.constants = Collections.unmodifiableSet(requireAllNonNull(
+                require(constants, COLLECTION_NON_EMPTY_OR_NULL, "constants cannot be null or empty"),
+                ExceptionProvider.OfSequence.ofIAE("cannot be null", "constants")));
         }
 
         /**

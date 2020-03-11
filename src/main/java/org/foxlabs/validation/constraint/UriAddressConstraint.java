@@ -18,12 +18,12 @@ package org.foxlabs.validation.constraint;
 
 import java.util.Map;
 import java.util.Set;
-import java.util.LinkedHashSet;
-import java.util.Arrays;
-import java.util.Collections;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import org.foxlabs.common.Sets;
+import org.foxlabs.common.Strings;
 
 import org.foxlabs.validation.ValidationContext;
 
@@ -45,7 +45,7 @@ public final class UriAddressConstraint extends CheckConstraint<String> {
      * <code>UriAddressConstraint</code> default instance initialized with
      * empty set of schemes.
      */
-    public static final UriAddressConstraint DEFAULT = new UriAddressConstraint((String[]) null);
+    public static final UriAddressConstraint DEFAULT = new UriAddressConstraint(Strings.EMPTY_ARRAY);
 
     /**
      * Set of allowed schemes (empty set means all schemes are allowed).
@@ -61,12 +61,8 @@ public final class UriAddressConstraint extends CheckConstraint<String> {
      *         contains <code>null</code> or empty elements.
      */
     UriAddressConstraint(String[] schemes) {
-        this.schemes = schemes == null || schemes.length == 0
-            ? Collections.<String>emptySet()
-            : Collections.unmodifiableSet(new LinkedHashSet<>(Arrays.asList(
-                requireElementsNonNull(
-                    require(schemes, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "schemes"),
-                    defer((index) -> "schemes[" + index + "] = null")))));
+        this.schemes = Sets.toImmutableLinkedHashSet(requireAll(schemes, STRING_NON_EMPTY,
+            ExceptionProvider.OfSequence.ofIAE("cannot be null or empty", "schemes")));
     }
 
     /**

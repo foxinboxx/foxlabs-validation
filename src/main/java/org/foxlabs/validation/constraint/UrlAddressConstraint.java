@@ -18,15 +18,14 @@ package org.foxlabs.validation.constraint;
 
 import java.util.Map;
 import java.util.Set;
-import java.util.LinkedHashSet;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import java.net.URL;
-
 import java.net.MalformedURLException;
+
+import org.foxlabs.common.Sets;
+import org.foxlabs.common.Strings;
 
 import org.foxlabs.validation.ValidationContext;
 
@@ -52,7 +51,7 @@ public final class UrlAddressConstraint extends CheckConstraint<String> {
      * <code>UrlAddressConstraint</code> default instance initialized with
      * no prefix and empty set of protocols.
      */
-    public static final UrlAddressConstraint DEFAULT = new UrlAddressConstraint(null, (String[]) null);
+    public static final UrlAddressConstraint DEFAULT = new UrlAddressConstraint(null, Strings.EMPTY_ARRAY);
 
     /**
      * URL prefix pattern if any.
@@ -75,13 +74,9 @@ public final class UrlAddressConstraint extends CheckConstraint<String> {
      *         <code>null</code> or empty elements.
      */
     UrlAddressConstraint(String prefix, String[] protocols) {
-        this.prefix = prefix == null || prefix.isEmpty() ? null : Pattern.compile("(" + prefix + ").+");
-        this.protocols = protocols == null || protocols.length == 0
-            ? Collections.<String>emptySet()
-            : Collections.unmodifiableSet(new LinkedHashSet<>(Arrays.asList(
-                requireElementsNonNull(
-                    require(protocols, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "protocols"),
-                    defer((index) -> "protocols[" + index + "] = null")))));
+        this.prefix = Strings.isEmptyOrNull(prefix) ? null : Pattern.compile("(" + prefix + ").+");
+        this.protocols = Sets.toImmutableLinkedHashSet(requireAll(Strings.nullSafe(protocols), STRING_NON_EMPTY,
+            ExceptionProvider.OfSequence.ofIAE("cannot be null or empty", "protocols")));
     }
 
     /**

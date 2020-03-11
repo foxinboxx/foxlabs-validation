@@ -17,9 +17,9 @@
 package org.foxlabs.validation.constraint;
 
 import java.util.Set;
-import java.util.LinkedHashSet;
-import java.util.Arrays;
 import java.util.Collections;
+
+import org.foxlabs.common.Sets;
 
 import org.foxlabs.validation.ValidationContext;
 
@@ -54,10 +54,9 @@ public final class ConstraintGroupWrapper<V> extends ConstraintWrapper<V> {
      *         elements.
      */
     ConstraintGroupWrapper(Constraint<V> constraint, String[] groups) {
-        this(constraint, new LinkedHashSet<>(Arrays.asList(
-            requireElementsNonNull(
-                require(groups, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "groups"),
-                defer((index) -> "groups[" + index + "] = null")))));
+        this(constraint, Sets.toImmutableLinkedHashSet(requireAllNonNull(
+            require(groups, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "groups cannot be null or empty"),
+            ExceptionProvider.OfSequence.ofIAE("cannot be null", "groups"))));
     }
 
     /**
