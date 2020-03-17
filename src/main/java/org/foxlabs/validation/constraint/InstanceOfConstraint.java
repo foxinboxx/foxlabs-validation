@@ -49,7 +49,7 @@ public final class InstanceOfConstraint extends CheckConstraint<Object> {
     InstanceOfConstraint(Class<?>[] types) {
         this.types = requireAllNonNull(
             require(types, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "types cannot be null or empty"),
-            ExceptionProvider.OfSequence.ofIAE("cannot be null", "types"));
+            ExceptionProvider.OfSequence.ofIAE("types[%d]: %s"));
     }
 
     /**

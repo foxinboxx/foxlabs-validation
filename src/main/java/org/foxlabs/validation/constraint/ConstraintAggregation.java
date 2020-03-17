@@ -62,7 +62,7 @@ public abstract class ConstraintAggregation<V> extends AbstractValidation<V> imp
         this.type = requireNonNull(type, "type");
         this.constraints = requireAllNonNull(
             require(constraints, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "constraints cannot be null or empty"),
-            ExceptionProvider.OfSequence.ofIAE("cannot be null", "constraints"));
+            ExceptionProvider.OfSequence.ofIAE("constraints[%d]: %s"));
     }
 
     /**

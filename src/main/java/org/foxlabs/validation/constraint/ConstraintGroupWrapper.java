@@ -56,7 +56,7 @@ public final class ConstraintGroupWrapper<V> extends ConstraintWrapper<V> {
     ConstraintGroupWrapper(Constraint<V> constraint, String[] groups) {
         this(constraint, Sets.toImmutableLinkedHashSet(requireAllNonNull(
             require(groups, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "groups cannot be null or empty"),
-            ExceptionProvider.OfSequence.ofIAE("cannot be null", "groups"))));
+            ExceptionProvider.OfSequence.ofIAE("groups[%d]: %s"))));
     }
 
     /**

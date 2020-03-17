@@ -191,7 +191,7 @@ public abstract class EnumerationConstraint<V> extends CheckConstraint<V> {
             this.type = requireNonNull(type, "type");
             this.constants = Collections.unmodifiableSet(requireAllNonNull(
                 require(constants, COLLECTION_NON_EMPTY_OR_NULL, "constants cannot be null or empty"),
-                ExceptionProvider.OfSequence.ofIAE("cannot be null", "constants")));
+                ExceptionProvider.OfSequence.ofIAE("constants[%d]: %s")));
         }
 
         /**

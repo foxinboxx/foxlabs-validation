@@ -62,7 +62,7 @@ public final class UriAddressConstraint extends CheckConstraint<String> {
      */
     UriAddressConstraint(String[] schemes) {
         this.schemes = Sets.toImmutableLinkedHashSet(requireAll(schemes, STRING_NON_EMPTY,
-            ExceptionProvider.OfSequence.ofIAE("cannot be null or empty", "schemes")));
+            ExceptionProvider.OfSequence.ofIAE("schemes[%d]: %s")));
     }
 
     /**

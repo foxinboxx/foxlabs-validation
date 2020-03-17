@@ -76,7 +76,7 @@ public final class UrlAddressConstraint extends CheckConstraint<String> {
     UrlAddressConstraint(String prefix, String[] protocols) {
         this.prefix = Strings.isEmptyOrNull(prefix) ? null : Pattern.compile("(" + prefix + ").+");
         this.protocols = Sets.toImmutableLinkedHashSet(requireAll(Strings.nullSafe(protocols), STRING_NON_EMPTY,
-            ExceptionProvider.OfSequence.ofIAE("cannot be null or empty", "protocols")));
+            ExceptionProvider.OfSequence.ofIAE("protocols[%d]: %s")));
     }
 
     /**
