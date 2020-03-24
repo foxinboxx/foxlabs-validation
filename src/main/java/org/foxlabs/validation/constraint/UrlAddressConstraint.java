@@ -29,7 +29,7 @@ import org.foxlabs.common.Strings;
 
 import org.foxlabs.validation.ValidationContext;
 
-import static org.foxlabs.common.Predicates.*;
+import static org.foxlabs.common.Checks.*;
 
 /**
  * This class provides <code>CheckConstraint</code> implementation that checks
@@ -75,8 +75,8 @@ public final class UrlAddressConstraint extends CheckConstraint<String> {
      */
     UrlAddressConstraint(String prefix, String[] protocols) {
         this.prefix = Strings.isEmptyOrNull(prefix) ? null : Pattern.compile("(" + prefix + ").+");
-        this.protocols = Sets.toImmutableLinkedHashSet(requireAll(Strings.nullSafe(protocols), STRING_NON_EMPTY,
-            ExceptionProvider.OfSequence.ofIAE("protocols[%d]: %s")));
+        this.protocols = Sets.toImmutableLinkedHashSet(
+            checkThatAll(Strings.nullSafe(protocols), Strings::isNonEmpty, "protocols[%s]: %s"));
     }
 
     /**

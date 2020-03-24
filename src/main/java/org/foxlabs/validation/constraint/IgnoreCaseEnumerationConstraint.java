@@ -21,7 +21,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.Comparator;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>EnumerationConstraint</code> implementation based
@@ -45,7 +45,7 @@ public class IgnoreCaseEnumerationConstraint extends EnumerationConstraint.Defau
      */
     protected IgnoreCaseEnumerationConstraint(String... constants) {
         super(String.class, toIgnoreCaseSet(
-            Predicates.require(constants, Predicates.OBJECT_ARRAY_NON_EMPTY_OR_NULL, "constants")));
+            Checks.checkThat(constants, constants != null && constants.length > 0, "constants")));
     }
 
     /**
@@ -59,7 +59,7 @@ public class IgnoreCaseEnumerationConstraint extends EnumerationConstraint.Defau
      */
     protected IgnoreCaseEnumerationConstraint(Collection<String> constants) {
         super(String.class, toIgnoreCaseSet(
-            Predicates.require(constants, Predicates.COLLECTION_NON_EMPTY_OR_NULL, "constants")));
+            Checks.checkThat(constants, constants != null && constants.size() > 0, "constants")));
     }
 
     /**

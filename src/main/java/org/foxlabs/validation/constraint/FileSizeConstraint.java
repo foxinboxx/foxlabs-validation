@@ -22,7 +22,7 @@ import java.util.Map;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>CheckConstraint</code> implementation that checks
@@ -54,8 +54,8 @@ public final class FileSizeConstraint extends CheckConstraint<File> {
      *         size is negative.
      */
     FileSizeConstraint(long minSize, long maxSize) {
-        Predicates.require(minSize, Predicates.LONG_POSITIVE_OR_ZERO, "minSize");
-        Predicates.require(maxSize, Predicates.LONG_POSITIVE_OR_ZERO, "maxSize");
+        Checks.checkThat(minSize, minSize >= 0L, "minSize");
+        Checks.checkThat(maxSize, maxSize >= 0L, "maxSize");
 
         if (minSize < maxSize) {
             this.minSize = minSize;

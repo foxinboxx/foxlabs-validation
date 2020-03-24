@@ -22,7 +22,8 @@ import java.util.Map;
 import org.foxlabs.validation.ValidationContext;
 import org.foxlabs.validation.Validator;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
+import org.foxlabs.common.Strings;
 
 /**
  * This class provides base implementation of the <code>CheckConstraint</code>
@@ -59,9 +60,9 @@ public abstract class PropertyComparisonConstraint<V> extends CheckConstraint<V>
      *         comparator is <code>null</code>.
      */
     protected PropertyComparisonConstraint(Class<?> type, String propertyName, Comparator<V> comparator) {
-        this.type = Predicates.requireNonNull(type, "type");
-        this.propertyName = Predicates.require(propertyName, Predicates.STRING_NON_EMPTY, "propertyName");
-        this.comparator = Predicates.requireNonNull(comparator, "comparator");
+        this.type = Checks.checkNotNull(type, "type");
+        this.propertyName = Checks.checkThat(propertyName, Strings.isNonEmpty(propertyName), "propertyName");
+        this.comparator = Checks.checkNotNull(comparator, "comparator");
     }
 
     /**

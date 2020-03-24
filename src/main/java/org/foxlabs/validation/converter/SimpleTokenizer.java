@@ -22,7 +22,7 @@ import java.util.Map;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 import org.foxlabs.common.Strings;
 
 /**
@@ -53,7 +53,7 @@ public final class SimpleTokenizer extends Tokenizer {
      *         <code>null</code> or empty string.
      */
     SimpleTokenizer(String delims) {
-        this.delims = Predicates.require(delims, Predicates.STRING_NON_EMPTY, "delims");
+        this.delims = Checks.checkThat(delims, Strings.isNonEmpty(delims), "delims");
     }
 
     /**

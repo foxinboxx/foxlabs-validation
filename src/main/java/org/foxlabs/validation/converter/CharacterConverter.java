@@ -18,7 +18,7 @@ package org.foxlabs.validation.converter;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>Converter</code> implementation for the
@@ -51,7 +51,7 @@ public final class CharacterConverter extends AbstractConverter<Character> {
      *         <code>null</code>.
      */
     private CharacterConverter(Class<Character> type) {
-        this.type = Predicates.requireNonNull(type, "type");
+        this.type = Checks.checkNotNull(type, "type");
     }
 
     /**

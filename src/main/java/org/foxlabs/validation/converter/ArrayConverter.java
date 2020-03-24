@@ -24,7 +24,7 @@ import java.util.Map;
 import org.foxlabs.validation.ValidationContext;
 import org.foxlabs.validation.ValidationTarget;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 import org.foxlabs.util.reflect.Types;
 
@@ -62,7 +62,7 @@ public final class ArrayConverter<V> extends SequenceConverter<Object> {
      */
     ArrayConverter(Converter<V> converter, Tokenizer tokenizer) {
         super(tokenizer);
-        this.converter = Predicates.requireNonNull(converter, "converter");
+        this.converter = Checks.checkNotNull(converter, "converter");
         this.type = Types.arrayTypeOf(converter.getType());
     }
 

@@ -24,7 +24,7 @@ import org.foxlabs.validation.AbstractValidation;
 import org.foxlabs.validation.ValidationContext;
 import org.foxlabs.validation.ValidationException;
 
-import static org.foxlabs.common.Predicates.*;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides base implementation of the <code>Constraint</code> that
@@ -59,10 +59,10 @@ public abstract class ConstraintAggregation<V> extends AbstractValidation<V> imp
      */
     @SafeVarargs
     protected ConstraintAggregation(Class<?> type, Constraint<? super V>... constraints) {
-        this.type = requireNonNull(type, "type");
-        this.constraints = requireAllNonNull(
-            require(constraints, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "constraints cannot be null or empty"),
-            ExceptionProvider.OfSequence.ofIAE("constraints[%d]: %s"));
+        this.type = Checks.checkNotNull(type, "type");
+        this.constraints = Checks.checkAllNotNull(
+            Checks.checkThat(constraints, constraints != null && constraints.length > 0, "constraints cannot be null or empty"),
+            "constraints[%s]");
     }
 
     /**

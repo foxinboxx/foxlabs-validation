@@ -21,7 +21,7 @@ import java.util.MissingResourceException;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>Converter</code> implementation for the
@@ -77,8 +77,8 @@ public final class BooleanConverter extends AbstractConverter<Boolean> {
      *         <code>null</code>.
      */
     BooleanConverter(Class<Boolean> type, String prefix) {
-        Predicates.requireNonNull(prefix, "prefix");
-        this.type = Predicates.requireNonNull(type, "type");
+      Checks.checkNotNull(prefix, "prefix");
+        this.type = Checks.checkNotNull(type, "type");
         this.trueKey = prefix + ".TRUE";
         this.falseKey = prefix + ".FALSE";
     }

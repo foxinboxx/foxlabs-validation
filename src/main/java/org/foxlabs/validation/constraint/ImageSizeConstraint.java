@@ -34,7 +34,7 @@ import javax.imageio.stream.ImageInputStream;
 import org.foxlabs.validation.AbstractValidation;
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides base implementation of the <code>Constraint</code> that
@@ -75,9 +75,9 @@ public abstract class ImageSizeConstraint<V> extends AbstractValidation<V> imple
      *         <code>null</code>.
      */
     protected ImageSizeConstraint(int maxWidth, int maxHeight, ImageAdjust adjust) {
-        this.maxWidth = Predicates.require(maxWidth, Predicates.INT_POSITIVE, "maxWidth");
-        this.maxHeight = Predicates.require(maxHeight, Predicates.INT_POSITIVE, "maxHeight");
-        this.adjust = Predicates.requireNonNull(adjust, "adjust");
+        this.maxWidth = Checks.checkThat(maxWidth, maxWidth > 0, "maxWidth");
+        this.maxHeight = Checks.checkThat(maxHeight, maxHeight > 0, "maxHeight");
+        this.adjust = Checks.checkNotNull(adjust, "adjust");
     }
 
     /**

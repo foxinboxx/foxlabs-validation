@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>CorrectConstraint</code> implementation that
@@ -56,8 +56,8 @@ public class ReplaceConstraint extends CorrectConstraint<String> {
      *         is <code>null</code>.
      */
     protected ReplaceConstraint(String regex, String replacement, int flags) {
-        this.pattern = Pattern.compile(Predicates.requireNonNull(regex, "regex"), flags);
-        this.replacement = Predicates.requireNonNull(replacement, "replacement");
+        this.pattern = Pattern.compile(Checks.checkNotNull(regex, "regex"), flags);
+        this.replacement = Checks.checkNotNull(replacement, "replacement");
     }
 
     /**

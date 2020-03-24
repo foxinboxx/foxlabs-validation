@@ -16,7 +16,7 @@
 
 package org.foxlabs.validation.converter;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>NumberConverter</code> implementation for the
@@ -55,7 +55,7 @@ public final class DoubleConverter extends NumberConverter.DecimalType<Double> {
      */
     DoubleConverter(Class<Double> type, String pattern) {
         super(pattern);
-        this.type = Predicates.requireNonNull(type, "type");
+        this.type = Checks.checkNotNull(type, "type");
     }
 
     /**

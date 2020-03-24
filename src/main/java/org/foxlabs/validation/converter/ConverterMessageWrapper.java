@@ -20,7 +20,8 @@ import java.util.MissingResourceException;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
+import org.foxlabs.common.Strings;
 
 /**
  * This class provides ability to override error message of another converter.
@@ -50,7 +51,7 @@ public final class ConverterMessageWrapper<V> extends ConverterWrapper<V> {
      */
     ConverterMessageWrapper(Converter<V> converter, String message) {
         super(converter);
-        this.message = Predicates.require(message, Predicates.STRING_NON_EMPTY, "message");
+        this.message = Checks.checkThat(message, Strings.isNonEmpty(message), "message");
     }
 
     /**

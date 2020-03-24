@@ -29,7 +29,7 @@ import org.foxlabs.validation.constraint.ConstraintFactory;
 import org.foxlabs.validation.converter.Converter;
 import org.foxlabs.validation.converter.ConverterFactory;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 import org.foxlabs.util.reflect.Types;
 import org.foxlabs.util.reflect.PropertyGetter;
@@ -214,7 +214,7 @@ public class BeanMetaData<T> extends AbstractEntityMetaData<T> {
      * @throws BeanDefinitionException if bean has illegal validation definition.
      */
     public synchronized static <T> BeanMetaData<T> getMetaData(Class<?> type) {
-        Predicates.require(type, Types::isObject, "type");
+        Checks.checkThat(type, Types.isObject(type), "type");
         BeanMetaData<T> meta = Types.cast(metaCache.get(type));
         if (meta == null) {
             boolean failure = true;

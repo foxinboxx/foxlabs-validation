@@ -25,7 +25,7 @@ import org.foxlabs.validation.ValidationContext;
 import org.foxlabs.validation.ValidationException;
 import org.foxlabs.validation.ValidationTarget;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides base implementation of the <code>Constraint</code> that
@@ -52,7 +52,7 @@ public abstract class SequenceElementConstraint<V, E> extends AbstractValidation
      *         <code>null</code>.
      */
     protected SequenceElementConstraint(Constraint<E> constraint) {
-        this.constraint = Predicates.requireNonNull(constraint, "constraint");
+        this.constraint = Checks.checkNotNull(constraint, "constraint");
     }
 
     /**

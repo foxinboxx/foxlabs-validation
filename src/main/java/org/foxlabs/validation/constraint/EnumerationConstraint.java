@@ -24,12 +24,11 @@ import java.util.LinkedHashSet;
 import java.util.Collections;
 import java.util.Locale;
 
+import org.foxlabs.common.Checks;
 import org.foxlabs.util.reflect.Types;
 
 import org.foxlabs.validation.ValidationContext;
 import org.foxlabs.validation.converter.ConverterFactory;
-
-import static org.foxlabs.common.Predicates.*;
 
 /**
  * This class provides base implementation of the <code>CheckConstraint</code>
@@ -124,7 +123,7 @@ public abstract class EnumerationConstraint<V> extends CheckConstraint<V> {
         @SafeVarargs
         protected Default(V... constants) {
             this(Types.superTypeOf(Types.typesOf(
-                require(constants, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "constants"))),
+                Checks.checkThat(constants, constants != null && constants.length > 0, "constants"))),
                 Arrays.asList(constants));
         }
 
@@ -141,7 +140,7 @@ public abstract class EnumerationConstraint<V> extends CheckConstraint<V> {
          */
         @SafeVarargs
         protected Default(Class<?> type, V... constants) {
-            this(type, Arrays.asList(require(constants, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "constants")));
+            this(type, Arrays.asList(Checks.checkThat(constants, constants != null && constants.length > 0, "constants")));
         }
 
         /**
@@ -155,7 +154,7 @@ public abstract class EnumerationConstraint<V> extends CheckConstraint<V> {
          */
         protected Default(Collection<V> constants) {
             this(Types.superTypeOf(
-                Types.typesOf(require(constants, COLLECTION_NON_EMPTY_OR_NULL, "constants").toArray())),
+                Types.typesOf(Checks.checkThat(constants, constants != null && constants.size() > 0, "constants").toArray())),
                 constants);
         }
 
@@ -173,7 +172,7 @@ public abstract class EnumerationConstraint<V> extends CheckConstraint<V> {
         protected Default(Class<?> type, Collection<V> constants) {
             this(type, constants instanceof Set
                 ? (Set<V>) constants
-                : new LinkedHashSet<V>(require(constants, COLLECTION_NON_EMPTY_OR_NULL, "constants")));
+                : new LinkedHashSet<V>(Checks.checkThat(constants, constants != null && constants.size() > 0, "constants")));
         }
 
         /**
@@ -188,10 +187,10 @@ public abstract class EnumerationConstraint<V> extends CheckConstraint<V> {
          *         <code>null</code> elements.
          */
         protected Default(Class<?> type, Set<V> constants) {
-            this.type = requireNonNull(type, "type");
-            this.constants = Collections.unmodifiableSet(requireAllNonNull(
-                require(constants, COLLECTION_NON_EMPTY_OR_NULL, "constants cannot be null or empty"),
-                ExceptionProvider.OfSequence.ofIAE("constants[%d]: %s")));
+            this.type = Checks.checkNotNull(type, "type");
+            this.constants = Collections.unmodifiableSet(Checks.checkAllNotNull(
+                Checks.checkThat(constants, constants != null && constants.size() > 0, "constants cannot be null or empty"),
+                "constants[%s]"));
         }
 
         /**

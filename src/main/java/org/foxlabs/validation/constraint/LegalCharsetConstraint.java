@@ -19,7 +19,8 @@ package org.foxlabs.validation.constraint;
 import java.util.Map;
 
 import org.foxlabs.validation.ValidationContext;
-import org.foxlabs.common.Predicates;
+
+import org.foxlabs.common.Checks;
 
 import org.foxlabs.util.UnicodeSet;
 
@@ -48,9 +49,8 @@ public class LegalCharsetConstraint extends CheckConstraint<String> {
      *         <code>null</code> or empty.
      */
     protected LegalCharsetConstraint(UnicodeSet charset) {
-        this.charset = Predicates.require(
-            Predicates.requireNonNull(charset, "charset"),
-            (cs) -> !cs.equals(UnicodeSet.EMPTY), "charset");
+        this.charset = Checks.checkThat(Checks.checkNotNull(charset, "charset"),
+            !charset.equals(UnicodeSet.EMPTY), "charset");
     }
 
     /**

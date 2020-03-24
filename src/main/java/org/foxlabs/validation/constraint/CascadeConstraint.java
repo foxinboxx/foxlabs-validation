@@ -22,7 +22,7 @@ import org.foxlabs.validation.ValidationException;
 import org.foxlabs.validation.metadata.BeanMetaData;
 import org.foxlabs.validation.metadata.EntityMetaData;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>Constraint</code> implementation that performs
@@ -61,7 +61,7 @@ public final class CascadeConstraint<V> extends AbstractValidation<V> implements
      *         <code>null</code>.
      */
     CascadeConstraint(EntityMetaData<V> metadata) {
-        this.metadata = Predicates.requireNonNull(metadata, "metadata");
+        this.metadata = Checks.checkNotNull(metadata, "metadata");
     }
 
     /**

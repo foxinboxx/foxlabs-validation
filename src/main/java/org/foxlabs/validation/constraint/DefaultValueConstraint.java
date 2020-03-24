@@ -19,7 +19,7 @@ package org.foxlabs.validation.constraint;
 import org.foxlabs.validation.ValidationContext;
 import org.foxlabs.validation.converter.ConverterFactory;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>CorrectConstraint</code> implementation that
@@ -46,7 +46,7 @@ public final class DefaultValueConstraint<V> extends CorrectConstraint<V> {
      *         <code>null</code>.
      */
     DefaultValueConstraint(V defaultValue) {
-        this.defaultValue = Predicates.requireNonNull(defaultValue, "defaultValue");
+        this.defaultValue = Checks.checkNotNull(defaultValue, "defaultValue");
     }
 
     /**

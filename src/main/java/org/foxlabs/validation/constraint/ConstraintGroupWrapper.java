@@ -19,11 +19,10 @@ package org.foxlabs.validation.constraint;
 import java.util.Set;
 import java.util.Collections;
 
+import org.foxlabs.common.Checks;
 import org.foxlabs.common.Sets;
 
 import org.foxlabs.validation.ValidationContext;
-
-import static org.foxlabs.common.Predicates.*;
 
 /**
  * This class provides ability to override groups of another constraint. Any
@@ -54,9 +53,9 @@ public final class ConstraintGroupWrapper<V> extends ConstraintWrapper<V> {
      *         elements.
      */
     ConstraintGroupWrapper(Constraint<V> constraint, String[] groups) {
-        this(constraint, Sets.toImmutableLinkedHashSet(requireAllNonNull(
-            require(groups, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "groups cannot be null or empty"),
-            ExceptionProvider.OfSequence.ofIAE("groups[%d]: %s"))));
+        this(constraint, Sets.toImmutableLinkedHashSet(Checks.checkAllNotNull(
+            Checks.checkThat(groups, groups != null && groups.length > 0, "groups cannot be null or empty"),
+            "groups[%s]")));
     }
 
     /**

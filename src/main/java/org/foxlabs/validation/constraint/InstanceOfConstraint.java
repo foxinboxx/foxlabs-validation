@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.foxlabs.validation.ValidationContext;
 
-import static org.foxlabs.common.Predicates.*;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>CheckConstraint</code> implementation that checks
@@ -47,9 +47,9 @@ public final class InstanceOfConstraint extends CheckConstraint<Object> {
      *         elements.
      */
     InstanceOfConstraint(Class<?>[] types) {
-        this.types = requireAllNonNull(
-            require(types, OBJECT_ARRAY_NON_EMPTY_OR_NULL, "types cannot be null or empty"),
-            ExceptionProvider.OfSequence.ofIAE("types[%d]: %s"));
+        this.types = Checks.checkAllNotNull(
+            Checks.checkThat(types, types != null && types.length > 0, "types cannot be null or empty"),
+            "types[%s]");
     }
 
     /**

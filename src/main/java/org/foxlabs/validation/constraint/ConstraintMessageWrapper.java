@@ -20,7 +20,8 @@ import java.util.MissingResourceException;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
+import org.foxlabs.common.Strings;
 
 /**
  * This class provides ability to override error message of another constraint.
@@ -50,7 +51,7 @@ public final class ConstraintMessageWrapper<V> extends ConstraintWrapper<V> {
      */
     ConstraintMessageWrapper(Constraint<V> constraint, String message) {
         super(constraint);
-        this.message = Predicates.require(message, Predicates.STRING_NON_EMPTY, "message");
+        this.message = Checks.checkThat(message, Strings.isNonEmpty(message), "message");
     }
 
     /**

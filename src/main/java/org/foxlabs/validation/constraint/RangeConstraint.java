@@ -23,7 +23,7 @@ import org.foxlabs.validation.ValidationContext;
 
 import static org.foxlabs.validation.converter.ConverterFactory.*;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>CheckConstraint</code> implementation that checks
@@ -69,7 +69,7 @@ public final class RangeConstraint<V> extends CheckConstraint<V> {
      *         <code>null</code> or there is no range specified.
      */
     RangeConstraint(V min, V max, Comparator<V> comparator) {
-        this.comparator = Predicates.requireNonNull(comparator, "comparator");
+        this.comparator = Checks.checkNotNull(comparator, "comparator");
 
         if (min == null) {
             if (max == null)

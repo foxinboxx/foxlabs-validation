@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>CheckConstraint</code> implementation that checks
@@ -49,7 +49,7 @@ public class RegexConstraint extends CheckConstraint<String> {
      *         <code>null</code> or invalid.
      */
     protected RegexConstraint(String regex, int flags) {
-        this.pattern = Pattern.compile(Predicates.requireNonNull(regex, "regex"), flags);
+        this.pattern = Pattern.compile(Checks.checkNotNull(regex, "regex"), flags);
     }
 
     /**

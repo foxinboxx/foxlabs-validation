@@ -25,7 +25,7 @@ import org.foxlabs.validation.ValidationContext;
 import org.foxlabs.validation.ValidationException;
 import org.foxlabs.validation.ValidationTarget;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides base <code>Converter</code> implementation for
@@ -50,7 +50,7 @@ public abstract class SequenceConverter<V> extends AbstractValidation<V> impleme
      *         <code>null</code>.
      */
     protected SequenceConverter(Tokenizer tokenizer) {
-        this.tokenizer = Predicates.requireNonNull(tokenizer, "tokenizer");
+        this.tokenizer = Checks.checkNotNull(tokenizer, "tokenizer");
     }
 
     /**

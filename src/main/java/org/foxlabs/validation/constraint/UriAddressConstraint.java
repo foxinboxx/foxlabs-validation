@@ -27,7 +27,7 @@ import org.foxlabs.common.Strings;
 
 import org.foxlabs.validation.ValidationContext;
 
-import static org.foxlabs.common.Predicates.*;
+import static org.foxlabs.common.Checks.*;
 
 /**
  * This class provides <code>CheckConstraint</code> implementation that checks
@@ -61,8 +61,8 @@ public final class UriAddressConstraint extends CheckConstraint<String> {
      *         contains <code>null</code> or empty elements.
      */
     UriAddressConstraint(String[] schemes) {
-        this.schemes = Sets.toImmutableLinkedHashSet(requireAll(schemes, STRING_NON_EMPTY,
-            ExceptionProvider.OfSequence.ofIAE("schemes[%d]: %s")));
+        this.schemes = Sets.toImmutableLinkedHashSet(
+            checkThatAll(schemes, Strings::isNonEmpty, "schemes[%s]: %s"));
     }
 
     /**

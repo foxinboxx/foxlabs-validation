@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides convenient implementation of the <code>Converter</code>
@@ -45,7 +45,7 @@ public abstract class ConverterWrapper<V> implements Converter<V> {
      *         <code>null</code>.
      */
     public ConverterWrapper(Converter<V> converter) {
-        this.converter = Predicates.requireNonNull(converter, "converter");
+        this.converter = Checks.checkNotNull(converter, "converter");
     }
 
     /**

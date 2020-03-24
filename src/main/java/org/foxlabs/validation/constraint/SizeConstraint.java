@@ -23,7 +23,7 @@ import java.util.Map;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides base implementation of the <code>CheckConstraint</code>
@@ -55,8 +55,8 @@ public abstract class SizeConstraint<V> extends CheckConstraint<V> {
      *         is negative.
      */
     protected SizeConstraint(int minSize, int maxSize) {
-        Predicates.require(minSize, Predicates.INT_POSITIVE_OR_ZERO, "minSize");
-        Predicates.require(maxSize, Predicates.INT_POSITIVE_OR_ZERO, "maxSize");
+        Checks.checkThat(minSize, minSize >= 0, "minSize");
+        Checks.checkThat(maxSize, maxSize >= 0, "maxSize");
 
         if (minSize < maxSize) {
             this.minSize = minSize;

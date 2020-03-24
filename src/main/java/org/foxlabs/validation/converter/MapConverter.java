@@ -24,7 +24,7 @@ import org.foxlabs.validation.ValidationContext;
 import org.foxlabs.validation.ValidationException;
 import org.foxlabs.validation.ValidationTarget;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 import org.foxlabs.util.reflect.Types;
 
@@ -75,9 +75,9 @@ public final class MapConverter<K, V> extends SequenceConverter<Map<K, V>> {
             Converter<K> kconverter, Converter<V> vconverter,
             Tokenizer tokenizer) {
         super(tokenizer);
-        this.type = Types.cast(Predicates.requireNonNull(type, "type"));
-        this.kconverter = Predicates.requireNonNull(kconverter, "kconverter");
-        this.vconverter = Predicates.requireNonNull(vconverter, "vconverter");
+        this.type = Types.cast(Checks.checkNotNull(type, "type"));
+        this.kconverter = Checks.checkNotNull(kconverter, "kconverter");
+        this.vconverter = Checks.checkNotNull(vconverter, "vconverter");
     }
 
     /**

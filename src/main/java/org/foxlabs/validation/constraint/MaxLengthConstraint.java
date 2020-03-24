@@ -18,7 +18,7 @@ package org.foxlabs.validation.constraint;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>CorrectConstraint</code> implementation that
@@ -44,7 +44,7 @@ public final class MaxLengthConstraint extends CorrectConstraint<String> {
      *         zero.
      */
     MaxLengthConstraint(int limit) {
-        this.limit = Predicates.require(limit, Predicates.INT_POSITIVE, "limit");
+        this.limit = Checks.checkThat(limit, limit > 0, "limit");
     }
 
     /**

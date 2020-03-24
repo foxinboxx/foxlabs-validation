@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides convenient implementation of the <code>Constraint</code>
@@ -45,7 +45,7 @@ public abstract class ConstraintWrapper<V> implements Constraint<V> {
      *         <code>null</code>.
      */
     public ConstraintWrapper(Constraint<V> constraint) {
-        this.constraint = Predicates.requireNonNull(constraint, "constraint");
+        this.constraint = Checks.checkNotNull(constraint, "constraint");
     }
 
     /**

@@ -21,7 +21,7 @@ import java.util.MissingResourceException;
 
 import org.foxlabs.validation.ValidationContext;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
 
 /**
  * This class provides <code>Converter</code> implementation for all
@@ -58,8 +58,8 @@ public final class EnumConverter<V extends Enum<V>> extends AbstractConverter<V>
      *         <code>null</code>.
      */
     EnumConverter(Class<V> type, String prefix) {
-         Predicates.requireNonNull(prefix, "prefix");
-        this.type = Predicates.requireNonNull(type, "type");
+        Checks.checkNotNull(prefix, "prefix");
+        this.type = Checks.checkNotNull(type, "type");
         this.constants = type.getEnumConstants();
         this.keys = new String[this.constants.length];
         for (int i = 0; i < this.keys.length; i++)

@@ -19,7 +19,8 @@ package org.foxlabs.validation.metadata;
 import org.foxlabs.validation.constraint.Constraint;
 import org.foxlabs.validation.converter.Converter;
 
-import org.foxlabs.common.Predicates;
+import org.foxlabs.common.Checks;
+import org.foxlabs.common.Strings;
 
 import org.foxlabs.util.reflect.Types;
 
@@ -67,8 +68,8 @@ public abstract class AbstractPropertyMetaData<T, V> implements PropertyMetaData
      */
     protected AbstractPropertyMetaData(String name, Converter<V> converter,
             Constraint<? super V> constraint, V defaultValue) {
-        this.name = Predicates.require(name, Predicates.STRING_NON_EMPTY, "name");
-        this.converter = Predicates.requireNonNull(converter, "converter");
+        this.name = Checks.checkThat(name, Strings.isNonEmpty(name), "name");
+        this.converter = Checks.checkNotNull(converter, "converter");
         this.constraint = constraint;
         this.defaultValue = defaultValue == null
             ? Types.defaultValueOf(converter.getType())
